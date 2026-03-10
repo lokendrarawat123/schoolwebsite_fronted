@@ -4,28 +4,33 @@ import bgImg from "../assets/img/scphoto.jpg";
 const Home = () => {
   return (
     <>
-      {/* Hero Section */}
-      <section
-        className="h-screen bg-cover bg-center flex items-center justify-center text-white"
-        style={{
-          backgroundImage: `url(${bgImg})`,
-        }}
-      >
-        <div className="bg-black/50 absolute inset-0"></div>
+      <main className="pt-32">
+        <section
+          className="h-screen relative bg-cover bg-center flex items-center justify-center text-white"
+          style={{ backgroundImage: `url(${bgImg})` }}
+        >
+          {/* Blue Overlay */}
+          <div className="absolute inset-0 bg-blue-900/40"></div>
 
-        <div className="relative text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Welcome to Namuna College
-          </h1>
-          <p className="text-lg md:text-xl mb-6">
-            Quality Education for Your Bright Future
-          </p>
-
-          <button className="bg-blue-700 hover:bg-blue-800 px-6 py-3 rounded font-semibold">
-            Apply Now
-          </button>
-        </div>
-      </section>
+          {/* Content */}
+          <div className="relative z-10 text-center px-4">
+            <div className="mb-4">Established: 2062</div>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Welcome to Namuna College
+            </h1>
+            <p className="mb-2">
+              Nurturing young minds with quality education, strong values, and
+              modern facilities in the heart of Nepal.
+            </p>
+            <p className="text-lg md:text-xl mb-6">
+              Quality Education for Your Bright Future
+            </p>
+            <button className="bg-blue-700 hover:bg-blue-800 px-6 py-3 rounded font-semibold">
+              Apply Now
+            </button>
+          </div>
+        </section>
+      </main>
 
       {/* Programs Section */}
       <section className="bg-gray-100 py-16">

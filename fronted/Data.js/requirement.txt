@@ -1,0 +1,12 @@
+✅ Authentication & User Management  
+✅ Home Page with Dynamic Slider  
+✅ Reviews & Testimonials System  
+✅ FAQ Management  
+✅ Team/Staff Directory  
+✅ Gallery Management  
+✅ Notice Board System  
+✅ Blog/News Platform  
+✅ Vacancy/Job Posting   
+✅ Events Calendar 
+✅ Achievements Showcase  
+✅ Question Bank Repository

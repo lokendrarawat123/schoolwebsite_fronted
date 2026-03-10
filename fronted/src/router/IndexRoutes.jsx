@@ -5,7 +5,7 @@ import PublicRoutes from "./PublicRoutes";
 
 export const indexRouter = createBrowserRouter([
   {
-    path: "",
+     path: "",
     element: <PublicLayout />,
     children: PublicRoutes,
   },
