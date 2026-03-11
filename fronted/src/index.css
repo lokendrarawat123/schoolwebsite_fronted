@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+@layer utilities {
+  .pt-35 {
+    padding-top: 140px;
+  }
+}
+
 @theme {
   --color-primary-color: #fdf100;
   --color-secondary-color: #3db54b;

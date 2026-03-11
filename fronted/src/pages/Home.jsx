@@ -4,22 +4,26 @@ import bgImg from "../assets/img/scphoto.jpg";
 const Home = () => {
   return (
     <>
-      <main className="pt-32">
+      <main className="pt-35">
         <section
           className="h-screen relative bg-cover bg-center flex items-center justify-center text-white"
           style={{ backgroundImage: `url(${bgImg})` }}
         >
           {/* Blue Overlay */}
-          <div className="absolute inset-0 bg-blue-900/40"></div>
+          <div className="absolute inset-0 bg-blue-900/70 text-center">
+            <div className="mt-0 font-bold text-2xl text-primary-color ">
+              Established 2062 B.S.
+            </div>
+          </div>
 
           {/* Content */}
+
           <div className="relative z-10 text-center px-4">
-            <div className="mb-4">Established: 2062</div>
             <h1 className="text-4xl md:text-6xl font-bold mb-4">
               Welcome to Namuna College
             </h1>
             <p className="mb-2">
-              Nurturing young minds with quality education, strong values, and
+              Nurturing young minds with qual ity education, strong values, and
               modern facilities in the heart of Nepal.
             </p>
             <p className="text-lg md:text-xl mb-6">
