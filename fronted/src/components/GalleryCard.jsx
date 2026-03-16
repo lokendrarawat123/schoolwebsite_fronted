@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 const GalleryCard = ({ gallery, baseUrl }) => {
   const images = gallery.image_url.split(",");
   const [currentIndex, setCurrentIndex] = useState(0);

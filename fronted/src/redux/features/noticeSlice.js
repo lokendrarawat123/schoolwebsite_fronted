@@ -1,13 +1,13 @@
 // import { indexSlice } from "./indexSlice";
-// export const galleryApi = indexSlice.injectEndpoints({
+// export const noticeApi = indexSlice.injectEndpoints({
 //   endpoints: (builder) => ({
-//     getGallery: builder.query({
+//     getDistrict: builder.query({
 //       query: () => ({
 //         url: "/api/content/gallery ",
 //         method: "GET",
 //       }),
-//       providesTags: ["content"],
+//       providesTags: ["district"],
 //     }),
 //   }),
 // });
-// export const { useGetGalleryQuery } = galleryApi;
+// export const { useGetDistrictQuery } = noticeApi;

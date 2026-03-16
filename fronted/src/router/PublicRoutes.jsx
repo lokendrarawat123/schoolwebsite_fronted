@@ -6,6 +6,7 @@ import Test from "../pages/Test";
 import Vacancy from "../pages/Vacancy";
 import Contact from "../pages/Contact";
 import Academeic from "../pages/Academeic";
+import Blog from "../pages/Blog";
 export const PublicRoutes = [
   {
     index: true,
@@ -38,6 +39,10 @@ export const PublicRoutes = [
   {
     path: "/academics",
     element: <Academeic />,
+  },
+  {
+    path: "/blog",
+    element: <Blog />,
   },
 ];
 export default PublicRoutes;

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @layer utilities {
@@ -5,9 +6,47 @@
     padding-top: 140px;
   }
 }
+@layer base {
+  :root {
+    --primary: 215 80% 28%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 90% 52%;
+    --secondary-foreground: 0 0% 100%;
+
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 215 80% 28%;
+
+    --radius: 0.5rem;
+
+    --shadow-card: 0 4px 24px -4px hsla(215, 80%, 28%, 0.12);
+    --shadow-elevated: 0 12px 40px -8px hsla(215, 80%, 28%, 0.2);
+
+    --font-display: "Playfair Display", serif;
+    --font-body: "Source Sans 3", sans-serif;
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+}
 
 @theme {
   --color-primary-color: #fdf100;
   --color-secondary-color: #3db54b;
   --color-third-color: #223fa2;
+  --font-display: "Playfair Display", serif;
+  --font-body: "Source Sans 3", sans-serif;
 }

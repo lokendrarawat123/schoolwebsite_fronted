@@ -1,9 +1,10 @@
 import React from "react";
-import { useGetDistrictQuery } from "../redux/features/gallerySlice.js";
+
 import GalleryCard from "../components/GalleryCard.jsx";
+import { useGetGalleryQuery } from "../redux/features/contentSlice.js";
 
 const Gallery = () => {
-  const { data, isLoading, error } = useGetDistrictQuery();
+  const { data, isLoading, error } = useGetGalleryQuery();
   const IMG_URL = import.meta.env.VITE_IMG_URL;
 
   if (isLoading) return <p className="text-center mt-20">Loading...</p>;
@@ -12,7 +13,7 @@ const Gallery = () => {
       <p className="text-center mt-20 text-red-500">Error loading gallery</p>
     );
 
-  const galleries = data?.data || [];
+  const galleries = data?.data || []; 
 
   return (
     <section className="min-h-screen bg-gray-100 py-16 px-6">
