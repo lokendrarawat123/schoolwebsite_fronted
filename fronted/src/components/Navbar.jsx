@@ -1,94 +1,75 @@
 import React, { useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/img/namuna_logo.jpg";
+import { HiMenu, HiX } from "react-icons/hi";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { key: "Home", path: "/" },
-    { key: "About", path: "/about" },
-    { key: "Academics", path: "/academics" },
-    { key: "Gallery", path: "/gallery" },
-    { key: "Blog", path: "/blog" },
-    { key: "Notice", path: "/notice" },
-    { key: "Vacancy", path: "/vacancy" },
-    { key: "Contact", path: "/contact" },
+    { key: "HOME", path: "/" },
+    { key: "ABOUT US", path: "/about" },
+    { key: "ACADEMICS", path: "/academics" },
+    { key: "GALLERY", path: "/gallery" },
+    { key: "BLOG", path: "/blog" },
+    { key: "NOTICE", path: "/notice" },
+    { key: "VACANCY", path: "/vacancy" },
+    { key: "CONTACT", path: "/contact" },
   ];
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-amber-200 shadow-lg  w-full sticky top-0 z-40 text-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link
-            to="/"
-            className="flex items-center gap-2 hover:opacity-80 transition"
-          >
-            <img src={logo} alt="logo" className="h-14 w-auto object-contain" />
-            <span className="hidden sm:inline text-lg sm:text-xl font-bold">
-              Namuna Bidhya Sadan
-            </span>
-          </Link>
+    <nav className="sticky top-0 z-50 flex justify-center">
+      {/* Floating Card Navbar */}
+      <div className="w-[90%] max-w-6xl bg-white shadow-xl rounded-xl h-16 -mt-8 flex items-center px-6">
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex justify-between items-center w-full">
+          {navItems.map((item) => (
+            <li key={item.key}>
+              <Link
+                to={item.path}
+                className={`text-lg font-semibold transition duration-300 hover:text-blue-600 ${
+                  isActive(item.path) ? "text-blue-600" : "text-gray-700"
+                }`}
+              >
+                {item.key}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-          <ul className="hidden md:flex space-x-6 font-medium">
+        {/* Mobile Button */}
+        <button
+          className="lg:hidden text-3xl ml-auto"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <HiX /> : <HiMenu />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="lg:hidden absolute top-16 w-[90%] bg-white shadow-lg rounded-lg p-4">
+          <ul className="flex flex-col space-y-3">
             {navItems.map((item) => (
               <li key={item.key}>
                 <Link
                   to={item.path}
-                  className={`relative px-3 py-2 transition duration-300
-        after:absolute after:left-0 after:bottom-0 after:h-0.5
-        after:w-0 after:bg-third-color after:transition-all after:duration-300
-        hover:after:w-full
-        ${
-          isActive(item.path)
-            ? "text-third-color font-bold after:w-full"
-            : "text-gray-700"
-        }`}
+                  onClick={() => setOpen(false)}
+                  className={`block text-base font-medium py-2 px-4 rounded-md ${
+                    isActive(item.path)
+                      ? "bg-blue-600 text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }`}
                 >
                   {item.key}
                 </Link>
               </li>
             ))}
           </ul>
-
-          {/* Mobile Menu Icon */}
-          <button
-            className="md:hidden text-3xl p-2 hover:bg-opacity-80 rounded transition"
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-          >
-            {open ? <HiX /> : <HiMenu />}
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {open && (
-          <div className="md:hidden pb-4 border-t border-opacity-20 border-white">
-            <ul className="space-y-2">
-              {navItems.map((item) => (
-                <li key={item.key}>
-                  <Link
-                    to={item.path}
-                    className={`block px-4 py-2 rounded-md transition ${
-                      isActive(item.path)
-                        ? "bg-primary-color text-gray-900 font-bold"
-                        : "hover:bg-opacity-80 hover:bg-primary-color hover:text-gray-900"
-                    }`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.key}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+      )}
     </nav>
   );
 };

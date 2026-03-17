@@ -45,7 +45,7 @@ const Vacancy = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-5xl font-bold"
           >
-            Find Your Dream Job
+            Our Vacancy
           </motion.h1>
           <p className="mt-4 text-blue-100 text-lg">
             Explore the latest career opportunities in our team.

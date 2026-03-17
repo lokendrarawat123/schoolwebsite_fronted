@@ -1,17 +1,19 @@
 import React from "react";
 import bgImg from "../assets/img/scphoto.jpg";
 import { stats } from "../../Data.js/aboutData.js"; // import stats data
+import HeroSlider from "../components/shared/heroSlider.jsx";
 
 const Home = () => {
   return (
     <main>
+      <HeroSlider />
       <section
         id="home"
-        className="relative h-screen flex items-center justify-center overflow-hidden bg-cover bg-center"
+        className="relative min-h-screen pt-24 flex items-center justify-center overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-black/60 hero-overlay" />
+        <div className="absolute inset-0 bg-black/50 hero-overlay" />
 
         {/* Content */}
         <div className="relative z-10 text-center px-4">
@@ -48,7 +50,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="bg-third-color py-12">
+      <section className="bg-secondary-color py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
             {stats.map((stat, idx) => (

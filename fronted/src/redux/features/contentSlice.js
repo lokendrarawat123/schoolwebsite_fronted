@@ -36,4 +36,5 @@ export const {
   useGetGalleryQuery,
   useGetBlogQuery,
   useGetVacancyQuery,
+  usegetac
 } = contentApi;
