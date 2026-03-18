@@ -1,73 +1,100 @@
 import React from "react";
-import bgImg from "../assets/img/scphoto.jpg";
-import { stats } from "../../Data.js/aboutData.js"; // import stats data
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import HeroSlider from "../components/shared/heroSlider.jsx";
+import AboutComponents from "../components/shared/AboutComponents.jsx";
+
+const stats = [
+  { number: "2000+", label: "Students" },
+  { number: "50+", label: "Teachers" },
+  { number: "20+", label: "Years" },
+  { number: "100%", label: "Success Rate" },
+];
 
 const Home = () => {
   return (
-    <main>
+    <main className="font-sans">
+      {/* Hero Slider */}
       <HeroSlider />
-      <section
-        id="home"
-        className="relative min-h-screen pt-24 flex items-center justify-center overflow-hidden bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgImg})` }}
-      >
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-black/50 hero-overlay" />
-
-        {/* Content */}
-        <div className="relative z-10 text-center px-4">
-          {/* Establishment info */}
-          <p className="text-sm md:text-base uppercase tracking-[0.3em] mb-4 text-white font-semibold drop-shadow-md">
-            Established 2062 B.S.
-          </p>
-
-          {/* Main Heading */}
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
-            Namuna Bidhya Sadan
-          </h1>
-
-          {/* Subheading / Description */}
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-white opacity-90 font-body drop-shadow-md">
-            Nurturing young minds with quality education, strong values, and
-            modern facilities in the heart of Nepal.
-          </p>
-
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center ">
-            <a
-              href="#about"
-              className="px-8  py-3.5 rounded-lg bg-secondary-color text-white font-semibold text-lg hover:scale-105 hover:shadow-lg transition-all duration-300 "
-            >
-              Discover More
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-3.5 rounded-lg border-2 border-white text-white font-semibold text-lg hover:bg-white/10 hover:scale-105 hover:shadow-md transition-all duration-300"
-            >
-              Contact Us
-            </a>
-          </div>
-        </div>
-      </section>
+      {/* About Preview */}
+      <AboutComponents />
+      {/* Stats */}
       <section className="bg-secondary-color py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
-            {stats.map((stat, idx) => (
-              <div key={idx}>
-                <div className="text-4xl md:text-5xl font-bold text-primary-color">
-                  {stat.number}
-                </div>
-                <div className="text-lg mt-2">{stat.label}</div>
-              </div>
-            ))}
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+          {stats.map((stat, i) => (
+            <motion.div key={i} whileHover={{ scale: 1.1 }} className="p-4">
+              <h2 className="text-4xl font-bold text-primary-color">
+                {stat.number}
+              </h2>
+              <p>{stat.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-10">Why Choose Us</h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {["Quality Education", "Expert Teachers", "Modern Labs"].map(
+              (item, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -10 }}
+                  className="bg-white p-6 rounded-xl shadow"
+                >
+                  <h3 className="text-xl font-semibold mb-2">{item}</h3>
+                  <p className="text-gray-600">
+                    We ensure top learning environment for students.
+                  </p>
+                </motion.div>
+              ),
+            )}
           </div>
         </div>
       </section>
-      <section>
-        <div className="text-center">
-          <h1>Latest News</h1>
+
+      {/* Notices */}
+      <section className="py-16 text-center">
+        <h2 className="text-3xl font-bold mb-8">Latest Notices</h2>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+          {[1, 2, 3].map((i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              className="p-4 border rounded-lg shadow"
+            >
+              <h3 className="font-semibold">Notice Title</h3>
+              <p className="text-sm text-gray-500">March 2026</p>
+            </motion.div>
+          ))}
         </div>
+
+        <Link
+          to="/notice"
+          className="inline-block mt-6 px-6 py-3 bg-secondary-color text-white rounded-lg"
+        >
+          View All
+        </Link>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-secondary-color text-white text-center">
+        <motion.div initial={{ scale: 0.8 }} whileInView={{ scale: 1 }}>
+          <h2 className="text-3xl font-bold mb-4">Admission Open 2026</h2>
+          <p className="mb-6">
+            Join us and build your future with quality education.
+          </p>
+          <Link
+            to="/contact"
+            className="px-8 py-3 bg-white text-secondary-color rounded-lg"
+          >
+            Apply Now
+          </Link>
+        </motion.div>
       </section>
     </main>
   );
