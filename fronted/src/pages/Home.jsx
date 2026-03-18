@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import HeroSlider from "../components/shared/heroSlider.jsx";
+import HeroSlider from "../components/shared/HeroSlider.jsx";
 import AboutComponents from "../components/shared/AboutComponents.jsx";
 
 const stats = [
