@@ -1,41 +1,27 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-
-// Local Images
-import image1 from "../../assets/img/scphoto.jpg";
-import image2 from "../../assets/img/group.jpg";
-
-import image3 from "../../assets/img/student_group.jpg";
+// import { slides } from "../../../Data.js/heroSliderData.js";
+import { useGetSlidesQuery } from "../../redux/features/SiteSlice.js";
 
 // Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { HomeSkeleton } from "../skeleton/HomeSkeleton.jsx";
 
 const HeroSlider = () => {
-  const slides = [
-    {
-      id: 1,
-      image: image1,
-      title: "NAMUNA BIDHYA SADAN",
-      subtitle: "Established 2062 B.S.",
-    },
-    {
-      id: 2,
-      image: image2,
-      title: "EXCELLENCE IN EDUCATION",
-      subtitle: "Nurturing Future Leaders",
-    },
-    {
-      id: 3,
-      image: image3,
-      title: "INSPIRING YOUNG MINDS",
-      subtitle: "The Best Environment for Growth",
-    },
-  ];
-
+  const {
+    data: slidesData,
+    isLoading: slidesLoading,
+    error: slidesError,
+  } = useGetSlidesQuery();
+  const slides = slidesData?.data || [];
+  const img_url = import.meta.env.VITE_IMG_URL;
+  if (slidesLoading) {
+    return <HomeSkeleton />;
+  }
   return (
     <section
       id="home"
@@ -61,7 +47,9 @@ const HeroSlider = () => {
                   className={`absolute inset-0 bg-cover bg-center transition-transform duration-6000 ${
                     isActive ? "scale-110" : "scale-100"
                   }`}
-                  style={{ backgroundImage: `url(${slide.image})` }}
+                  style={{
+                    backgroundImage: `url(${img_url}/${slide.image_url})`,
+                  }}
                 />
 
                 {/* Layered Overlay for better text readability */}
@@ -80,7 +68,7 @@ const HeroSlider = () => {
                   </p>
 
                   <h1
-                    className={`text-5xl md:text-8xl font-black text-white mb-8 leading-tight transition-all duration-1000 delay-500 ${
+                    className={`text-4xl md:text-6xl font-black text-white mb-8 leading-tight transition-all duration-1000 delay-500 ${
                       isActive
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-10"
