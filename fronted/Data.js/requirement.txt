@@ -10,3 +10,18 @@
 ✅ Events Calendar 
 ✅ Achievements Showcase  
 ✅ Question Bank Repository
+Hero Section
+↓
+Our Story / History
+↓
+Mission, Vision, Core Values
+↓
+Features / Highlights
+↓
+Statistics / Achievements
+↓
+Meet Our Team
+↓
+Testimonials (optional)
+↓
+CTA / Contact Button

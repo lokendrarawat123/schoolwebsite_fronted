@@ -1,6 +1,8 @@
 import React from "react";
 import { FaAward, FaUsers, FaBook, FaGraduationCap } from "react-icons/fa";
-import bgImg from "../assets/img/scphoto.jpg";
+import bgImg from "../assets/img/student_group.jpg";
+import HeroContainer from "../components/home/HeroContainer";
+import MissionVision from "../components/About/Mision";
 
 const About = () => {
   const features = [
@@ -40,7 +42,36 @@ const About = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <section>Inntro duction</section>
+      <div>
+        <HeroContainer bgImage={bgImg}>About us</HeroContainer>
+      </div>
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-bold text-center mb-12">Our Story</h2>
+          <div className="bg-white p-8 rounded-lg shadow-lg space-y-4">
+            <p className="text-gray-700 leading-relaxed">
+              Namuna Bidhya Sadan was established in 2063 B.S. in Kohalpur with
+              a vision to provide quality education to the children of the
+              region. The school was founded with the goal of nurturing academic
+              excellence alongside moral and character development.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Over the years, Namuna Bidhya Sadan has grown into one of the most
+              respected educational institutions in Kohalpur and surrounding
+              areas. With dedicated teachers, innovative programs, and a focus
+              on holistic growth, the school continues to shape generations of
+              successful students.
+            </p>
+            <p className="text-gray-700 leading-relaxed">
+              Today, the school remains committed to its founding principles:
+              fostering knowledge, integrity, and responsibility, while
+              embracing modern teaching techniques and technologies to prepare
+              students for a bright future.
+            </p>
+          </div>
+        </div>
+      </section>
+      <MissionVision />
 
       {/* Features Section */}
       <section className="py-16">

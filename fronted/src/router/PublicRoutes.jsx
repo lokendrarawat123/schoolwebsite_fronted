@@ -7,6 +7,7 @@ import Vacancy from "../pages/Vacancy";
 import Contact from "../pages/Contact";
 import Academeic from "../pages/Academeic";
 import Blog from "../pages/Blog";
+import Team from "../pages/Team";
 export const PublicRoutes = [
   {
     index: true,
@@ -43,6 +44,10 @@ export const PublicRoutes = [
   {
     path: "/blog",
     element: <Blog />,
+  },
+  {
+    path: "/team",
+    element: <Team />,
   },
 ];
 export default PublicRoutes;

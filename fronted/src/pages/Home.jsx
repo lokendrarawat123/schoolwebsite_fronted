@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import HeroSlider from "../components/shared/HeroSlider.jsx";
-import AboutComponents from "../components/shared/AboutComponents.jsx";
+import HeroSlider from "../components/About/HeroSlider.jsx";
+import AboutComponents from "../components/About/AboutComponents.jsx";
+import Button from "../components/ButtonComponent.jsx";
 
 const stats = [
   { number: "2000+", label: "Students" },
@@ -59,7 +60,6 @@ const Home = () => {
       {/* Notices */}
       <section className="py-16 text-center">
         <h2 className="text-3xl font-bold mb-8">Latest Notices</h2>
-
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
           {[1, 2, 3].map((i) => (
             <motion.div
@@ -73,12 +73,13 @@ const Home = () => {
           ))}
         </div>
 
-        <Link
+        <Button
           to="/notice"
-          className="inline-block mt-6 px-6 py-3 bg-secondary-color text-white rounded-lg"
+          className=" inline-block mt-6 px-6 py-3 bg-secondary-color text-white
+        rounded-lg"
         >
           View All
-        </Link>
+        </Button>
       </section>
 
       {/* CTA */}

@@ -50,3 +50,12 @@
   --font-display: "Playfair Display", serif;
   --font-body: "Source Sans 3", sans-serif;
 }
+@keyframes kenBurns {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -0.5%);
+  }
+}
