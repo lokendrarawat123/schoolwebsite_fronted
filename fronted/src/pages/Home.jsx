@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import HeroSlider from "../components/About/HeroSlider.jsx";
-import AboutComponents from "../components/About/AboutComponents.jsx";
+import HeroSlider from "../components/home/HeroSlider.jsx";
+import AboutComponents from "../components/home/AboutComponents.jsx";
 import Button from "../components/ButtonComponent.jsx";
 
 const stats = [

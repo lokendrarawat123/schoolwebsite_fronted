@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import Button from "../ButtonComponent";
 
-const HeroContainer = ({ children, bgImage, className = "" }) => {
+const HeroContainer = ({ title, subtitle, bgImage, className = "" }) => {
   return (
     <div
       className={`relative flex flex-col  min-h-[70vh] overflow-hidden ${className}`}
@@ -24,7 +24,7 @@ const HeroContainer = ({ children, bgImage, className = "" }) => {
       <div className="relative z-10  my-10 px-4 md:px-0 flex flex-col items-center">
         {/* Breadcrumb Buttons */}
         <h1 className="text-5xl md:text-4xl uppercase font-extrabold text-gray-100 animate-fadeIn mb-5">
-          {children}
+          {title}
         </h1>
         <div className="flex space-x-4 mb-4">
           <Button to="/" className="bg-blue-900 ">
@@ -33,9 +33,12 @@ const HeroContainer = ({ children, bgImage, className = "" }) => {
           <span className="text-gray-700 font-bold text-5xl md:text-5xl flex items-center h-full">
             /
           </span>
-          <Button className="bg-blue-900 hover:from-blue-800 hover:to-purple-600 shadow-lg hover:shadow-xl ">
-            {children}
+          <Button className="bg-blue-900 hover:from-blue-800 hover:to-purple-600  uppercase shadow-lg hover:shadow-xl ">
+            {title}
           </Button>
+        </div>
+        <div className="mt-auto">
+          <h2 className="text-xl md:text-2xl text-gray-200">{subtitle}</h2>
         </div>
 
         {/* Main Heading */}

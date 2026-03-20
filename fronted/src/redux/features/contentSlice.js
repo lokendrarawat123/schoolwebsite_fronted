@@ -8,6 +8,13 @@ export const contentApi = indexSlice.injectEndpoints({
       }),
       providesTags: ["content"],
     }),
+    getGalleryCategories: builder.query({
+      query: () => ({
+        url: "/api/content/gallery/categories",
+        method: "GET",
+      }),
+      providesTags: ["content"],
+    }),
     getNotice: builder.query({
       query: () => ({
         url: "/api/content/notice",
@@ -34,7 +41,7 @@ export const contentApi = indexSlice.injectEndpoints({
 export const {
   useGetNoticeQuery,
   useGetGalleryQuery,
+  useGetGalleryCategoriesQuery,
   useGetBlogQuery,
   useGetVacancyQuery,
-  usegetac
 } = contentApi;

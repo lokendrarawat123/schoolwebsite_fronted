@@ -1,7 +1,7 @@
 import React from "react";
 import { FaAward, FaUsers, FaBook, FaGraduationCap } from "react-icons/fa";
-import bgImg from "../assets/img/student_group.jpg";
-import HeroContainer from "../components/home/HeroContainer";
+import bgImg from "../assets/img/scphoto.jpg";
+import HeroContainer from "../components/About/HeroContainer";
 import MissionVision from "../components/About/Mision";
 
 const About = () => {
@@ -43,11 +43,20 @@ const About = () => {
     <div className="w-full">
       {/* Hero Section */}
       <div>
-        <HeroContainer bgImage={bgImg}>About us</HeroContainer>
+        <HeroContainer
+          bgImage={bgImg}
+          title="about us"
+          subtitle="Namuna bidhya sadan"
+        />
       </div>
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">Our Story</h2>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-gray-800 tracking-wide">
+            Our{" "}
+            <span className="inline-block px-4 py-1 bg-linear-to-r from-blue-900 to-indigo-600 text-white rounded-full shadow-md text-3xl md:text-3xl align-middle">
+              Story
+            </span>
+          </h2>
           <div className="bg-white p-8 rounded-lg shadow-lg space-y-4">
             <p className="text-gray-700 leading-relaxed">
               Namuna Bidhya Sadan was established in 2063 B.S. in Kohalpur with
@@ -71,6 +80,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      {/* component */}
       <MissionVision />
 
       {/* Features Section */}
@@ -153,151 +163,6 @@ const About = () => {
                 <p className="text-gray-600">{value.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-      {/* our team  */}
-      <section>
-        <div class="p-4">
-          <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-slate-900 text-3xl md:text-4xl font-bold">
-              Meet our team
-            </h2>
-            <p class="text-slate-600 text-[15px] mt-4 leading-relaxed">
-              Meet our team of professionals to serve you.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-8 text-center mt-16 max-w-5xl max-lg:max-w-3xl max-md:max-w-xl mx-auto">
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-1.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">John Doe</h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">
-                  Software Engineer
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-2.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">
-                  Mark Adair
-                </h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">
-                  Software Engineer
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-3.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">
-                  Simon Konecki
-                </h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">Web Designer</p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-4.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">Sophia</h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">
-                  Software Developer
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-5.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">Alen</h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">
-                  Software Developer
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-6.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">Eleanor</h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">Web Designer</p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-1.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">John Doe</h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">
-                  Software Engineer
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <div class="w-32 h-32 rounded-full overflow-hidden bg-gray-50 inline-block">
-                <img
-                  src="https://readymadeui.com/team-2.webp"
-                  class="w-full h-full"
-                />
-              </div>
-
-              <div class="py-4">
-                <h4 class="text-slate-900 text-base font-semibold">
-                  Mark Adair
-                </h4>
-                <p class="text-slate-600 text-[13px] mt-1.5">
-                  Software Engineer
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

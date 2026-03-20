@@ -50,6 +50,13 @@ export const categoryApi = indexSlice.injectEndpoints({
       }),
       providesTags: ["category"],
     }),
+    getCategorGallery: builder.query({
+      query: () => ({
+        url: "/api/category/gallery",
+        method: "GET",
+      }),
+      providesTags: ["category"],
+    }),
   }),
 });
 export const {
@@ -57,4 +64,5 @@ export const {
   useGetNoticeCategoryQuery,
   useGetBlogCategoryQuery,
   useGetVacancyCategoryQuery,
+  useGetTeamCategoryQuery,
 } = categoryApi;
