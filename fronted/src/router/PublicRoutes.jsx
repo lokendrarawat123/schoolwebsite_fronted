@@ -8,6 +8,8 @@ import Contact from "../pages/Contact";
 import Academeic from "../pages/Academeic";
 import Blog from "../pages/Blog";
 import Team from "../pages/Team";
+import BlogDetails from "../pages/BlogDetails";
+
 export const PublicRoutes = [
   {
     index: true,
@@ -48,6 +50,10 @@ export const PublicRoutes = [
   {
     path: "/team",
     element: <Team />,
+  },
+  {
+    path: "/blog/:id",
+    element: <BlogDetails />,
   },
 ];
 export default PublicRoutes;

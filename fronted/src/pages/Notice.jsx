@@ -132,8 +132,6 @@ const NoticeIndex = () => {
             {filtered.length === 1 ? " notice" : " notices"}
             {activeCategory && (
               <span>
-                {" "}
-                in{" "}
                 <span className="font-semibold text-indigo-600">
                   {
                     category.find((cat) => {
@@ -166,7 +164,7 @@ const NoticeIndex = () => {
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                      <div className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 transform h-80 flex flex-col">
+                      <div className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-md hover:-translate-y-2 transition-all duration-500 transform h-80 flex flex-col">
                         {/* New badge */}
                         {isNew && (
                           <span className="absolute top-4 right-4 bg-linear-to-r from-green-400 to-green-200 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
