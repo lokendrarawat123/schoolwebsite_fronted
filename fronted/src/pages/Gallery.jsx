@@ -112,8 +112,7 @@ const Gallery = () => {
               </button>
               {categories.map((category) => {
                 // Try different possible ID fields like Notice page
-                const categoryId =
-                  category.id || category._id || category.category_id;
+                const categoryId = category.category_id;
                 const categoryName = category.category_name || category.name;
 
                 return (

@@ -9,6 +9,9 @@ import Academeic from "../pages/Academeic";
 import Blog from "../pages/Blog";
 import Team from "../pages/Team";
 import BlogDetails from "../pages/BlogDetails";
+import Events from "../pages/Events";
+import Achievement from "../pages/Achievement";
+import QuestionBank from "../pages/QuestionBank";
 
 export const PublicRoutes = [
   {
@@ -39,10 +42,10 @@ export const PublicRoutes = [
     path: "/vacancy",
     element: <Vacancy />,
   },
-  {
-    path: "/academics",
-    element: <Academeic />,
-  },
+  // {
+  //   path: "/academics",
+  //   element: <Academeic />,
+  // },
   {
     path: "/blog",
     element: <Blog />,
@@ -54,6 +57,18 @@ export const PublicRoutes = [
   {
     path: "/blog/:id",
     element: <BlogDetails />,
+  },
+  {
+    path: "/academics/events",
+    element: <Events />,
+  },
+  {
+    path: "academics/achievements",
+    element: <Achievement />,
+  },
+  {
+    path: "academics/question-bank",
+    element: <QuestionBank />,
   },
 ];
 export default PublicRoutes;
