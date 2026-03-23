@@ -1,41 +1,45 @@
-import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useGetVacancyQuery } from "../redux/features/contentSlice";
-import { useGetVacancyCategoryQuery } from "../redux/features/categorySlice";
+import React, { useState } from "react";
 import HeroContainer from "../components/About/HeroContainer";
+import { VacancySkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
+import { useGetVacancyQuery } from "../redux/features/contentSlice";
+import {
+  Clock,
+  Calendar,
+  MapPin,
+  FileText,
+  Phone,
+  Mail,
+  Building2,
+  Users,
+  Briefcase,
+} from "lucide-react";
 
 const Vacancy = () => {
-  // Queries fix: Added () to call the hooks
-  const { data: vacancyResponse, isLoading: vacancyLoading } =
-    useGetVacancyQuery();
-  const { data: categoryResponse, isLoading: catLoading } =
-    useGetVacancyCategoryQuery();
+  const { data: vacancyResponse = {}, isLoading, error } = useGetVacancyQuery();
 
-  const [selectedCat, setSelectedCat] = useState(null);
-  const [search, setSearch] = useState("");
+  const vacancies = vacancyResponse?.data || [];
 
-  const vacancyData = vacancyResponse?.data || [];
-  const catData = categoryResponse?.data || [];
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter Logic
-  const filteredJobs = useMemo(() => {
-    return vacancyData.filter((job) => {
-      const matchCat = selectedCat ? job.category_id === selectedCat : true;
-      const matchSearch = job.title
-        .toLowerCase()
-        .includes(search.toLowerCase());
-      return matchCat && matchSearch;
+  // Filter vacancies - only show open vacancies
+  const filteredVacancies = vacancies.filter((job) => {
+    const isOpen = job.status?.toLowerCase() === "open";
+    const matchesSearch =
+      job.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.description?.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return isOpen && matchesSearch;
+  });
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "Not specified";
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
-  }, [vacancyData, selectedCat, search]);
-
-  if (vacancyLoading || catLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-blue-600"></div>
-      </div>
-    );
-  }
+  };
 
   return (
     <div className="w-full">
@@ -43,95 +47,272 @@ const Vacancy = () => {
       <HeroContainer
         bgImage={bgImg}
         title="Vacancy"
-        subtitle=""
-      ></HeroContainer>
+        subtitle="Join Our Educational Excellence Team"
+      />
 
-      <div className="min-h-screen bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-8">
-          {/* Sidebar Filters */}
-          <aside className="w-full md:w-64 space-y-6">
-            <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4">
-                Categories
-              </h3>
-              <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => setSelectedCat(null)}
-                  className={`text-left px-4 py-2 rounded-lg transition ${
-                    selectedCat === null
-                      ? "bg-blue-100 text-blue-700 font-bold"
-                      : "text-gray-600 hover:bg-gray-200"
-                  }`}
-                >
-                  All Jobs
-                </button>
-                {catData.map((cat) => (
-                  <button
-                    key={cat.id || cat._id}
-                    onClick={() => setSelectedCat(cat.id)}
-                    className={`text-left px-4 py-2 rounded-lg transition ${
-                      selectedCat === cat.id
-                        ? "bg-blue-100 text-blue-700 font-bold"
-                        : "text-gray-600 hover:bg-gray-200"
-                    }`}
-                  >
-                    {cat.category_name}
-                  </button>
-                ))}
-              </div>
+      <div className="max-w-6xl mx-auto px-4 py-12">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Current Openings
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            We are seeking dedicated professionals to join our academic
+            community. All applications must be submitted in person at our
+            administrative office.
+          </p>
+        </div>
+
+        {/* Search Section */}
+        <div className="bg-white rounded-xl shadow-lg p-6 mb-10">
+          <div className="mt-4 text-center">
+            <span className="text-sm text-gray-600">
+              <span className="font-semibold text-blue-600">
+                {filteredVacancies.length}
+              </span>
+              open position{filteredVacancies.length !== 1 ? "s" : ""} available
+            </span>
+          </div>
+        </div>
+
+        {/* Loading State */}
+        {isLoading && <VacancySkeleton />}
+
+        {/* Error State */}
+        {error && (
+          <div className="text-center py-20">
+            <div className="bg-red-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <Building2 className="w-10 h-10 text-red-600" />
             </div>
-          </aside>
+            <h3 className="text-2xl font-semibold text-gray-700 mb-2">
+              Unable to Load Positions
+            </h3>
+            <p className="text-gray-500">
+              Please contact our HR department directly for current openings.
+            </p>
+          </div>
+        )}
 
-          {/* Job Listings Grid */}
-          <main className="grow">
-            <div className="grid gap-6">
-              <AnimatePresence mode="popLayout">
-                {filteredJobs.length > 0 ? (
-                  filteredJobs.map((job) => (
-                    <motion.div
-                      key={job.id || job._id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all group"
-                    >
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                          <span className="bg-blue-50 text-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase">
-                            {job.job_type || "Full Time"}
-                          </span>
-                          <h2 className="text-2xl font-bold text-gray-900 mt-2 group-hover:text-blue-600 transition">
-                            {job.title}
-                          </h2>
-                          <div className="flex flex-wrap gap-4 mt-3 text-sm text-gray-500 font-medium">
-                            <span className="flex items-center gap-1">
-                              📍 {job.location || "Nepal"}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              💰 {job.salary || "Negotiable"}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              📅 Deadline: {job.deadline || "ASAP"}
-                            </span>
-                          </div>
+        {/* Job Listings */}
+        {!isLoading && !error && filteredVacancies.length > 0 && (
+          <div className="space-y-8">
+            {filteredVacancies.map((job) => (
+              <div
+                key={job.id}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+              >
+                <div className="p-8">
+                  {/* Job Header */}
+                  <div className="mb-6">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="bg-blue-100 p-3 rounded-lg">
+                          <Briefcase className="w-6 h-6 text-blue-600" />
                         </div>
-                        <button className="w-full sm:w-auto bg-gray-900 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-600 transition-colors">
-                          Apply Now
-                        </button>
+                        <div>
+                          <h3 className="text-2xl font-bold text-gray-900 capitalize">
+                            {job.title}
+                          </h3>
+                          <span className="inline-block mt-1 px-4 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+                            Open Position
+                          </span>
+                        </div>
                       </div>
-                    </motion.div>
-                  ))
-                ) : (
-                  <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-gray-300">
-                    <p className="text-gray-500 text-lg">
-                      No vacancies found matching your criteria.
+                    </div>
+
+                    <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mt-4">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4 text-blue-500" />
+                        <span>
+                          <strong>Posted:</strong> {formatDate(job.posted_date)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-red-500" />
+                        <span>
+                          <strong>Deadline:</strong>{" "}
+                          {formatDate(job.application_deadline)}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-green-500" />
+                        <span>
+                          <strong>Department:</strong> Category{" "}
+                          {job.category_id}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Job Description */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">
+                      Position Description
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed text-base">
+                      {job.description}
                     </p>
                   </div>
-                )}
-              </AnimatePresence>
+
+                  {/* Application Process */}
+                  <div className="bg-blue-50 rounded-xl p-6 mb-6">
+                    <h4 className="text-lg font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                      <FileText className="w-5 h-5" />
+                      How to Apply
+                    </h4>
+                    <div className="text-blue-800 space-y-2">
+                      <p className="font-medium">
+                        Applications must be submitted in person only.
+                      </p>
+                      <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li>Bring your complete CV/Resume</li>
+                        <li>Original and copies of educational certificates</li>
+                        <li>Two recent passport-size photographs</li>
+                        <li>Valid citizenship certificate</li>
+                        <li>Experience certificates (if applicable)</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Contact Information */}
+                  <div className="border-t border-gray-200 pt-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h5 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                          <MapPin className="w-5 h-5 text-blue-600" />
+                          Visit Our Office
+                        </h5>
+                        <div className="text-gray-600 space-y-1">
+                          <p>Human Resources Department</p>
+                          <p>School Administration Building</p>
+                          <p>Ground Floor, Room 101</p>
+                          <p className="font-medium text-gray-800">
+                            Office Hours: 9:00 AM - 4:00 PM (Sun-Fri)
+                          </p>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h5 className="font-semibold text-gray-900 mb-3">
+                          Contact Information
+                        </h5>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3 text-gray-600">
+                            <Phone className="w-4 h-4 text-green-600" />
+                            <span>+977-1-4XXXXXX</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-gray-600">
+                            <Mail className="w-4 h-4 text-blue-600" />
+                            <span>hr@schoolname.edu.np</span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            For inquiries only. Applications must be submitted
+                            in person.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && !error && filteredVacancies.length === 0 && (
+          <div className="text-center py-20">
+            <div className="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+              <Briefcase className="w-10 h-10 text-gray-400" />
             </div>
-          </main>
+            <h3 className="text-2xl font-semibold text-gray-600 mb-4">
+              {searchQuery ? "No Matching Positions" : "No Open Positions"}
+            </h3>
+            <p className="text-gray-500 mb-6 max-w-md mx-auto">
+              {searchQuery
+                ? "No open positions match your search criteria. Try different keywords."
+                : "We don't have any open positions at the moment. Please check back regularly for new opportunities."}
+            </p>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                View All Open Positions
+              </button>
+            )}
+          </div>
+        )}
+
+        {/* Important Notice */}
+        <div className="mt-16 bg-linear-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-8">
+          <div className="text-center">
+            <div className="bg-amber-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+              <FileText className="w-8 h-8 text-amber-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-amber-900 mb-4">
+              Important Application Notice
+            </h3>
+            <div className="text-amber-800 max-w-3xl mx-auto space-y-3">
+              <p className="text-lg font-medium">
+                All job applications must be submitted physically at our office.
+              </p>
+              <p>
+                We do not accept online applications or email submissions.
+                Please visit our HR department during office hours with all
+                required documents.
+              </p>
+              <p className="text-sm">
+                Incomplete applications or those submitted through other
+                channels will not be considered.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional Information */}
+        <div className="mt-12 bg-white rounded-xl shadow-lg p-8">
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+            Why Join Our Team?
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-blue-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900 mb-2">
+                Collaborative Environment
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Work with dedicated professionals in a supportive academic
+                community.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Building2 className="w-8 h-8 text-green-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900 mb-2">
+                Modern Facilities
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Access to state-of-the-art educational resources and
+                infrastructure.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Briefcase className="w-8 h-8 text-purple-600" />
+              </div>
+              <h4 className="font-semibold text-gray-900 mb-2">
+                Career Growth
+              </h4>
+              <p className="text-gray-600 text-sm">
+                Opportunities for professional development and career
+                advancement.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

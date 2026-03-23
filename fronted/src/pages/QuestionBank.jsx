@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import HeroContainer from "../components/About/HeroContainer";
+import { QuestionBankSkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
 import { useGetQuestionBankQuery } from "../redux/features/academicSlice";
 import { FileText, Search, Book, Calendar, GraduationCap } from "lucide-react";
@@ -44,12 +45,7 @@ const QuestionBank = () => {
         </div>
 
         {/* Loading */}
-        {isLoading && (
-          <div className="text-center mt-20">
-            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="text-gray-500 mt-4">Loading question papers...</p>
-          </div>
-        )}
+        {isLoading && <QuestionBankSkeleton />}
 
         {/* Error */}
         {error && (

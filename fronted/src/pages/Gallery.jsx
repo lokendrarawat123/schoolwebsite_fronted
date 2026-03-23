@@ -3,6 +3,7 @@ import GalleryCard from "../components/GalleryCard.jsx";
 import { useGetGalleryQuery } from "../redux/features/contentSlice.js";
 import { useGetGalleryCategoryQuery } from "../redux/features/categorySlice.js";
 import HeroContainer from "../components/About/HeroContainer";
+import { GallerySkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
 
 const Gallery = () => {
@@ -64,14 +65,7 @@ const Gallery = () => {
   };
 
   if (galleryLoading || categoryLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-xl text-gray-600">Loading gallery...</p>
-        </div>
-      </div>
-    );
+    return <GallerySkeleton />;
   }
 
   if (galleryError) {
@@ -95,14 +89,14 @@ const Gallery = () => {
       ></HeroContainer>
 
       <section className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           {/* Filter Controls */}
-          <div className="mb-12">
+          <div className="mb-8 sm:mb-12">
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
               <button
                 onClick={() => setSelectedCategory(null)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
                   selectedCategory === null
                     ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
                     : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
@@ -123,7 +117,7 @@ const Gallery = () => {
                         selectedCategory === categoryId ? null : categoryId,
                       );
                     }}
-                    className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
                       selectedCategory === categoryId
                         ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
                         : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
@@ -137,8 +131,8 @@ const Gallery = () => {
           </div>
 
           {/* Results Count */}
-          <div className="text-center mb-8">
-            <p className="text-gray-600">
+          <div className="text-center mb-6 sm:mb-8">
+            <p className="text-sm sm:text-base text-gray-600">
               Showing{" "}
               <span className="font-semibold text-indigo-600">
                 {filteredGalleries.length}
@@ -165,7 +159,7 @@ const Gallery = () => {
 
           {/* Gallery Grid */}
           {filteredGalleries.length > 0 ? (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {filteredGalleries.map((gallery, index) => {
                 // Find category name for this gallery
                 const categoryName =
@@ -202,17 +196,17 @@ const Gallery = () => {
               })}
             </div>
           ) : (
-            <div className="text-center py-20">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-semibold text-gray-600 mb-2">
+            <div className="text-center py-12 sm:py-20 px-4">
+              <div className="text-4xl sm:text-6xl mb-4">🔍</div>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-600 mb-2">
                 No items found
               </h3>
-              <p className="text-gray-500 mb-6">
+              <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6 max-w-md mx-auto">
                 Try adjusting your search or filter criteria
               </p>
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="px-6 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
               >
                 Show All
               </button>
@@ -227,10 +221,10 @@ const Gallery = () => {
           {/* Close Button */}
           <button
             onClick={() => setIsModalOpen(false)}
-            className="absolute top-6 right-6 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors duration-200 z-10"
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-colors duration-200 z-10"
           >
             <svg
-              className="w-6 h-6"
+              className="w-5 h-5 sm:w-6 sm:h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -245,16 +239,16 @@ const Gallery = () => {
           </button>
 
           {/* Photo Counter */}
-          <div className="absolute top-6 left-6 bg-black/50 text-white px-4 py-2 rounded-full text-sm z-10">
+          <div className="absolute top-4 sm:top-6 left-4 sm:left-6 bg-black/50 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm z-10">
             {currentPhotoIndex + 1} / {currentGalleryPhotos.length}
           </div>
 
           {/* Main Photo */}
-          <div className="relative max-w-5xl max-h-full mx-4">
+          <div className="relative max-w-5xl max-h-full mx-2 sm:mx-4">
             <img
               src={currentGalleryPhotos[currentPhotoIndex]}
               alt="Gallery photo"
-              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+              className="max-w-full max-h-[85vh] sm:max-h-[90vh] object-contain rounded-lg"
             />
           </div>
 
@@ -263,10 +257,10 @@ const Gallery = () => {
             <>
               <button
                 onClick={prevPhoto}
-                className="absolute top-1/2 left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full transition-colors duration-200"
+                className="absolute top-1/2 left-2 sm:left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-4 rounded-full transition-colors duration-200"
               >
                 <svg
-                  className="w-8 h-8"
+                  className="w-6 h-6 sm:w-8 sm:h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -282,10 +276,10 @@ const Gallery = () => {
 
               <button
                 onClick={nextPhoto}
-                className="absolute top-1/2 right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-4 rounded-full transition-colors duration-200"
+                className="absolute top-1/2 right-2 sm:right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-4 rounded-full transition-colors duration-200"
               >
                 <svg
-                  className="w-8 h-8"
+                  className="w-6 h-6 sm:w-8 sm:h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

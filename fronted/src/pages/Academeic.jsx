@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetEventQuery } from "../redux/features/academicSlice";
 import HeroContainer from "../components/About/HeroContainer";
+import { AcademicSkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
 
 const Academeic = () => {
@@ -9,6 +10,25 @@ const Academeic = () => {
     isLoading: eventLoading,
     error: eventError,
   } = useGetEventQuery();
+
+  if (eventLoading) {
+    return <AcademicSkeleton />;
+  }
+
+  if (eventError) {
+    return (
+      <div className="w-full">
+        <HeroContainer
+          bgImage={bgImg}
+          title="Academic"
+          subtitle=""
+        />
+        <div className="max-w-7xl mx-auto px-6 py-12 text-center">
+          <p className="text-red-600">Error loading academic content</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">

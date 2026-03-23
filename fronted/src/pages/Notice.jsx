@@ -3,6 +3,7 @@ import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useGetNoticeQuery } from "../redux/features/contentSlice.js";
 import { useGetNoticeCategoryQuery } from "../redux/features/categorySlice.js";
 import HeroContainer from "../components/About/HeroContainer";
+import { NoticeSkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
 
 const NoticeIndex = () => {
@@ -48,14 +49,7 @@ const NoticeIndex = () => {
   }, [Notices, search, activeCategory, category]);
 
   if (noticeLoading || categoryLoading)
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-          <p className="text-xl text-gray-600">Loading notices...</p>
-        </div>
-      </div>
-    );
+    return <NoticeSkeleton />;
 
   if (noticeError || categoryError)
     return (
@@ -76,14 +70,14 @@ const NoticeIndex = () => {
         subtitle=""
       ></HeroContainer>
 
-      <div className="mx-auto max-w-7xl px-6 py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Search and Filter Controls */}
-        <div className="mb-12 space-y-6">
+        <div className="mb-8 sm:mb-12 space-y-4 sm:space-y-6">
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
             <button
               onClick={() => setActiveCategory(null)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
                 activeCategory === null
                   ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
                   : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
@@ -109,7 +103,7 @@ const NoticeIndex = () => {
                       activeCategory === categoryId ? null : categoryId,
                     );
                   }}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                  className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
                     activeCategory === categoryId
                       ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
                       : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
@@ -123,8 +117,8 @@ const NoticeIndex = () => {
         </div>
 
         {/* Results Count */}
-        <div className="text-center mb-8">
-          <p className="text-gray-600">
+        <div className="text-center mb-6 sm:mb-8">
+          <p className="text-sm sm:text-base text-gray-600">
             Showing{" "}
             <span className="font-semibold text-indigo-600">
               {filtered.length}
@@ -147,7 +141,7 @@ const NoticeIndex = () => {
 
         {/* Notices Grid */}
         <LayoutGroup>
-          <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div className="grid grid-cols-1 sm:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             <AnimatePresence mode="popLayout">
               {filtered.length > 0 ? (
                 filtered.map((notice, index) => {
@@ -164,21 +158,21 @@ const NoticeIndex = () => {
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                      <div className="relative bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md hover:shadow-md hover:-translate-y-2 transition-all duration-500 transform h-80 flex flex-col">
+                      <div className="relative bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-2xl shadow-md hover:shadow-lg hover:-translate-y-2 transition-all duration-500 transform h-72 sm:h-80 flex flex-col">
                         {/* New badge */}
                         {isNew && (
-                          <span className="absolute top-4 right-4 bg-linear-to-r from-green-400 to-green-200 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
+                          <span className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-linear-to-r from-green-400 to-green-200 text-black text-xs font-bold px-2 sm:px-3 py-1 rounded-full shadow-lg animate-pulse">
                             New
                           </span>
                         )}
 
                         {/* Notice title */}
-                        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white line-clamp-2 shrink-0">
+                        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-900 dark:text-white line-clamp-2 shrink-0">
                           {notice.title}
                         </h3>
 
                         {/* Notice date */}
-                        <p className="text-sm text-gray-500 mb-4 shrink-0">
+                        <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4 shrink-0">
                           {new Date(notice.notice_date).toLocaleDateString(
                             "en-NP",
                             {
@@ -191,8 +185,8 @@ const NoticeIndex = () => {
 
                         {/* Category badge */}
                         {notice.category_id && (
-                          <div className="mb-4 shrink-0">
-                            <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-xs font-medium">
+                          <div className="mb-3 sm:mb-4 shrink-0">
+                            <span className="bg-indigo-100 text-indigo-600 px-2 sm:px-3 py-1 rounded-full text-xs font-medium">
                               {category.find((cat) => {
                                 const categoryId =
                                   cat.id || cat._id || cat.category_id;
@@ -209,7 +203,7 @@ const NoticeIndex = () => {
                         <div className="flex justify-end shrink-0">
                           <button
                             onClick={() => setSelectedNotice(notice)}
-                            className="px-6 py-2 bg-linear-to-r from-blue-600 to-blue-400 text-white rounded-lg font-medium hover:from-blue-700 hover:to-blue-500 transition-colors duration-300"
+                            className="px-4 sm:px-6 py-2 bg-linear-to-r from-blue-600 to-blue-400 text-white rounded-lg font-medium hover:from-blue-700 hover:to-blue-500 transition-colors duration-300 text-sm sm:text-base"
                           >
                             View Notice
                           </button>
@@ -219,19 +213,19 @@ const NoticeIndex = () => {
                   );
                 })
               ) : (
-                <motion.div className="col-span-full py-20 text-center">
-                  <div className="text-6xl mb-4">🔍</div>
-                  <h3 className="text-2xl font-semibold text-gray-600 mb-2">
+                <motion.div className="col-span-full py-12 sm:py-20 text-center px-4">
+                  <div className="text-4xl sm:text-6xl mb-4">🔍</div>
+                  <h3 className="text-xl sm:text-2xl font-semibold text-gray-600 mb-2">
                     No notices found
                   </h3>
-                  <p className="text-gray-500 mb-6">
+                  <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6 max-w-md mx-auto">
                     Try adjusting your search or filter criteria
                   </p>
                   <button
                     onClick={() => {
                       setActiveCategory(null);
                     }}
-                    className="px-6 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                    className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
                   >
                     Clear Filters
                   </button>
@@ -245,7 +239,7 @@ const NoticeIndex = () => {
         <AnimatePresence>
           {selectedNotice && (
             <motion.div
-              className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+              className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-2 sm:p-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -253,7 +247,7 @@ const NoticeIndex = () => {
             >
               {selectedNotice.attachment_type === "image" ? (
                 /* Image Modal */
-                <div className="relative">
+                <div className="relative max-w-[95vw] max-h-[95vh]">
                   {/* Close Button */}
                   <button
                     className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transition-colors duration-200 z-50"
@@ -263,7 +257,7 @@ const NoticeIndex = () => {
                     }}
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -281,23 +275,23 @@ const NoticeIndex = () => {
                   <img
                     src={`${IMG_URL}/${selectedNotice.attachment_url}`}
                     alt={selectedNotice.title}
-                    className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"
+                    className="max-w-full max-h-full object-contain rounded-lg"
                     onClick={(e) => e.stopPropagation()}
                   />
                 </div>
               ) : (
                 /* PDF Modal */
-                <div className="relative w-full max-w-6xl h-[90vh] bg-white rounded-lg">
+                <div className="relative w-full max-w-6xl h-[85vh] sm:h-[90vh] bg-white rounded-lg">
                   {/* Close Button */}
                   <button
-                    className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transition-colors duration-200 z-50"
+                    className="absolute top-2 sm:top-4 right-2 sm:right-4 bg-red-500 hover:bg-red-600 text-white p-2 rounded-full transition-colors duration-200 z-50"
                     onClick={(e) => {
                       e.stopPropagation();
                       setSelectedNotice(null);
                     }}
                   >
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
