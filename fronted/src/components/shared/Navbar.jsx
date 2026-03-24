@@ -24,6 +24,7 @@ const Navbar = () => {
     { key: "GALLERY", path: "/gallery" },
     { key: "BLOG", path: "/blog" },
     { key: "NOTICE", path: "/notice" },
+    { key: "FAQ", path: "/faq" },
     { key: "VACANCY", path: "/vacancy" },
     { key: "CONTACT", path: "/contact" },
   ];
@@ -41,9 +42,9 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -62,21 +63,29 @@ const Navbar = () => {
             const isParentActiveState = isParentActive(item.children);
 
             return (
-              <li key={item.key} className="relative" ref={item.children ? dropdownRef : null}>
+              <li
+                key={item.key}
+                className="relative"
+                ref={item.children ? dropdownRef : null}
+              >
                 {/* Main Item */}
                 {item.children ? (
                   <button
-                    onClick={() => setDesktopDropdown(desktopDropdown === item.key ? null : item.key)}
+                    onClick={() =>
+                      setDesktopDropdown(
+                        desktopDropdown === item.key ? null : item.key,
+                      )
+                    }
                     onMouseEnter={() => setDesktopDropdown(item.key)}
                     className={`flex items-center gap-1 text-lg font-semibold ${
                       isParentActiveState ? "text-blue-600" : "text-gray-700"
                     } hover:text-blue-600 transition-colors duration-200`}
                   >
                     {item.key}
-                    <HiChevronDown 
+                    <HiChevronDown
                       className={`text-sm transition-transform duration-200 ${
                         desktopDropdown === item.key ? "rotate-180" : ""
-                      }`} 
+                      }`}
                     />
                   </button>
                 ) : (
@@ -92,10 +101,10 @@ const Navbar = () => {
 
                 {/* Desktop Dropdown */}
                 {item.children && (
-                  <ul 
+                  <ul
                     className={`absolute left-0 mt-2 w-52 bg-white shadow-lg rounded-lg border transition-all duration-200 z-50 ${
-                      desktopDropdown === item.key 
-                        ? "opacity-100 visible translate-y-0" 
+                      desktopDropdown === item.key
+                        ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
                     }`}
                     onMouseLeave={() => setDesktopDropdown(null)}
@@ -107,7 +116,9 @@ const Navbar = () => {
                           className={`block px-4 py-3 text-sm transition-colors duration-150 ${
                             index === 0 ? "rounded-t-lg" : ""
                           } ${
-                            index === item.children.length - 1 ? "rounded-b-lg" : ""
+                            index === item.children.length - 1
+                              ? "rounded-b-lg"
+                              : ""
                           } ${
                             location.pathname === sub.path
                               ? "bg-blue-600 text-white"
@@ -143,7 +154,11 @@ const Navbar = () => {
                 {item.children ? (
                   <>
                     <button
-                      onClick={() => setMobileDropdown(mobileDropdown === item.key ? null : item.key)}
+                      onClick={() =>
+                        setMobileDropdown(
+                          mobileDropdown === item.key ? null : item.key,
+                        )
+                      }
                       className={`w-full flex justify-between items-center py-3 px-4 font-medium rounded-md transition-colors duration-150 ${
                         isParentActive(item.children)
                           ? "bg-blue-600 text-white"

@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 import HeroSlider from "../components/home/HeroSlider.jsx";
 import AboutComponents from "../components/home/AboutComponents.jsx";
 import Button from "../components/ButtonComponent.jsx";
-
-const stats = [
-  { number: "2000+", label: "Students" },
-  { number: "50+", label: "Teachers" },
-  { number: "20+", label: "Years" },
-  { number: "100%", label: "Success Rate" },
-];
+import Faqs from "../components/faqs/Faqs.jsx";
 
 const Home = () => {
   return (
@@ -92,24 +86,10 @@ const Home = () => {
           </Button>
         </div>
       </section>
-      {/* Stats */}
-      <section className="bg-linear-to-r from-blue-900 via-blue-600 to-blue-900 py-8 sm:py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 text-center text-white">
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.05 }}
-                className="p-3 sm:p-4 lg:p-6"
-              >
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-primary-color mb-1 sm:mb-2">
-                  {stat.number}
-                </h2>
-                <p className="text-sm sm:text-base lg:text-lg">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+
+      {/* Faq section */}
+      <section>
+        <Faqs />
       </section>
     </main>
   );

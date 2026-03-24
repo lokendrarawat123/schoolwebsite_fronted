@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { BsTelephoneOutboundFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import ScrollToTop from "../shared/ScrollTop";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -109,6 +110,7 @@ const Footer = () => {
             {footerData.quickLinks.map((item, index) => (
               <li key={index}>
                 <Link
+                  onClick={ScrollToTop}
                   to={item.path}
                   className="flex items-center gap-2 text-gray-300 hover:text-white"
                 >

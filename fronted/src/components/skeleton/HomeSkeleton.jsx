@@ -466,3 +466,35 @@ export const AboutSkeleton = () => {
     </div>
   );
 };
+// FAQ Skeleton
+export const FAQSkeleton = () => {
+  return (
+    <div className="w-full min-h-screen bg-gray-50">
+      {/* Hero Section Skeleton */}
+      <div className="h-96 bg-gray-200 animate-pulse relative">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center space-y-4">
+            <div className="h-12 w-64 bg-gray-300 animate-pulse rounded mx-auto"></div>
+            <div className="h-6 w-80 bg-gray-300 animate-pulse rounded mx-auto"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Content Skeleton */}
+      <div className="max-w-4xl mx-auto px-4 py-16">
+        <div className="h-12 w-96 bg-gray-300 animate-pulse rounded mx-auto mb-12"></div>
+        
+        <div className="space-y-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="bg-white rounded-2xl shadow-md p-6 animate-pulse">
+              <div className="flex justify-between items-center">
+                <div className="h-6 w-3/4 bg-gray-300 rounded"></div>
+                <div className="h-5 w-5 bg-gray-300 rounded"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};

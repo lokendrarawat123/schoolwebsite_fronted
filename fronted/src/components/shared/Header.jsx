@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Mail, Phone, Facebook, Instagram, LinkedinIcon } from "lucide-react";
 import logo from "../../assets/img/namunalogo.png";
-import Navbar from "../Navbar";
+import Navbar from "./Navbar";
 
 const Header = () => {
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import GalleryCard from "../components/GalleryCard.jsx";
+import GalleryCard from "../components/Gallery/GalleryCard.jsx";
 import { useGetGalleryQuery } from "../redux/features/contentSlice.js";
 import { useGetGalleryCategoryQuery } from "../redux/features/categorySlice.js";
 import HeroContainer from "../components/About/HeroContainer";

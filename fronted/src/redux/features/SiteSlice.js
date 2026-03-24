@@ -8,6 +8,21 @@ export const siteSlice = indexSlice.injectEndpoints({
       }),
       providesTags: ["site"],
     }),
+    getReviews: builder.query({
+      query: () => ({
+        url: "/api/site/reviews",
+        method: "GET",
+      }),
+      providesTags: ["site"],
+    }),
+    getFaqs: builder.query({
+      query: () => ({
+        url: "/api/site/faqs",
+        method: "GET",
+      }),
+      providesTags: ["site"],
+    }),
   }),
 });
-export const { useGetSlidesQuery } = siteSlice;
+export const { useGetSlidesQuery, useGetReviewsQuery, useGetFaqsQuery } =
+  siteSlice;
