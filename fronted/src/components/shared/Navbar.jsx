@@ -24,7 +24,6 @@ const Navbar = () => {
     { key: "GALLERY", path: "/gallery" },
     { key: "BLOG", path: "/blog" },
     { key: "NOTICE", path: "/notice" },
-    { key: "FAQ", path: "/faq" },
     { key: "VACANCY", path: "/vacancy" },
     { key: "CONTACT", path: "/contact" },
   ];
