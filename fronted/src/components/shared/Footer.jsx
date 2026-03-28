@@ -12,6 +12,7 @@ import {
 import { BsTelephoneOutboundFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../shared/ScrollTop";
+import logo from "../../assets/img/namunalogo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -75,13 +76,11 @@ const Footer = () => {
       <div className="relative max-w-7xl mx-auto px-4 py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* About */}
         <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-linear-to-r from-primary-color to-blue-500 rounded-lg">
-              <FaGraduationCap className="text-2xl" />
+          <div className="flex  gap-3 w-full">
+            <div className="p-2 to-blue-500   ">
+              <img src={logo} className="h-16 w-16 rounded-full " />
             </div>
-            <h3 className="text-2xl font-bold bg-linear-to-r from-primary-color to-blue-400 bg-clip-text text-transparent">
-              Namuna Bidhya Sadan
-            </h3>
+            <h3 className="text-2xl font-bold  text-white">NVS E.M. SCHOOL</h3>
           </div>
 
           <p className="text-gray-300 text-sm leading-relaxed">
@@ -114,7 +113,6 @@ const Footer = () => {
                   to={item.path}
                   className="flex items-center gap-2 text-gray-300 hover:text-white"
                 >
-                  <span className="w-2 h-2 bg-primary-color rounded-full"></span>
                   {item.name}
                 </Link>
               </li>
@@ -129,7 +127,6 @@ const Footer = () => {
             {footerData.programs.map((program, index) => (
               <li key={index}>
                 <span className="flex items-center gap-2 text-gray-300">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                   {program}
                 </span>
               </li>
@@ -170,8 +167,19 @@ const Footer = () => {
       </div>
 
       {/* Bottom */}
-      <div className="border-t border-white/10 py-6 text-center text-gray-400 text-sm">
-        © {currentYear} Namuna Bidhya Sadan. All rights reserved.
+      <div className="border-t border-white/10 py-6 px-4 mx-10 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-2 sm:gap-0">
+        {/* Left */}
+        <div className="text-gray-400 text-sm">
+          © {currentYear} Namuna Bidhya Sadan. All rights reserved.
+        </div>
+
+        {/* Right */}
+        <div className="text-gray-400 text-sm">
+          Powered by{" "}
+          <span className="font-semibold text-yellow-500">
+            Next Infosys Pvt. Ltd
+          </span>
+        </div>
       </div>
 
       {/* Scroll Button */}

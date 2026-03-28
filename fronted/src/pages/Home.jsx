@@ -5,6 +5,7 @@ import HeroSlider from "../components/home/HeroSlider.jsx";
 import AboutComponents from "../components/home/AboutComponents.jsx";
 import Button from "../components/ButtonComponent.jsx";
 import Faqs from "../components/faqs/Faqs.jsx";
+import ScrollToTop from "../components/shared/ScrollTop.jsx";
 
 const Home = () => {
   return (
@@ -79,6 +80,8 @@ const Home = () => {
           </div>
 
           <Button
+            as={Link}
+            onClick={ScrollToTop}
             to="/notice"
             className="inline-block mt-6 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 bg-secondary-color text-white rounded-lg hover:bg-opacity-90 transition-all duration-300 text-sm sm:text-base font-medium"
           >

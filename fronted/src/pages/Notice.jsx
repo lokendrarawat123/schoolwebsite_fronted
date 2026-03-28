@@ -4,7 +4,7 @@ import { useGetNoticeQuery } from "../redux/features/contentSlice.js";
 import HeroContainer from "../components/About/HeroContainer";
 import { NoticeSkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
-
+import { FaCaretRight } from "react-icons/fa";
 const NoticeIndex = () => {
   const { data, isLoading, error } = useGetNoticeQuery();
   const IMG_URL = import.meta.env.VITE_IMG_URL;
@@ -51,17 +51,15 @@ const NoticeIndex = () => {
                 key={notice.id}
                 className="sm:flex-row justify-start sm:justify-between items-start sm:items-center py-3 cursor-pointer hover:bg-gray-50 px-3 rounded transition-all"
                 onClick={() => setSelectedNotice(notice)}
-                initial={{ opacity: 0, y: 5 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.2 }}
               >
                 {/* Title */}
-                <p className="text-black- hover:text-blue-600">
-                  {notice.title}
+                <p className="flex items-center  text-black hover:text-blue-600">
+                  <FaCaretRight className="text-black w-4 h-4" />
+                  <span>{notice.title}</span>
                 </p>
 
                 {/* Date */}
-                <span className="text-gray-500 text-sm mt-1 sm:mt-0 sm:ml-4">
+                <span className="text-gray-500 text-sm">
                   {formatDate(notice.notice_date)}
                 </span>
               </motion.div>
