@@ -1,15 +1,20 @@
 import React from "react";
 import { BookOpen, Users, Microscope, Award, Globe, Heart } from "lucide-react";
+import home2 from "../../assets/img/home/home2.jpg";
+import home3 from "../../assets/img/home/home3.jpg";
+import home4 from "../../assets/img/home/home4.jpg";
+import home5 from "../../assets/img/home/home5.jpg";
+import home6 from "../../assets/img/home/home6.jpg";
 
 const WhyChooseUs = () => {
   // School/Education related images
   const schoolImages = [
-    "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=300&fit=crop&auto=format", // Students in classroom
-    "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop&auto=format", // Students studying
-    "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&h=300&fit=crop&auto=format", // School building
-    "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=300&fit=crop&auto=format", // Students with books
-    "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=400&h=300&fit=crop&auto=format", // Library/study
-    "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=300&fit=crop&auto=format", // Science lab
+    home2, // Students in classroom
+    home3,
+    home4,
+    home5,
+    home6,
+    home3,
   ];
 
   // Features data

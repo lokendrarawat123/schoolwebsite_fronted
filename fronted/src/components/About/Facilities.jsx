@@ -10,7 +10,7 @@ import assembly from "../../assets/img/assembly.jpg";
 import computerlab from "../../assets/img/computerlab.webp";
 import ground from "../../assets/img/ground.jpg";
 import library from "../../assets/img/library.webp";
-import sciencelab from "../../assets/img/sciencelab.png";
+import sciencelab from "../../assets/img/home/sciencelab.png";
 
 const Facilities = () => {
   const facilities = [

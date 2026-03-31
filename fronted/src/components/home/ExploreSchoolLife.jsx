@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import tour from "../../assets/img/home/tour.jpg";
+import student from "../../assets/img/home/student.jpg";
+import home14 from "../../assets/img/home/home14.jpg";
+import home5 from "../../assets/img/home/home5.jpg";
+import sciencelab from "../../assets/img/home/sciencelab.png";
+import mahabir from "../../assets/img/home/mahabir.jpg";
 
 const ExploreSchoolLife = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -8,29 +14,34 @@ const ExploreSchoolLife = () => {
   const schoolLifeData = [
     {
       id: 1,
-      title: "Academic Excellence",
-      image: "https://picsum.photos/800/500?random=1"
+      title: "summer tour",
+      image: tour,
     },
     {
       id: 2,
-      title: "Co-Curricular and Extracurricular Activities",
-      image: "https://picsum.photos/800/500?random=2"
+      title: "our students farewell ",
+      image: student,
     },
     {
       id: 3,
       title: "Science Laboratory",
-      image: "https://picsum.photos/800/500?random=3"
+      image: sciencelab,
     },
     {
       id: 4,
-      title: "Library & Study Hall",
-      image: "https://picsum.photos/800/500?random=4"
+      title: "winning vollyball in mayor cup",
+      image: home14,
     },
     {
       id: 5,
       title: "Cultural Programs",
-      image: "https://picsum.photos/800/500?random=5"
-    }
+      image: home5,
+    },
+    {
+      id: 6,
+      title: "mahabir pun at nvs",
+      image: mahabir,
+    },
   ];
 
   const nextSlide = () => {
@@ -38,7 +49,9 @@ const ExploreSchoolLife = () => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + schoolLifeData.length) % schoolLifeData.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + schoolLifeData.length) % schoolLifeData.length,
+    );
   };
 
   const getPrevIndex = () => {
@@ -78,7 +91,7 @@ const ExploreSchoolLife = () => {
               alt={schoolLifeData[currentIndex].title}
               className="w-full h-full object-cover rounded-2xl lg:rounded-none shadow-2xl"
             />
-            
+
             {/* Title Overlay */}
             <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-6 lg:p-8 rounded-b-2xl lg:rounded-none">
               <h3 className="text-xl lg:text-3xl font-bold text-white text-center">
@@ -90,15 +103,21 @@ const ExploreSchoolLife = () => {
             <button
               onClick={prevSlide}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 lg:p-4 transition-all duration-200 backdrop-blur-sm"
-              style={{ clipPath: 'polygon(0 0, 70% 0, 100% 50%, 70% 100%, 0 100%, 30% 50%)' }}
+              style={{
+                clipPath:
+                  "polygon(0 0, 70% 0, 100% 50%, 70% 100%, 0 100%, 30% 50%)",
+              }}
             >
               <ChevronLeft className="w-6 h-6 lg:w-8 lg:h-8" />
             </button>
-            
+
             <button
               onClick={nextSlide}
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 lg:p-4 transition-all duration-200 backdrop-blur-sm"
-              style={{ clipPath: 'polygon(30% 0, 100% 0, 70% 50%, 100% 100%, 30% 100%, 0 50%)' }}
+              style={{
+                clipPath:
+                  "polygon(30% 0, 100% 0, 70% 50%, 100% 100%, 30% 100%, 0 50%)",
+              }}
             >
               <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8" />
             </button>
@@ -122,9 +141,7 @@ const ExploreSchoolLife = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentIndex
-                  ? 'bg-blue-500 scale-125'
-                  : 'bg-gray-300'
+                index === currentIndex ? "bg-blue-500 scale-125" : "bg-gray-300"
               }`}
             />
           ))}

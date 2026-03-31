@@ -76,15 +76,15 @@ const Footer = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
         {/* About */}
         <div className="space-y-4 sm:space-y-6 sm:col-span-2 lg:col-span-1">
-          <div className="flex items-center gap-3 w-full">
+          <div className="flex items-center gap-3 w-full ">
             <div className="p-1 sm:p-2">
               <img
                 src={logo}
-                className="h-12 w-12 sm:h-16 sm:w-16 rounded-full"
+                className="h-12 w-12 sm:h-16 sm:w-16 rounded-full cursor-pointer"
                 alt="Logo"
               />
             </div>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white ">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white  hover:text-yellow-400">
               NVS E.M. SCHOOL
             </h3>
           </div>
@@ -150,14 +150,14 @@ const Footer = () => {
 
           <div className="space-y-3 sm:space-y-4">
             <div className="flex gap-3 items-start">
-              <FaMapMarkerAlt className="mt-1 flex-shrink-0" />
+              <FaMapMarkerAlt className="mt-1 shrink-0" />
               <p className="text-gray-300 text-xs sm:text-sm">
                 {footerData.contact.address}
               </p>
             </div>
 
             <div className="flex gap-3 items-center">
-              <BsTelephoneOutboundFill className="flex-shrink-0" />
+              <BsTelephoneOutboundFill className="shrink-0" />
               <a
                 href="tel:081414036"
                 className="text-gray-300 text-xs sm:text-sm hover:text-white transition-colors touch-friendly"
@@ -167,7 +167,7 @@ const Footer = () => {
             </div>
 
             <div className="flex gap-3 items-center">
-              <FaEnvelope className="flex-shrink-0" />
+              <FaEnvelope className="shrink-0" />
               <a
                 href={`mailto:${footerData.contact.email}`}
                 className="text-gray-300 text-xs sm:text-sm hover:text-white transition-colors break-all touch-friendly"
