@@ -20,23 +20,23 @@ const MissionVision = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-12">
+    <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 md:mb-12">
           Mission, Vision & Core Values
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {values.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 text-center"
+              className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 text-center"
             >
-              <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl font-bold">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">{item.title}</h3>
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{item.desc}</p>
             </div>
           ))}
         </div>

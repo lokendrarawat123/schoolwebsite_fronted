@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="w-full relative">
       {/* Top Gradient */}
-      <div className="bg-linear-to-r from-[#6C4299] via-[#0586D6] to-[#1D2F8A] text-white py-4 sm:py-6 md:py-8 lg:py-10 px-2 sm:px-4">
+      <div className="bg-linear-to-r from-[#8a8632ef] via-[#66e172] to-[#1D2F8A] text-white py-4 sm:py-6 md:py-8 lg:py-10 px-2 sm:px-4">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-0 py-2 sm:py-4 px-2 sm:px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3">
@@ -49,7 +49,7 @@ const Header = () => {
                   <div className="border-2 lg:border-3 border-blue-600 bg-white text-blue-600 p-2 lg:p-3 rounded-full group-hover:bg-blue-50 transition-colors">
                     <Mail size={16} className="lg:w-4.5 lg:h-4.5" />
                   </div>
-                  <span className="text-white text-sm lg:text-base hover:underline hidden xl:inline">
+                  <span className="text-white text-sm lg:text-base hover:underline hidden md:inline">
                     namuna2063@gmail.com
                   </span>
                 </a>
@@ -62,7 +62,7 @@ const Header = () => {
                   <div className="bg-white border-2 lg:border-3 border-blue-600 text-blue-600 p-2 lg:p-3 rounded-full group-hover:bg-blue-50 transition-colors">
                     <Phone size={16} className="lg:w-4.5 lg:h-4.5" />
                   </div>
-                  <span className="text-white text-sm lg:text-base hover:underline hidden xl:inline">
+                  <span className="text-white text-sm lg:text-base hover:underline hidden md:inline">
                     081-414 036
                   </span>
                 </a>

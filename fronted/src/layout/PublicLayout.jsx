@@ -10,7 +10,7 @@ const PublicLayout = () => {
       <Header />
 
       {/* Main Content */}
-      <main className="flex-1 -mt-8">
+      <main className="flex-1 -mt-8 ">
         <Outlet />
       </main>
 

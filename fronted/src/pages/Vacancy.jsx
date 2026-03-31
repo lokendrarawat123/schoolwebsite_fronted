@@ -64,16 +64,6 @@ const Vacancy = () => {
         </div>
 
         {/* Search Section */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-10">
-          <div className="mt-4 text-center">
-            <span className="text-sm text-gray-600">
-              <span className="font-semibold text-blue-600">
-                {filteredVacancies.length}
-              </span>
-              open position{filteredVacancies.length !== 1 ? "s" : ""} available
-            </span>
-          </div>
-        </div>
 
         {/* Loading State */}
         {isLoading && <VacancySkeleton />}
@@ -153,69 +143,30 @@ const Vacancy = () => {
                       {job.description}
                     </p>
                   </div>
-
-                  {/* Application Process */}
-                  <div className="bg-blue-50 rounded-xl p-6 mb-6">
-                    <h4 className="text-lg font-semibold text-blue-900 mb-4 flex items-center gap-2">
-                      <FileText className="w-5 h-5" />
-                      How to Apply
-                    </h4>
-                    <div className="text-blue-800 space-y-2">
-                      <p className="font-medium">
-                        Applications must be submitted in person only.
-                      </p>
-                      <ul className="list-disc list-inside space-y-1 text-sm">
-                        <li>Bring your complete CV/Resume</li>
-                        <li>Original and copies of educational certificates</li>
-                        <li>Two recent passport-size photographs</li>
-                        <li>Valid citizenship certificate</li>
-                        <li>Experience certificates (if applicable)</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Contact Information */}
-                  <div className="border-t border-gray-200 pt-6">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <h5 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                          <MapPin className="w-5 h-5 text-blue-600" />
-                          Visit Our Office
-                        </h5>
-                        <div className="text-gray-600 space-y-1">
-                          <p>Human Resources Department</p>
-                          <p>School Administration Building</p>
-                          <p>Ground Floor, Room 101</p>
-                          <p className="font-medium text-gray-800">
-                            Office Hours: 9:00 AM - 4:00 PM (Sun-Fri)
-                          </p>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h5 className="font-semibold text-gray-900 mb-3">
-                          Contact Information
-                        </h5>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-3 text-gray-600">
-                            <Phone className="w-4 h-4 text-green-600" />
-                            <span>+977-1-4XXXXXX</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-gray-600">
-                            <Mail className="w-4 h-4 text-blue-600" />
-                            <span>hr@schoolname.edu.np</span>
-                          </div>
-                          <p className="text-sm text-gray-500 mt-2">
-                            For inquiries only. Applications must be submitted
-                            in person.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             ))}
+          </div>
+        )}
+        {/* Application Process - Show once */}
+        {!isLoading && !error && filteredVacancies.length > 0 && (
+          <div className="bg-blue-50 rounded-xl p-6 mb-10">
+            <h4 className="text-lg font-semibold text-blue-900 mb-4 flex items-center gap-2">
+              <FileText className="w-5 h-5" />
+              How to Apply
+            </h4>
+            <div className="text-blue-800 space-y-2">
+              <p className="font-medium">
+                Applications must be submitted in person only.
+              </p>
+              <ul className="list-disc list-inside space-y-1 text-sm">
+                <li>Bring your complete CV/Resume</li>
+                <li>Original and copies of educational certificates</li>
+                <li>Two recent passport-size photographs</li>
+                <li>Valid citizenship certificate</li>
+                <li>Experience certificates (if applicable)</li>
+              </ul>
+            </div>
           </div>
         )}
 
@@ -245,30 +196,32 @@ const Vacancy = () => {
         )}
 
         {/* Important Notice */}
-        <div className="mt-16 bg-linear-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-8">
-          <div className="text-center">
-            <div className="bg-amber-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-              <FileText className="w-8 h-8 text-amber-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-amber-900 mb-4">
-              Important Application Notice
-            </h3>
-            <div className="text-amber-800 max-w-3xl mx-auto space-y-3">
-              <p className="text-lg font-medium">
-                All job applications must be submitted physically at our office.
-              </p>
-              <p>
-                We do not accept online applications or email submissions.
-                Please visit our HR department during office hours with all
-                required documents.
-              </p>
-              <p className="text-sm">
-                Incomplete applications or those submitted through other
-                channels will not be considered.
-              </p>
+        {!isLoading && !error && filteredVacancies.length > 0 && (
+          <div className="mt-16 bg-linear-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-8">
+            <div className="text-center">
+              <div className="bg-amber-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <FileText className="w-8 h-8 text-amber-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-amber-900 mb-4">
+                Important Application Notice
+              </h3>
+              <div className="text-amber-800 max-w-3xl mx-auto space-y-3">
+                <p className="text-lg font-medium">
+                  All job applications must be submitted physically at our office.
+                </p>
+                <p>
+                  We do not accept online applications or email submissions.
+                  Please visit our HR department during office hours with all
+                  required documents.
+                </p>
+                <p className="text-sm">
+                  Incomplete applications or those submitted through other
+                  channels will not be considered.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* Additional Information */}
         <div className="mt-12 bg-white rounded-xl shadow-lg p-8">

@@ -26,7 +26,7 @@ const Footer = () => {
     quickLinks: [
       { name: "Home", path: "/" },
       { name: "About Us", path: "/about" },
-      { name: "Academics", path: "/academics" },
+      { name: "Events", path: "/academics/events" },
       { name: "Gallery", path: "/gallery" },
       { name: "Notices", path: "/notice" },
     ],

@@ -63,17 +63,17 @@ const ExploreSchoolLife = () => {
   };
 
   return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-8 sm:py-12 lg:py-16 xl:py-20 2xl:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 2xl:px-10">
         {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 xl:mb-16 2xl:mb-20">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-gray-800 mb-2 sm:mb-4">
             Explore Our School Life
           </h2>
         </div>
 
         {/* Main Slider Layout */}
-        <div className="relative flex items-center justify-center h-96 lg:h-125">
+        <div className="relative flex items-center justify-center h-64 sm:h-80 md:h-96 lg:h-125 xl:h-140 2xl:h-160">
           {/* Left Image */}
           <div className="hidden lg:block relative w-64 h-full">
             <img
@@ -85,16 +85,16 @@ const ExploreSchoolLife = () => {
           </div>
 
           {/* Main Center Image */}
-          <div className="relative flex-1 max-w-4xl h-full mx-4 lg:mx-0">
+          <div className="relative flex-1 max-w-4xl h-full mx-2 sm:mx-4 lg:mx-0">
             <img
               src={schoolLifeData[currentIndex].image}
               alt={schoolLifeData[currentIndex].title}
-              className="w-full h-full object-cover rounded-2xl lg:rounded-none shadow-2xl"
+              className="w-full h-full object-cover rounded-xl sm:rounded-2xl lg:rounded-none shadow-xl sm:shadow-2xl"
             />
 
             {/* Title Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-6 lg:p-8 rounded-b-2xl lg:rounded-none">
-              <h3 className="text-xl lg:text-3xl font-bold text-white text-center">
+            <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/80 to-transparent p-3 sm:p-4 md:p-6 lg:p-8 rounded-b-xl sm:rounded-b-2xl lg:rounded-none">
+              <h3 className="text-base sm:text-lg md:text-xl lg:text-3xl font-bold text-white text-center">
                 {schoolLifeData[currentIndex].title.toUpperCase()}
               </h3>
             </div>
@@ -102,24 +102,24 @@ const ExploreSchoolLife = () => {
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 lg:p-4 transition-all duration-200 backdrop-blur-sm"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 sm:p-3 lg:p-4 transition-all duration-200 backdrop-blur-sm"
               style={{
                 clipPath:
                   "polygon(0 0, 70% 0, 100% 50%, 70% 100%, 0 100%, 30% 50%)",
               }}
             >
-              <ChevronLeft className="w-6 h-6 lg:w-8 lg:h-8" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
             </button>
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-3 lg:p-4 transition-all duration-200 backdrop-blur-sm"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white p-2 sm:p-3 lg:p-4 transition-all duration-200 backdrop-blur-sm"
               style={{
                 clipPath:
                   "polygon(30% 0, 100% 0, 70% 50%, 100% 100%, 30% 100%, 0 50%)",
               }}
             >
-              <ChevronRight className="w-6 h-6 lg:w-8 lg:h-8" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
             </button>
           </div>
 
@@ -135,12 +135,12 @@ const ExploreSchoolLife = () => {
         </div>
 
         {/* Mobile Navigation Dots */}
-        <div className="flex justify-center mt-6 space-x-2 lg:hidden">
+        <div className="flex justify-center mt-4 sm:mt-6 space-x-2 lg:hidden">
           {schoolLifeData.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex ? "bg-blue-500 scale-125" : "bg-gray-300"
               }`}
             />

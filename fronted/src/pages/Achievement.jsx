@@ -19,53 +19,53 @@ const Achievement = () => {
       />
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-6 sm:py-8 md:py-10">
         {/* Heading */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Achievements</h2>
-          <p className="text-gray-500 mt-2">
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Achievements</h2>
+          <p className="text-gray-500 mt-1 sm:mt-2 text-sm sm:text-base">
             Highlights of our accomplishments
           </p>
         </div>
 
         {/* Loading */}
-        {isLoading && <p className="text-center text-gray-500">Loading...</p>}
+        {isLoading && <p className="text-center text-gray-500 text-sm sm:text-base">Loading...</p>}
 
         {/* Error */}
         {error && (
-          <p className="text-center text-red-500">
+          <p className="text-center text-red-500 text-sm sm:text-base">
             Failed to load achievements
           </p>
         )}
 
         {/* Empty */}
         {!isLoading && achievementData.length === 0 && (
-          <p className="text-center text-gray-400">No achievements found</p>
+          <p className="text-center text-gray-400 text-sm sm:text-base">No achievements found</p>
         )}
 
         {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {achievementData.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl shadow hover:shadow-lg transition p-4"
+              className="bg-white rounded-xl shadow hover:shadow-lg transition-shadow duration-300 p-3 sm:p-4"
             >
               {/* Image */}
-              <div className="h-48 bg-gray-100 rounded-lg overflow-hidden">
+              <div className="h-40 sm:h-48 bg-gray-100 rounded-lg overflow-hidden">
                 <img
                   src={`${baseURL}/${item.image_urls}`}
                   alt={item.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
               </div>
 
               {/* Content */}
-              <div className="mt-4">
-                <h3 className="text-lg font-bold text-gray-800">
+              <div className="mt-3 sm:mt-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-800 line-clamp-2">
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-gray-600 mt-1 line-clamp-2">
+                <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2">
                   {item.description}
                 </p>
 

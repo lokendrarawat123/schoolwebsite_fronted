@@ -45,28 +45,28 @@ const images = [
 const Story = () => {
   return (
     <div>
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 relative">
           <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-indigo-50 rounded-3xl opacity-50"></div>
           <div className="relative z-10">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-12 text-gray-800 tracking-wide">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center mb-8 sm:mb-10 md:mb-12 text-gray-800 tracking-wide">
               Our
-              <span className="inline-block px-4 py-1 bg-linear-to-r from-blue-900 to-indigo-600 text-white rounded-full shadow-md text-3xl md:text-3xl align-middle ml-2">
+              <span className="inline-block px-3 sm:px-4 py-1 bg-linear-to-r from-blue-900 to-indigo-600 text-white rounded-full shadow-md text-xl sm:text-2xl md:text-3xl align-middle ml-2">
                 Story
               </span>
             </h2>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-              <div className="bg-white p-8 rounded-xl shadow-xl border border-gray-100 flex flex-col justify-between">
-                <div className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-stretch">
+              <div className="bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-xl border border-gray-100 flex flex-col justify-between">
+                <div className="space-y-4 sm:space-y-6">
                   {storyItems.map((item, index) => (
-                    <div key={index} className="flex items-start space-x-4">
+                    <div key={index} className="flex items-start space-x-3 sm:space-x-4">
                       <div className="shrink-0">
                         <div
-                          className={`w-10 h-10 bg-linear-to-r ${item.color} rounded-full flex items-center justify-center`}
+                          className={`w-8 h-8 sm:w-10 sm:h-10 bg-linear-to-r ${item.color} rounded-full flex items-center justify-center`}
                         >
                           <svg
-                            className="w-5 h-5 text-white"
+                            className="w-4 h-4 sm:w-5 sm:h-5 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -81,40 +81,19 @@ const Story = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-800 mb-2">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed text-sm">
+                        <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                           {item.text}
                         </p>
                       </div>
                     </div>
                   ))}
                 </div>
-
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center bg-blue-50 rounded-lg p-3">
-                      <div className="text-2xl font-bold text-blue-600">
-                        2063
-                      </div>
-                      <div className="text-xs text-gray-600">
-                        Established Year
-                      </div>
-                    </div>
-                    <div className="text-center bg-indigo-50 rounded-lg p-3">
-                      <div className="text-2xl font-bold text-indigo-600">
-                        1000+
-                      </div>
-                      <div className="text-xs text-gray-600">
-                        Successful Students
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-3 sm:gap-4">
                 {images.map((img, index) => (
                   <div
                     key={index}
@@ -123,10 +102,10 @@ const Story = () => {
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="w-full h-48 object-cover hover:scale-110 transition-transform duration-300"
+                      className="w-full h-40 sm:h-48 object-cover hover:scale-110 transition-transform duration-300"
                     />
-                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-3">
-                      <p className="text-white font-semibold text-sm">
+                    <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-2 sm:p-3">
+                      <p className="text-white font-semibold text-xs sm:text-sm">
                         {img.label}
                       </p>
                     </div>

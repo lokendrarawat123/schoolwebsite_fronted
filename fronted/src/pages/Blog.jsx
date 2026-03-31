@@ -55,13 +55,17 @@ const Blog = () => {
     <div className="w-full">
       {/* Hero Section */}
 
-      <HeroContainer bgImage={bgImg} title="Blog" subtitle=""></HeroContainer>
+      <HeroContainer
+        bgImage={bgImg}
+        title="Blog"
+        subtitle="Explore our Blog"
+      ></HeroContainer>
       <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
-        <main className="max-w-7xl mx-auto px-6 py-12">
+        <main className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-8 sm:py-10 md:py-12">
           {/* Header with Refresh Button */}
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <h2 className="text-4xl font-bold text-gray-900">
+          <div className="text-center mb-8 sm:mb-10 md:mb-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
                 Latest Articles
               </h2>
               <button
@@ -69,19 +73,19 @@ const Blog = () => {
                   refetchCategories();
                   refetchBlogs();
                 }}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors"
+                className="px-3 sm:px-4 py-2 bg-indigo-600 text-white rounded-lg text-xs sm:text-sm hover:bg-indigo-700 transition-colors"
               >
                 Refresh
               </button>
             </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2">
               Stay updated with our latest news, insights, and educational
               content
             </p>
           </div>
 
           {/* Category Filter Section */}
-          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 md:mb-12 px-2">
             <button
               onClick={() => setSelectedCategory(null)}
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
@@ -145,7 +149,7 @@ const Blog = () => {
 
           {/* Blog Grid */}
           {filteredBlogs && filteredBlogs.length > 0 ? (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-4 sm:gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredBlogs.map((post, index) => (
                 <article
                   key={post.id || post._id}

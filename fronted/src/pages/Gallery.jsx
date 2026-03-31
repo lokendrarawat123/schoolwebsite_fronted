@@ -85,11 +85,11 @@ const Gallery = () => {
       ></HeroContainer>
 
       <section className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-6 sm:py-8 md:py-12">
           {/* Filter Controls */}
-          <div className="mb-8 sm:mb-12">
+          <div className="mb-6 sm:mb-8 md:mb-12">
             {/* Category Filter */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-2">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-1 sm:px-2">
               <button
                 onClick={() => setSelectedCategory(null)}
                 className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
@@ -217,7 +217,7 @@ const Gallery = () => {
           {/* Close Button */}
           <button
             onClick={() => setIsModalOpen(false)}
-            className="absolute top-4 sm:top-6 right-4 sm:right-6 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-3 rounded-full transition-colors duration-200 z-10"
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-colors duration-200 z-30"
           >
             <svg
               className="w-5 h-5 sm:w-6 sm:h-6"
@@ -253,18 +253,18 @@ const Gallery = () => {
             <>
               <button
                 onClick={prevPhoto}
-                className="absolute top-1/2 left-2 sm:left-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-4 rounded-full transition-colors duration-200"
+                className="absolute top-1/2 left-1 sm:left-6 -translate-y-1/2 bg-black/70 hover:bg-black/80 text-white p-2 sm:p-4 rounded-full transition-all duration-200 touch-manipulation z-30 shadow-lg"
               >
                 <svg
-                  className="w-6 h-6 sm:w-8 sm:h-8"
+                  className="w-5 h-5 sm:w-8 sm:h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth={3}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M15 19l-7-7 7-7"
                   />
                 </svg>
@@ -272,18 +272,18 @@ const Gallery = () => {
 
               <button
                 onClick={nextPhoto}
-                className="absolute top-1/2 right-2 sm:right-6 -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 sm:p-4 rounded-full transition-colors duration-200"
+                className="absolute top-1/2 right-1 sm:right-6 -translate-y-1/2 bg-black/70 hover:bg-black/80 text-white p-2 sm:p-4 rounded-full transition-all duration-200 touch-manipulation z-30 shadow-lg"
               >
                 <svg
-                  className="w-6 h-6 sm:w-8 sm:h-8"
+                  className="w-5 h-5 sm:w-8 sm:h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  strokeWidth={3}
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M9 5l7 7-7 7"
                   />
                 </svg>

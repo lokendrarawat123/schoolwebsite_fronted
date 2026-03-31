@@ -41,36 +41,44 @@ const NoticeIndex = () => {
       <HeroContainer bgImage={bgImg} title="Notices" subtitle="" />
 
       {/* Notices List */}
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Notices</h2>
+      <div className="w-full px-2 sm:px-4 lg:px-6 xl:px-8 py-6 sm:py-8 md:py-12">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">Notices</h2>
 
         <div className="flex flex-col divide-y divide-gray-200">
           {sortedNotices.length > 0 ? (
             sortedNotices.map((notice) => (
               <motion.div
                 key={notice.id}
-                className="sm:flex-row justify-start sm:justify-between items-start sm:items-center py-3 cursor-pointer hover:bg-gray-50 px-3 rounded transition-all"
-                onClick={() => {
-                  if (notice.attachment_url) {
-                    const url = `${IMG_URL}/${notice.attachment_url}`;
-                    window.open(url, '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=no,status=no');
-                  }
-                }}
+                className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center py-3 sm:py-4 px-2 sm:px-3 rounded transition-all gap-2 sm:gap-4"
               >
                 {/* Title */}
-                <p className="flex items-center  text-black hover:text-blue-600">
-                  <FaCaretRight className="text-black w-4 h-4" />
-                  <span>{notice.title}</span>
+                <p className="flex items-center text-black hover:text-blue-600 text-sm sm:text-base flex-1">
+                  <FaCaretRight className="text-black w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 shrink-0" />
+                  <span className="line-clamp-2 sm:line-clamp-1">{notice.title}</span>
                 </p>
 
-                {/* Date */}
-                <span className="text-gray-500 text-sm">
-                  {formatDate(notice.notice_date)}
-                </span>
+                {/* Date and View Button */}
+                <div className="flex items-center gap-2 sm:gap-4 ml-4 sm:ml-0">
+                  <span className="text-gray-500 text-xs sm:text-sm shrink-0">
+                    {formatDate(notice.notice_date)}
+                  </span>
+                  
+                  {notice.attachment_url && (
+                    <a
+                      href={`${IMG_URL}/${notice.attachment_url}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-2 sm:px-3 py-1 sm:py-2 rounded text-xs sm:text-sm font-medium transition-colors flex items-center gap-1 sm:gap-2"
+                    >
+                      <FaCaretRight className="w-2 h-2 sm:w-3 sm:h-3" />
+                      View
+                    </a>
+                  )}
+                </div>
               </motion.div>
             ))
           ) : (
-            <p className="text-gray-500 py-8">No notices found.</p>
+            <p className="text-gray-500 py-6 sm:py-8 text-sm sm:text-base">No notices found.</p>
           )}
         </div>
       </div>
@@ -86,7 +94,7 @@ const NoticeIndex = () => {
             onClick={() => setSelectedNotice(null)}
           >
             <motion.div
-              className="bg-white rounded-lg max-w-2xl w-full p-6 relative"
+              className="bg-white rounded-lg max-w-2xl w-full p-4 sm:p-6 relative mx-2 sm:mx-4 max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -94,21 +102,21 @@ const NoticeIndex = () => {
               transition={{ duration: 0.2 }}
             >
               <button
-                className="absolute top-3 right-3 text-gray-600 hover:text-gray-900 font-bold text-lg"
+                className="absolute top-2 sm:top-3 right-2 sm:right-3 text-gray-600 hover:text-gray-900 font-bold text-lg sm:text-xl z-10"
                 onClick={() => setSelectedNotice(null)}
               >
                 ✕
               </button>
 
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">
+              <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-800 pr-8">
                 {selectedNotice.title}
               </h3>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
                 {formatDate(selectedNotice.notice_date)}
               </p>
 
               {selectedNotice.attachment_url && (
-                <div className="mt-4">
+                <div className="mt-3 sm:mt-4">
                   {selectedNotice.attachment_type === "image" ? (
                     <img
                       src={`${IMG_URL}/${selectedNotice.attachment_url}`}
@@ -119,7 +127,7 @@ const NoticeIndex = () => {
                     <iframe
                       src={`${IMG_URL}/${selectedNotice.attachment_url}`}
                       title={selectedNotice.title}
-                      className="w-full h-96 rounded-md"
+                      className="w-full h-64 sm:h-80 md:h-96 rounded-md"
                     />
                   )}
                 </div>

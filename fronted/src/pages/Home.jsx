@@ -12,30 +12,28 @@ import ScrollToTop from "../components/shared/ScrollTop.jsx";
 
 const Home = () => {
   return (
-    <main className="font-sans">
+    <main className="font-sans bg-gray-50">
       {/* Hero Slider */}
       <HeroSlider />
+      <div className="px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10 2xl:px-12">
+        {/* About Preview */}
+        <AboutComponents />
 
-      {/* About Preview */}
-      <AboutComponents />
+        {/* Why Choose Us */}
+        <WhyChooseUs />
 
-      {/* Features */}
+        {/* Explore School Life */}
+        <ExploreSchoolLife />
 
-      {/* Why Choose Us */}
-      <WhyChooseUs />
+        {/* Latest Events */}
+        <LatestEvents />
 
-      {/* Explore School Life */}
-      <ExploreSchoolLife />
+        {/* Principal Message */}
+        <PrincipalMessage />
 
-      {/* Latest Events */}
-      <LatestEvents />
-
-      {/* Principal Message */}
-      <PrincipalMessage />
-
-      {/* Faq section */}
-
-      <Faqs />
+        {/* Faq section */}
+        <Faqs />
+      </div>
     </main>
   );
 };

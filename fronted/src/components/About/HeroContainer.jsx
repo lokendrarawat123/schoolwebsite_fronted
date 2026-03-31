@@ -1,13 +1,12 @@
 import React from "react";
-
 import Button from "../ButtonComponent";
 
 const HeroContainer = ({ title, subtitle, bgImage, className = "" }) => {
   return (
     <div
-      className={`relative flex flex-col  min-h-[70vh] overflow-hidden ${className}`}
+      className={`relative flex flex-col min-h-[70vh] overflow-hidden ${className}`}
     >
-      {/* Animated Background */}
+      {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
@@ -16,32 +15,35 @@ const HeroContainer = ({ title, subtitle, bgImage, className = "" }) => {
         }}
       ></div>
 
-      {/* Gradient Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-black/50 to-black/20"></div>
 
-      {/* Breadcrumb / Page Name */}
-
-      <div className="relative z-10  my-10 px-4 md:px-0 flex flex-col items-center">
-        {/* Breadcrumb Buttons */}
-        <h1 className="text-5xl md:text-4xl uppercase font-extrabold text-gray-100 animate-fadeIn mb-5">
+      {/* Content */}
+      <div className="relative z-10 my-10 px-4 flex flex-col items-center text-center">
+        <h1 className="text-3xl md:text-3xl uppercase font-extrabold text-gray-100 mb-5">
           {title}
         </h1>
-        <div className="flex space-x-4 mb-4">
-          <Button to="/" className="bg-blue-900 ">
+
+        <div className="flex items-center space-x-2 mb-4">
+          <Button
+            to="/"
+            className="px-5 py-2 rounded-full bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+          >
             HOME
           </Button>
-          <span className="text-gray-700 font-bold text-5xl md:text-5xl flex items-center h-full">
+
+          <span className="text-gray-200 text-3xl md:text-4xl font-bold mx-2">
             /
           </span>
-          <Button className="bg-blue-900 hover:from-blue-800 hover:to-purple-600  uppercase shadow-lg hover:shadow-xl ">
+
+          <Button className="px-5 py-2 rounded-full uppercase bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
             {title}
           </Button>
         </div>
-        <div className="mt-auto">
-          <h2 className="text-xl md:text-2xl text-gray-200">{subtitle}</h2>
-        </div>
 
-        {/* Main Heading */}
+        <h2 className="text-xl md:text-2xl uppercase text-gray-200 mt-4">
+          {subtitle}
+        </h2>
       </div>
     </div>
   );

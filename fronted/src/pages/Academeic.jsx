@@ -18,11 +18,7 @@ const Academeic = () => {
   if (eventError) {
     return (
       <div className="w-full">
-        <HeroContainer
-          bgImage={bgImg}
-          title="Academic"
-          subtitle=""
-        />
+        <HeroContainer bgImage={bgImg} title="Academic" subtitle="" />
         <div className="max-w-7xl mx-auto px-6 py-12 text-center">
           <p className="text-red-600">Error loading academic content</p>
         </div>
