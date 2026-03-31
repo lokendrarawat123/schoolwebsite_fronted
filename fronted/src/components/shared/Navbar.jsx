@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
+import Button from "../ButtonComponent.jsx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -64,24 +65,25 @@ const Navbar = () => {
                 ref={item.children ? dropdownRef : null}
               >
                 {item.children ? (
-                  <button
+                  <Button
                     onClick={() =>
                       setDesktopDropdown(
                         desktopDropdown === item.key ? null : item.key,
                       )
                     }
                     onMouseEnter={() => setDesktopDropdown(item.key)}
-                    className={`flex items-center gap-1 text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
+                    className={`flex items-center gap-1 text-sm xl:text-base font-semibold px-3 py-2 rounded-lg ${
                       isParentActiveState
                         ? "text-blue-600 bg-blue-50"
                         : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                     }`}
+                    icon={<HiChevronDown
+                      className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`}
+                    />}
+                    iconPosition="right"
                   >
                     {item.key}
-                    <HiChevronDown
-                      className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`}
-                    />
-                  </button>
+                  </Button>
                 ) : (
                   <Link
                     to={item.path}
@@ -131,13 +133,12 @@ const Navbar = () => {
         </ul>
 
         {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-lg sm:text-xl md:text-2xl ml-auto text-black hover:text-blue-600 transition-colors p-1 sm:p-1.5 md:p-2 touch-friendly bg-white rounded-lg shadow-lg"
+        <Button
+          className="lg:hidden text-lg sm:text-xl md:text-2xl ml-auto text-black hover:text-blue-600 p-1 sm:p-1.5 md:p-2 bg-white rounded-lg shadow-lg"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
-        >
-          {open ? <HiX /> : <HiMenu />}
-        </button>
+          icon={open ? <HiX /> : <HiMenu />}
+        />
       </div>
 
       {/* Mobile Menu */}
@@ -153,23 +154,24 @@ const Navbar = () => {
                 <li key={item.key}>
                   {item.children ? (
                     <>
-                      <button
+                      <Button
                         onClick={() =>
                           setMobileDropdown(
                             mobileDropdown === item.key ? null : item.key,
                           )
                         }
-                        className={`w-full flex justify-between items-center py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 md:px-4 font-medium rounded-lg transition-colors duration-150 touch-friendly text-xs sm:text-sm md:text-base ${
+                        className={`w-full flex justify-between items-center py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 md:px-4 font-medium rounded-lg text-xs sm:text-sm md:text-base ${
                           isParentActive(item.children)
                             ? "bg-blue-600 text-white"
                             : "text-gray-700 hover:bg-gray-100"
                         }`}
-                      >
-                        <span>{item.key}</span>
-                        <HiChevronDown
+                        icon={<HiChevronDown
                           className={`transition-transform duration-200 ${mobileDropdown === item.key ? "rotate-180" : ""}`}
-                        />
-                      </button>
+                        />}
+                        iconPosition="right"
+                      >
+                        {item.key}
+                      </Button>
                       {mobileDropdown === item.key && (
                         <ul className="ml-2 sm:ml-3 md:ml-4 mt-1 sm:mt-2 space-y-1 animate-fadeIn">
                           {item.children.map((sub) => (

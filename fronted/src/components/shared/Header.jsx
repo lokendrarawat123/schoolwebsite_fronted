@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header className="w-full relative">
       {/* Top Gradient */}
-      <div className="bg-linear-to-r from-[#8a8632ef] via-[#66e172] to-[#1D2F8A] text-white py-4 sm:py-6 md:py-8 lg:py-10 px-2 sm:px-4">
+      <div className="bg-linear-to-r from-[#0da97fef] via-[#0bbaa3] to-[#035a7f] text-white py-4 sm:py-6 md:py-8 lg:py-10 px-2 sm:px-4">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-0 py-2 sm:py-4 px-2 sm:px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3">

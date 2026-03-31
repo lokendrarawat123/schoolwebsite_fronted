@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import HeroSlider from "../components/home/HeroSlider.jsx";
 import AboutComponents from "../components/home/AboutComponents.jsx";
-import WhyChooseUs from "../components/Home/WhyChooseUs.jsx";
-import LatestEvents from "../components/Home/LatestEvents.jsx";
-import PrincipalMessage from "../components/Home/PrincipalMessage.jsx";
-import ExploreSchoolLife from "../components/Home/ExploreSchoolLife.jsx";
+import WhyChooseUs from "../components/home/WhyChooseUs.jsx";
+import LatestEvents from "../components/home/LatestEvents.jsx";
+import PrincipalMessage from "../components/home/PrincipalMessage.jsx";
+import ExploreSchoolLife from "../components/home/ExploreSchoolLife.jsx";
 import Faqs from "../components/faqs/Faqs.jsx";
 import ScrollToTop from "../components/shared/ScrollTop.jsx";
 

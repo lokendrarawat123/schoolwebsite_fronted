@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import bgImg from "../../assets/img/scphoto.jpg";
 import { motion } from "framer-motion";
+import Button from "../ButtonComponent.jsx";
 
 const AboutComponents = () => {
   return (
@@ -37,12 +38,13 @@ const AboutComponents = () => {
                 students to become confident, responsible, and capable
                 individuals ready to face future challenges.
               </p>
-              <Link
+              <Button
                 to="/about"
-                className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-secondary-color text-white rounded-lg hover:scale-105 transition-all duration-300 text-sm sm:text-base font-medium touch-friendly"
+                size="md"
+                className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-secondary-color text-white rounded-lg font-medium text-sm sm:text-base"
               >
                 Read More
-              </Link>
+              </Button>
             </motion.div>
 
             {/* Right Side - Photo */}

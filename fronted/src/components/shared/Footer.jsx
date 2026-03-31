@@ -13,6 +13,7 @@ import { BsTelephoneOutboundFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import ScrollToTop from "../shared/ScrollTop";
 import logo from "../../assets/img/namunalogo.png";
+import Button from "../ButtonComponent.jsx";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -77,12 +78,14 @@ const Footer = () => {
         {/* About */}
         <div className="space-y-4 sm:space-y-6 sm:col-span-2 lg:col-span-1">
           <div className="flex items-center gap-3 w-full ">
-            <div className="p-1 sm:p-2">
-              <img
-                src={logo}
-                className="h-12 w-12 sm:h-16 sm:w-16 rounded-full cursor-pointer"
-                alt="Logo"
-              />
+            <div className="p-1 sm:p-2 ">
+              <Link to="/" onClick={scrollToTop}>
+                <img
+                  src={logo}
+                  className="h-9 w-12 sm:h-20 sm:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 2xl:h-32 2xl:w-32 rounded-full cursor-pointer"
+                  alt="Logo"
+                />
+              </Link>
             </div>
             <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white  hover:text-yellow-400">
               NVS E.M. SCHOOL
@@ -196,13 +199,12 @@ const Footer = () => {
       </div>
 
       {/* Scroll Button */}
-      <button
+      <Button
         onClick={scrollToTop}
-        className="fixed bottom-4 sm:bottom-5 right-4 sm:right-5 p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 rounded-full shadow-lg transition-colors touch-friendly z-50"
+        className="fixed bottom-4 sm:bottom-5 right-4 sm:right-5 p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 rounded-full shadow-lg z-50"
         aria-label="Scroll to top"
-      >
-        <FaArrowUp className="text-sm sm:text-base" />
-      </button>
+        icon={<FaArrowUp className="text-sm sm:text-base" />}
+      />
     </footer>
   );
 };

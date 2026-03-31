@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 // import { slides } from "../../../Data.js/heroSliderData.js";
 import { useGetSlidesQuery } from "../../redux/features/SiteSlice.js";
+import Button from "../ButtonComponent.jsx";
 
 // Swiper styles
 import "swiper/css";
@@ -92,12 +93,12 @@ const HeroSlider = () => {
                         : "opacity-0 translate-y-10"
                     }`}
                   >
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg shadow-2xl transition-all transform hover:scale-105 active:scale-95 touch-friendly">
-                      ABOUT US
-                    </button>
-                    <button className="backdrop-blur-md border-2 border-white/50 text-white hover:bg-white hover:text-blue-900 px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full font-bold text-sm sm:text-base md:text-lg transition-all shadow-xl touch-friendly">
-                      VIEW GALLERY
-                    </button>
+                    <Button to="/about" size="lg" variant="hero">
+                      About Us
+                    </Button>
+                    <Button to="/gallery" size="lg" variant="heroOutline">
+                      View Gallery
+                    </Button>
                   </div>
                 </div>
               </div>

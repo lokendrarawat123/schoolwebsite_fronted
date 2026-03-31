@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useGetEventQuery } from "../../redux/features/academicSlice";
+import Button from "../ButtonComponent.jsx";
 
 const LatestEvents = () => {
   // Sample events data with random school-related images
@@ -64,25 +65,29 @@ const LatestEvents = () => {
 
         {/* View All Events Button */}
         <div className="text-center mt-8 sm:mt-10 md:mt-12 xl:mt-16 2xl:mt-20">
-          <Link
+          <Button
             to="/academics/events"
-            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-linear-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 transition-all duration-300 font-medium shadow-lg hover:shadow-md text-sm sm:text-base"
+            size="md"
+            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-linear-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 font-medium shadow-lg hover:shadow-md text-sm sm:text-base"
+            icon={
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            }
+            iconPosition="right"
           >
             View All Events
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5 ml-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

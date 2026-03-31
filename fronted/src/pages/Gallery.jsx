@@ -5,6 +5,7 @@ import { useGetGalleryCategoryQuery } from "../redux/features/categorySlice.js";
 import HeroContainer from "../components/About/HeroContainer";
 import { GallerySkeleton } from "../components/skeleton/HomeSkeleton";
 import bgImg from "../assets/img/student_group.jpg";
+import Button from "../components/ButtonComponent.jsx";
 
 const Gallery = () => {
   const {
@@ -90,37 +91,37 @@ const Gallery = () => {
           <div className="mb-6 sm:mb-8 md:mb-12">
             {/* Category Filter */}
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-1 sm:px-2">
-              <button
+              <Button
                 onClick={() => setSelectedCategory(null)}
-                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
+                className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base ${
                   selectedCategory === null
                     ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
                     : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
                 }`}
               >
                 All Categories
-              </button>
+              </Button>
               {categories.map((category) => {
                 // Use consistent ID field
                 const categoryId = category.id || category._id || category.category_id;
                 const categoryName = category.category_name || category.name;
 
                 return (
-                  <button
+                  <Button
                     key={categoryId || `category-${categoryName}`}
                     onClick={() => {
                       setSelectedCategory(
                         selectedCategory === categoryId ? null : categoryId,
                       );
                     }}
-                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
+                    className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base ${
                       selectedCategory === categoryId
                         ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
                         : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
                     }`}
                   >
                     {categoryName}
-                  </button>
+                  </Button>
                 );
               })}
             </div>
@@ -172,7 +173,7 @@ const Gallery = () => {
                 return (
                   <div
                     key={gallery.id}
-                    className="transform transition-all duration-500 hover:scale-105"
+                    className="transform transition-all duration-500"
                     style={{
                       animationDelay: `${index * 100}ms`,
                     }}
@@ -200,12 +201,12 @@ const Gallery = () => {
               <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6 max-w-md mx-auto">
                 Try adjusting your search or filter criteria
               </p>
-              <button
+              <Button
                 onClick={() => setSelectedCategory(null)}
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg text-sm sm:text-base"
               >
                 Show All
-              </button>
+              </Button>
             </div>
           )}
         </div>
@@ -215,24 +216,25 @@ const Gallery = () => {
       {isModalOpen && currentGalleryPhotos.length > 0 && (
         <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
           {/* Close Button */}
-          <button
+          <Button
             onClick={() => setIsModalOpen(false)}
-            className="absolute top-4 sm:top-6 right-4 sm:right-6 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full transition-colors duration-200 z-30"
-          >
-            <svg
-              className="w-5 h-5 sm:w-6 sm:h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+            className="absolute top-4 sm:top-6 right-4 sm:right-6 bg-black/50 hover:bg-black/70 text-white p-2 sm:p-3 rounded-full z-30"
+            icon={
+              <svg
+                className="w-5 h-5 sm:w-6 sm:h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            }
+          />
 
           {/* Photo Counter */}
           <div className="absolute top-4 sm:top-6 left-4 sm:left-6 bg-black/50 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm z-10">
@@ -251,43 +253,45 @@ const Gallery = () => {
           {/* Navigation Buttons */}
           {currentGalleryPhotos.length > 1 && (
             <>
-              <button
+              <Button
                 onClick={prevPhoto}
-                className="absolute top-1/2 left-1 sm:left-6 -translate-y-1/2 bg-black/70 hover:bg-black/80 text-white p-2 sm:p-4 rounded-full transition-all duration-200 touch-manipulation z-30 shadow-lg"
-              >
-                <svg
-                  className="w-5 h-5 sm:w-8 sm:h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={3}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-              </button>
+                className="absolute top-1/2 left-1 sm:left-6 -translate-y-1/2 bg-black/70 hover:bg-black/80 text-white p-2 sm:p-4 rounded-full z-30 shadow-lg"
+                icon={
+                  <svg
+                    className="w-5 h-5 sm:w-8 sm:h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={3}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                }
+              />
 
-              <button
+              <Button
                 onClick={nextPhoto}
-                className="absolute top-1/2 right-1 sm:right-6 -translate-y-1/2 bg-black/70 hover:bg-black/80 text-white p-2 sm:p-4 rounded-full transition-all duration-200 touch-manipulation z-30 shadow-lg"
-              >
-                <svg
-                  className="w-5 h-5 sm:w-8 sm:h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  strokeWidth={3}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
+                className="absolute top-1/2 right-1 sm:right-6 -translate-y-1/2 bg-black/70 hover:bg-black/80 text-white p-2 sm:p-4 rounded-full z-30 shadow-lg"
+                icon={
+                  <svg
+                    className="w-5 h-5 sm:w-8 sm:h-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth={3}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                }
+              />
             </>
           )}
         </div>

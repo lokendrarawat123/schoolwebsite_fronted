@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useGetFaqsQuery } from "../../redux/features/SiteSlice";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { FAQSkeleton } from "../skeleton/HomeSkeleton";
+import Button from "../ButtonComponent.jsx";
 
 const Faqs = () => {
   const { data: faqData, isLoading, error } = useGetFaqsQuery();
@@ -36,19 +37,18 @@ const Faqs = () => {
               className="border border-blue-100 rounded-lg sm:rounded-xl overflow-hidden shadow-sm"
             >
               {/* Question Row */}
-              <button
+              <Button
                 onClick={() => toggle(faq.id)}
-                className="w-full flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-blue-50 transition-colors duration-200 text-left touch-friendly"
+                className="w-full flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-blue-50 text-left"
                 aria-expanded={isOpen}
                 aria-controls={`faq-answer-${faq.id}`}
+                icon={isOpen ? <FaChevronUp /> : <FaChevronDown />}
+                iconPosition="right"
               >
                 <span className="text-blue-900 font-semibold text-sm sm:text-base pr-3 sm:pr-4 leading-relaxed">
                   {faq.question}
                 </span>
-                <span className="text-blue-600 shrink-0 text-sm sm:text-base">
-                  {isOpen ? <FaChevronUp /> : <FaChevronDown />}
-                </span>
-              </button>
+              </Button>
 
               {/* Answer Panel */}
               <div
