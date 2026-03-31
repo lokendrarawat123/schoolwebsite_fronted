@@ -29,9 +29,7 @@ const Navbar = () => {
   ];
 
   const isActive = (path) => location.pathname === path;
-
-  const isParentActive = (children) =>
-    children?.some((sub) => location.pathname === sub.path);
+  const isParentActive = (children) => children?.some((sub) => location.pathname === sub.path);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -40,11 +38,8 @@ const Navbar = () => {
         setDesktopDropdown(null);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Close mobile menu when route changes
@@ -55,44 +50,31 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <nav className="sticky top-0 z-50 flex justify-center">
-      <div className="w-[90%] max-w-6xl bg-white shadow-xl rounded-xl h-16 -mt-8 flex items-center px-6">
+    <nav className="sticky top-0 z-50 flex justify-center px-4">
+      <div className="w-full max-w-6xl bg-white shadow-xl rounded-xl h-16 -mt-8 flex items-center px-6">
+        {/* Desktop Navigation */}
         <ul className="hidden lg:flex justify-between items-center w-full">
           {navItems.map((item) => {
             const isParentActiveState = isParentActive(item.children);
-
             return (
-              <li
-                key={item.key}
-                className="relative"
-                ref={item.children ? dropdownRef : null}
-              >
-                {/* Main Item */}
+              <li key={item.key} className="relative" ref={item.children ? dropdownRef : null}>
                 {item.children ? (
                   <button
-                    onClick={() =>
-                      setDesktopDropdown(
-                        desktopDropdown === item.key ? null : item.key,
-                      )
-                    }
+                    onClick={() => setDesktopDropdown(desktopDropdown === item.key ? null : item.key)}
                     onMouseEnter={() => setDesktopDropdown(item.key)}
-                    className={`flex items-center gap-1 text-lg font-semibold ${
-                      isParentActiveState ? "text-blue-600" : "text-gray-700"
-                    } hover:text-blue-600 transition-colors duration-200`}
+                    className={`flex items-center gap-1 text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
+                      isParentActiveState ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                   >
                     {item.key}
-                    <HiChevronDown
-                      className={`text-sm transition-transform duration-200 ${
-                        desktopDropdown === item.key ? "rotate-180" : ""
-                      }`}
-                    />
+                    <HiChevronDown className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`} />
                   </button>
                 ) : (
                   <Link
                     to={item.path}
-                    className={`text-lg font-semibold ${
-                      isActive(item.path) ? "text-blue-600" : "text-gray-700"
-                    } hover:text-blue-600 transition-colors duration-200`}
+                    className={`text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
+                      isActive(item.path) ? "text-blue-600 bg-blue-50" : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                   >
                     {item.key}
                   </Link>
@@ -101,10 +83,8 @@ const Navbar = () => {
                 {/* Desktop Dropdown */}
                 {item.children && (
                   <ul
-                    className={`absolute left-0 mt-2 w-52 bg-white shadow-lg rounded-lg border transition-all duration-200 z-50 ${
-                      desktopDropdown === item.key
-                        ? "opacity-100 visible translate-y-0"
-                        : "opacity-0 invisible -translate-y-2"
+                    className={`absolute left-0 mt-2 w-56 bg-white shadow-xl rounded-xl border overflow-hidden transition-all duration-200 z-50 ${
+                      desktopDropdown === item.key ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-2"
                     }`}
                     onMouseLeave={() => setDesktopDropdown(null)}
                   >
@@ -113,11 +93,7 @@ const Navbar = () => {
                         <Link
                           to={sub.path}
                           className={`block px-4 py-3 text-sm transition-colors duration-150 ${
-                            index === 0 ? "rounded-t-lg" : ""
-                          } ${
-                            index === item.children.length - 1
-                              ? "rounded-b-lg"
-                              : ""
+                            index === item.children.length - 1 ? "" : "border-b border-gray-50"
                           } ${
                             location.pathname === sub.path
                               ? "bg-blue-600 text-white"
@@ -135,10 +111,11 @@ const Navbar = () => {
           })}
         </ul>
 
-        {/* Mobile Button */}
+        {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-3xl ml-auto text-gray-700 hover:text-blue-600 transition-colors"
+          className="lg:hidden text-2xl ml-auto text-gray-700 hover:text-blue-600 transition-colors p-2 touch-friendly"
           onClick={() => setOpen(!open)}
+          aria-label="Toggle menu"
         >
           {open ? <HiX /> : <HiMenu />}
         </button>
@@ -146,72 +123,59 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="lg:hidden absolute top-16 w-[90%] bg-white shadow-xl rounded-xl p-4 border">
-          <ul className="flex flex-col space-y-1">
-            {navItems.map((item) => (
-              <li key={item.key}>
-                {item.children ? (
-                  <>
-                    <button
-                      onClick={() =>
-                        setMobileDropdown(
-                          mobileDropdown === item.key ? null : item.key,
-                        )
-                      }
-                      className={`w-full flex justify-between items-center py-3 px-4 font-medium rounded-md transition-colors duration-150 ${
-                        isParentActive(item.children)
-                          ? "bg-blue-600 text-white"
-                          : "text-gray-700 hover:bg-gray-100"
+        <>
+          <div className="lg:hidden fixed inset-0 bg-black/20 z-40" onClick={() => setOpen(false)} />
+          <div className="lg:hidden absolute top-16 w-full max-w-6xl bg-white shadow-xl rounded-xl p-4 border z-50 max-h-[70vh] overflow-y-auto">
+            <ul className="space-y-1">
+              {navItems.map((item) => (
+                <li key={item.key}>
+                  {item.children ? (
+                    <>
+                      <button
+                        onClick={() => setMobileDropdown(mobileDropdown === item.key ? null : item.key)}
+                        className={`w-full flex justify-between items-center py-3 px-4 font-medium rounded-lg transition-colors duration-150 touch-friendly ${
+                          isParentActive(item.children) ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        <span>{item.key}</span>
+                        <HiChevronDown className={`transition-transform duration-200 ${mobileDropdown === item.key ? "rotate-180" : ""}`} />
+                      </button>
+                      {mobileDropdown === item.key && (
+                        <ul className="ml-4 mt-2 space-y-1 animate-fadeIn">
+                          {item.children.map((sub) => (
+                            <li key={sub.key}>
+                              <Link
+                                to={sub.path}
+                                onClick={() => { setOpen(false); setMobileDropdown(null); }}
+                                className={`block py-2 px-4 rounded-lg text-sm transition-colors duration-150 touch-friendly ${
+                                  location.pathname === sub.path
+                                    ? "bg-blue-600 text-white"
+                                    : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
+                                }`}
+                              >
+                                {sub.key}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      onClick={() => setOpen(false)}
+                      className={`block py-3 px-4 rounded-lg font-medium transition-colors duration-150 touch-friendly ${
+                        isActive(item.path) ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-gray-100"
                       }`}
                     >
                       {item.key}
-                      <HiChevronDown
-                        className={`transition-transform duration-200 ${
-                          mobileDropdown === item.key ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {mobileDropdown === item.key && (
-                      <ul className="ml-4 mt-2 space-y-1 animate-fadeIn">
-                        {item.children.map((sub) => (
-                          <li key={sub.key}>
-                            <Link
-                              to={sub.path}
-                              onClick={() => {
-                                setOpen(false);
-                                setMobileDropdown(null);
-                              }}
-                              className={`block py-2 px-4 rounded-md text-sm transition-colors duration-150 ${
-                                location.pathname === sub.path
-                                  ? "bg-blue-600 text-white"
-                                  : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
-                              }`}
-                            >
-                              {sub.key}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </>
-                ) : (
-                  <Link
-                    to={item.path}
-                    onClick={() => setOpen(false)}
-                    className={`block py-3 px-4 rounded-md font-medium transition-colors duration-150 ${
-                      isActive(item.path)
-                        ? "bg-blue-600 text-white"
-                        : "text-gray-700 hover:bg-gray-100"
-                    }`}
-                  >
-                    {item.key}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
       )}
     </nav>
   );

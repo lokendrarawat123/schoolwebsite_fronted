@@ -6,6 +6,8 @@ import bgImg from "../assets/img/group.jpg";
 import { useGetTeamQuery } from "../redux/features/TeamSlice";
 import { useGetTeamCategoryQuery } from "../redux/features/categorySlice";
 
+import { FaQuoteLeft, FaUser } from "react-icons/fa";
+
 const Team = () => {
   const {
     data: teamData,
@@ -68,11 +70,7 @@ const Team = () => {
     <>
       <div className="w-full">
         {/* Hero Section */}
-       <HeroContainer
-        bgImage={bgImg}
-        title="Our team"
-        subtitle=""
-      ></HeroContainer>
+        <HeroContainer bgImage={bgImg} title="Our team" subtitle="" />
         {selectedCategory !== null
           ? categories.find((cat) => {
               const categoryId = cat.id || cat._id || cat.category_id;

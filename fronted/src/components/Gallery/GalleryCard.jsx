@@ -15,7 +15,7 @@ const GalleryCard = ({ gallery, baseUrl, onImageClick }) => {
   const multipleImages = images.length > 1;
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+    <div className="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-200">
       {/* Image Container */}
       <div
         className="relative w-full h-64 overflow-hidden cursor-pointer"
@@ -24,7 +24,7 @@ const GalleryCard = ({ gallery, baseUrl, onImageClick }) => {
         <img
           src={`${baseUrl}/${images[currentIndex]}`}
           alt={gallery.caption}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-200"
         />
 
         {/* Overlay */}
@@ -60,7 +60,7 @@ const GalleryCard = ({ gallery, baseUrl, onImageClick }) => {
                 e.stopPropagation();
                 nextImage();
               }}
-              className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg hover:shadow-xl text-gray-700 transition-all duration-300 opacity-0 group-hover:opacity-100"
+              className="absolute top-1/2 right-3 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-lg hover:shadow-xl text-gray-700 transition-all duration-200 opacity-0 group-hover:opacity-100"
             >
               <svg
                 className="w-4 h-4"

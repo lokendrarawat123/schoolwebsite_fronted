@@ -50,7 +50,12 @@ const NoticeIndex = () => {
               <motion.div
                 key={notice.id}
                 className="sm:flex-row justify-start sm:justify-between items-start sm:items-center py-3 cursor-pointer hover:bg-gray-50 px-3 rounded transition-all"
-                onClick={() => setSelectedNotice(notice)}
+                onClick={() => {
+                  if (notice.attachment_url) {
+                    const url = `${IMG_URL}/${notice.attachment_url}`;
+                    window.open(url, '_blank', 'width=1200,height=800,scrollbars=yes,resizable=yes,toolbar=no,menubar=no,location=no,status=no');
+                  }
+                }}
               >
                 {/* Title */}
                 <p className="flex items-center  text-black hover:text-blue-600">

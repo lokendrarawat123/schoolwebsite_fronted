@@ -29,19 +29,15 @@ const Gallery = () => {
   const filteredGalleries = useMemo(() => {
     const galleries = galleryData?.data || [];
 
-    let result = [...galleries];
-
-    if (selectedCategory !== null) {
-      result = result.filter((gallery) => {
-        // Match by category ID if available, otherwise by category name
-        return (
-          gallery.category_id === selectedCategory ||
-          gallery.category === selectedCategory
-        );
-      });
+    if (selectedCategory === null) {
+      return galleries;
     }
 
-    return result;
+    return galleries.filter((gallery) => {
+      // Match by category ID
+      const galleryCategoryId = gallery.category_id || gallery.categoryId;
+      return galleryCategoryId === selectedCategory;
+    });
   }, [galleryData, selectedCategory]);
 
   const openPhotoViewer = (gallery, imageIndex = 0) => {
@@ -105,13 +101,13 @@ const Gallery = () => {
                 All Categories
               </button>
               {categories.map((category) => {
-                // Try different possible ID fields like Notice page
-                const categoryId = category.category_id;
+                // Use consistent ID field
+                const categoryId = category.id || category._id || category.category_id;
                 const categoryName = category.category_name || category.name;
 
                 return (
                   <button
-                    key={categoryId || `category-${category.id}`}
+                    key={categoryId || `category-${categoryName}`}
                     onClick={() => {
                       setSelectedCategory(
                         selectedCategory === categoryId ? null : categoryId,

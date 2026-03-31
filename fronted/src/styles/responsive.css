@@ -1,6 +1,6 @@
-/* Responsive Utilities for School Website */
+/* Enhanced Responsive Utilities for School Website */
 
-/* Base responsive breakpoints */
+/* Base responsive breakpoints with improved mobile-first approach */
 @media (max-width: 640px) {
   /* Mobile styles */
   .container {
@@ -36,6 +36,29 @@
   .button-responsive {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
+  }
+  
+  /* Mobile-specific navigation */
+  .nav-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+  
+  /* Mobile hero adjustments */
+  .hero-mobile {
+    height: 60vh;
+    min-height: 400px;
+  }
+  
+  /* Mobile form elements */
+  .form-mobile input,
+  .form-mobile textarea,
+  .form-mobile select {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem;
   }
 }
 
@@ -75,9 +98,43 @@
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
   }
+  
+  /* Tablet hero adjustments */
+  .hero-tablet {
+    height: 70vh;
+    min-height: 500px;
+  }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Small desktop/large tablet styles */
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .text-responsive {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .heading-responsive {
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+  }
+  
+  .card-responsive {
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .grid-responsive {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1025px) {
   /* Desktop styles */
   .container {
     padding-left: 2rem;
@@ -120,6 +177,7 @@
   .touch-friendly {
     min-height: 44px;
     min-width: 44px;
+    padding: 0.75rem;
   }
   
   .hover-effect:hover {
@@ -129,9 +187,15 @@
   .hover-effect:active {
     transform: scale(0.95);
   }
+  
+  /* Larger tap targets for mobile */
+  .tap-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
 }
 
-/* Responsive text utilities */
+/* Enhanced responsive text utilities with better scaling */
 .text-xs-responsive { font-size: clamp(0.75rem, 2vw, 0.875rem); }
 .text-sm-responsive { font-size: clamp(0.875rem, 2.5vw, 1rem); }
 .text-base-responsive { font-size: clamp(1rem, 3vw, 1.125rem); }
@@ -140,20 +204,36 @@
 .text-2xl-responsive { font-size: clamp(1.5rem, 5vw, 2rem); }
 .text-3xl-responsive { font-size: clamp(2rem, 6vw, 2.5rem); }
 .text-4xl-responsive { font-size: clamp(2.5rem, 7vw, 3rem); }
+.text-5xl-responsive { font-size: clamp(3rem, 8vw, 4rem); }
 
-/* Responsive spacing utilities */
+/* Enhanced responsive spacing utilities */
 .p-responsive { padding: clamp(1rem, 4vw, 2rem); }
 .px-responsive { padding-left: clamp(1rem, 4vw, 2rem); padding-right: clamp(1rem, 4vw, 2rem); }
 .py-responsive { padding-top: clamp(1rem, 4vw, 2rem); padding-bottom: clamp(1rem, 4vw, 2rem); }
+.m-responsive { margin: clamp(1rem, 4vw, 2rem); }
+.mx-responsive { margin-left: clamp(1rem, 4vw, 2rem); margin-right: clamp(1rem, 4vw, 2rem); }
+.my-responsive { margin-top: clamp(1rem, 4vw, 2rem); margin-bottom: clamp(1rem, 4vw, 2rem); }
 
-/* Responsive grid utilities */
+/* Enhanced responsive grid utilities */
 .grid-auto-responsive {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: clamp(1rem, 3vw, 2rem);
 }
 
-/* Responsive image utilities */
+.grid-auto-responsive-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+  gap: clamp(0.75rem, 2.5vw, 1.5rem);
+}
+
+.grid-auto-responsive-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Enhanced responsive image utilities */
 .img-responsive {
   width: 100%;
   height: auto;
@@ -161,7 +241,21 @@
   object-fit: cover;
 }
 
-/* Responsive modal utilities */
+.img-responsive-contain {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.img-responsive-hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Enhanced responsive modal utilities */
 .modal-responsive-container {
   position: fixed;
   inset: 0;
@@ -178,9 +272,15 @@
     align-items: flex-start;
     padding-top: 2rem;
   }
+  
+  .modal-content {
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }
 
-/* Utility classes for common responsive patterns */
+/* Enhanced utility classes for common responsive patterns */
 .hide-mobile {
   display: none;
 }
@@ -198,5 +298,204 @@
 @media (min-width: 640px) {
   .show-mobile {
     display: none;
+  }
+}
+
+.hide-tablet {
+  display: block;
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+.show-tablet {
+  display: none;
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .show-tablet {
+    display: block;
+  }
+}
+
+.hide-desktop {
+  display: block;
+}
+
+@media (min-width: 1025px) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+.show-desktop {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .show-desktop {
+    display: block;
+  }
+}
+
+/* Responsive flex utilities */
+.flex-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .flex-responsive {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .flex-responsive {
+    gap: 2rem;
+  }
+}
+
+/* Responsive card layouts */
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .card-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-stack {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Responsive navigation utilities */
+.nav-responsive {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+@media (max-width: 1023px) {
+  .nav-responsive {
+    position: fixed;
+    width: 100%;
+    z-index: 50;
+  }
+}
+
+/* Responsive hero section utilities */
+.hero-responsive {
+  height: 60vh;
+  min-height: 400px;
+}
+
+@media (min-width: 640px) {
+  .hero-responsive {
+    height: 70vh;
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-responsive {
+    height: 100vh;
+    min-height: 600px;
+  }
+}
+
+/* Safe area utilities for mobile devices */
+@supports (padding: max(0px)) {
+  .safe-area-inset-top {
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-inset-left {
+    padding-left: max(1rem, env(safe-area-inset-left));
+  }
+  
+  .safe-area-inset-right {
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Responsive typography scale */
+.heading-1-responsive {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.heading-2-responsive {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.heading-3-responsive {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.heading-4-responsive {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.body-responsive {
+  font-size: clamp(0.875rem, 2.5vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.caption-responsive {
+  font-size: clamp(0.75rem, 2vw, 0.875rem);
+  line-height: 1.5;
+}
+
+/* Responsive animation utilities */
+@media (prefers-reduced-motion: reduce) {
+  .animate-responsive {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
   }
 }

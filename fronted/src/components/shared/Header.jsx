@@ -8,81 +8,104 @@ const Header = () => {
   return (
     <header className="w-full relative">
       {/* Top Gradient */}
-      <div className="bg-linear-to-r from-[#6C4299] via-[#0586D6] to-[#1D2F8A] text-white py-10 px-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-4">
+      <div className="bg-linear-to-r from-[#6C4299] via-[#0586D6] to-[#1D2F8A] text-white py-4 sm:py-6 md:py-8 lg:py-10 px-2 sm:px-4">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-0 py-2 sm:py-4 px-2 sm:px-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="logo" className="w-14" />
-            <h1 className="text-4xl font-semibold">NVS E.M. SCHOOL</h1>
+          <Link to="/" className="flex items-center gap-2 sm:gap-3">
+            <img src={logo} alt="logo" className="w-10 sm:w-12 md:w-14" />
+            <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-center lg:text-left">
+              NVS E.M. SCHOOL
+            </h1>
           </Link>
 
-          {/* Contact */}
-          <div className="hidden lg:flex items-center">
-            <div className="hidden lg:flex items-center">
-              {/* Gmail - Click to Mail */}
+          {/* Contact - Mobile: Show simplified version */}
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 lg:gap-0">
+            {/* Mobile Contact - Simplified */}
+            <div className="flex sm:hidden items-center gap-4">
               <a
                 href="mailto:namuna2063@gmail.com"
-                className="flex items-center gap-2 pr-6 border-r border-white group cursor-pointer"
+                className="flex items-center gap-1 text-xs hover:underline"
               >
-                <div className="border-3 border-blue-600 bg-white text-blue-600 p-3 rounded-full group-hover:bg-blue-50 transition-colors">
-                  <Mail size={18} />
-                </div>
-                <span className="text-white text-base hover:underline">
-                  namuna2063@gmail.com
-                </span>
+                <Mail size={14} />
+                <span>Email</span>
               </a>
-
-              {/* Phone - Click to Call */}
               <a
                 href="tel:081414036"
-                className="flex items-center gap-2 px-6 border-r border-white group cursor-pointer"
+                className="flex items-center gap-1 text-xs hover:underline"
               >
-                <div className="bg-white border-3 border-blue-600 text-blue-600 p-3 rounded-full group-hover:bg-blue-50 transition-colors">
-                  <Phone size={18} />
-                </div>
-                <span className="text-white text-base hover:underline">
-                  081-414 036
-                </span>
+                <Phone size={14} />
+                <span>Call</span>
               </a>
             </div>
 
-            <ul className="flex items-center pl-3">
-              {/* Facebook */}
-              <li className="flex items-center pr-4 border-r border-white/30 last:border-none">
+            {/* Tablet & Desktop Contact */}
+            <div className="hidden sm:flex lg:flex items-center">
+              <div className="hidden lg:flex items-center">
+                {/* Gmail - Click to Mail */}
                 <a
-                  href="https://www.facebook.com/p/Namuna-Vidhya-Sadan-EM-Secondary-School-100057264595833/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-2 border-blue-300 bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer flex items-center justify-center"
+                  href="mailto:namuna2063@gmail.com"
+                  className="flex items-center gap-2 pr-4 lg:pr-6 border-r border-white group cursor-pointer"
                 >
-                  <Facebook size={18} />
+                  <div className="border-2 lg:border-3 border-blue-600 bg-white text-blue-600 p-2 lg:p-3 rounded-full group-hover:bg-blue-50 transition-colors">
+                    <Mail size={16} className="lg:w-4.5 lg:h-4.5" />
+                  </div>
+                  <span className="text-white text-sm lg:text-base hover:underline hidden xl:inline">
+                    namuna2063@gmail.com
+                  </span>
                 </a>
-              </li>
 
-              {/* Instagram */}
-              <li className="flex items-center px-4 border-r border-white/30 last:border-none">
+                {/* Phone - Click to Call */}
                 <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-2 border-blue-300 bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer flex items-center justify-center"
+                  href="tel:081414036"
+                  className="flex items-center gap-2 px-4 lg:px-6 border-r border-white group cursor-pointer"
                 >
-                  <Instagram size={18} />
+                  <div className="bg-white border-2 lg:border-3 border-blue-600 text-blue-600 p-2 lg:p-3 rounded-full group-hover:bg-blue-50 transition-colors">
+                    <Phone size={16} className="lg:w-4.5 lg:h-4.5" />
+                  </div>
+                  <span className="text-white text-sm lg:text-base hover:underline hidden xl:inline">
+                    081-414 036
+                  </span>
                 </a>
-              </li>
+              </div>
 
-              {/* LinkedIn */}
-              <li className="flex items-center pl-4 border-r border-white/30 last:border-none">
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-2 border-blue-300 bg-white text-blue-600 p-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer flex items-center justify-center"
-                >
-                  <LinkedinIcon size={18} />
-                </a>
-              </li>
-            </ul>
+              <ul className="flex items-center pl-2 sm:pl-3 gap-1 sm:gap-2">
+                {/* Facebook */}
+                <li className="flex items-center">
+                  <a
+                    href="https://www.facebook.com/p/Namuna-Vidhya-Sadan-EM-Secondary-School-100057264595833/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-2 border-blue-300 bg-white text-blue-600 p-1.5 sm:p-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer flex items-center justify-center touch-friendly"
+                  >
+                    <Facebook size={14} className="sm:w-4.5 sm:h-4.5" />
+                  </a>
+                </li>
+
+                {/* Instagram */}
+                <li className="flex items-center ml-2">
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-2 border-blue-300 bg-white text-blue-600 p-1.5 sm:p-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer flex items-center justify-center touch-friendly"
+                  >
+                    <Instagram size={14} className="sm:w-4.5 sm:h-4.5" />
+                  </a>
+                </li>
+
+                {/* LinkedIn */}
+                <li className="flex items-center ml-2">
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border-2 border-blue-300 bg-white text-blue-600 p-1.5 sm:p-2 rounded-full hover:bg-gray-100 transition-all cursor-pointer flex items-center justify-center touch-friendly"
+                  >
+                    <LinkedinIcon size={14} className="sm:w-4.5 sm:h-4.5" />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
