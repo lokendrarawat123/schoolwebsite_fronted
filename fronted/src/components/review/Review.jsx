@@ -36,7 +36,7 @@ const ReviewPage = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-50 py-16">
+    <div className="bg-linear-to-br from-blue-50 to-purple-50 py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-blue-900 mb-4">
