@@ -68,7 +68,7 @@ const HeroSlider = () => {
                 {/* Content */}
                 <div className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto">
                   <p
-                    className={`text-xs sm:text-sm md:text-lg lg:text-xl uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.5em] mb-2 sm:mb-3 md:mb-4 text-blue-400 font-bold transition-all duration-1000 delay-300 ${
+                    className={`text-xs sm:text-sm md:text-lg lg:text-xl uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.5em] mb-2 sm:mb-3 md:mb-4 text-primary-color font-bold transition-all duration-1000 delay-300 ${
                       isActive
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-10"

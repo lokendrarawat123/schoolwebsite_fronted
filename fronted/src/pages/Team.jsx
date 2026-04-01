@@ -63,7 +63,7 @@ const Team = () => {
         {/* Hero Section */}
         <HeroContainer bgImage={bgImg} title="Our team" subtitle="" />
 
-        <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
+        <div className=" ml-8 mr-6 min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
             {/* Header */}
             <div className="text-center mb-8 sm:mb-12">

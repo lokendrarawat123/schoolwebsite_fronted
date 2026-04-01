@@ -90,21 +90,18 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Map and Office Hours */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {/* Map */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3515.8461678610047!2d81.7104415754855!3d28.211985975897036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39986ff879bd2e89%3A0x9cb027fc883c0989!2sNamuna%20Vidhya%20Sadan!5e0!3m2!1sen!2snp!4v1774322539650!5m2!1sen!2snp"
-                width="100%"
-                height="250"
-                className="sm:h-[300px]"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+          {/* Map - Full Width */}
+          <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3515.8461678610047!2d81.7104415754855!3d28.211985975897036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39986ff879bd2e89%3A0x9cb027fc883c0989!2sNamuna%20Vidhya%20Sadan!5e0!3m2!1sen!2snp!4v1774322539650!5m2!1sen!2snp"
+              width="100%"
+              height="450"
+              className="sm:h-125 md:h-137.5 lg:h-150 block"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>

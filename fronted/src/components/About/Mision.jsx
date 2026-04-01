@@ -22,7 +22,7 @@ const MissionVision = () => {
   return (
     <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 md:mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-10 md:mb-12 text-third-color">
           Mission, Vision & Core Values
         </h2>
 
@@ -32,7 +32,9 @@ const MissionVision = () => {
               key={idx}
               className="bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 text-center"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-blue-600 text-white flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl font-bold">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full text-white flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-xl md:text-2xl font-bold"
+                style={{ backgroundColor: idx === 0 ? '#223fa2' : idx === 1 ? '#3db54b' : '#fdf100', color: idx === 2 ? '#223fa2' : 'white' }}
+              >
                 {item.icon}
               </div>
               <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">{item.title}</h3>

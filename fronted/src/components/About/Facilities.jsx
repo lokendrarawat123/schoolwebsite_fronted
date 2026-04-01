@@ -53,7 +53,7 @@ const Facilities = () => {
     <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-third-color mb-3 sm:mb-4">
             Our Facilities
           </h2>
           <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
@@ -78,7 +78,7 @@ const Facilities = () => {
 
               <div className="p-4 sm:p-6">
                 <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  <div className="text-blue-600 text-xl sm:text-2xl md:text-3xl">{facility.icon}</div>
+                  <div className="text-secondary-color text-xl sm:text-2xl md:text-3xl">{facility.icon}</div>
                   <h3 className="text-lg sm:text-xl font-bold text-gray-800">
                     {facility.title}
                   </h3>

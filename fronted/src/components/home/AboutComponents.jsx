@@ -23,7 +23,7 @@ const AboutComponents = () => {
               }}
               className="text-left order-2 lg:order-1"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-gray-800">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-third-color">
                 About Us
               </h2>
               <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
@@ -41,7 +41,7 @@ const AboutComponents = () => {
               <Button
                 to="/about"
                 size="md"
-                className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-secondary-color text-white rounded-lg font-medium text-sm sm:text-base"
+                className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-secondary-color hover:bg-secondary-color/80 text-white rounded-lg font-medium text-sm sm:text-base transition-colors duration-300"
               >
                 Read More
               </Button>

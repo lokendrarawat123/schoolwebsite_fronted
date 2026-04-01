@@ -94,7 +94,7 @@ const Footer = () => {
                 />
               </Link>
             </div>
-            <h3 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-2xl font-bold text-white hover:text-yellow-400 leading-tight">
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-2xl font-bold text-white hover:text-primary-color leading-tight transition-colors">
               NVS E.M. SCHOOL
             </h3>
           </div>
@@ -120,7 +120,7 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
+          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">
             Quick Links
           </h4>
           <ul className="space-y-2 sm:space-y-4">
@@ -129,7 +129,7 @@ const Footer = () => {
                 <Link
                   onClick={scrollToTop}
                   to={item.path}
-                  className="flex items-center gap-2 text-gray-300 hover:text-white text-sm sm:text-base transition-colors touch-friendly"
+                  className="flex items-center gap-2 text-gray-300 hover:text-primary-color text-sm sm:text-base transition-colors touch-friendly"
                 >
                   {item.name}
                 </Link>
@@ -140,13 +140,13 @@ const Footer = () => {
 
         {/* Programs */}
         <div className="">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">
+          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">
             Programs
           </h4>
           <ul className="space-y-2 sm:space-y-4">
             {footerData.programs.map((program, index) => (
               <li key={index}>
-                <span className="flex items-center gap-2 text-gray-300 text-sm sm:text-base">
+                <span className="flex items-center gap-2 text-gray-300 hover:text-primary-color text-sm sm:text-base transition-colors">
                   {program}
                 </span>
               </li>
@@ -156,7 +156,7 @@ const Footer = () => {
 
         {/* Contact */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Contact</h4>
+          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">Contact</h4>
 
           <div className="space-y-3 sm:space-y-4">
             <div className="flex gap-3 items-start">
@@ -170,7 +170,7 @@ const Footer = () => {
               <BsTelephoneOutboundFill className="shrink-0" />
               <a
                 href="tel:081414036"
-                className="text-gray-300 text-xs sm:text-sm hover:text-white transition-colors touch-friendly"
+                className="text-gray-300 text-xs sm:text-sm hover:text-primary-color transition-colors touch-friendly"
               >
                 {footerData.contact.phone}
               </a>
@@ -180,7 +180,7 @@ const Footer = () => {
               <FaEnvelope className="shrink-0" />
               <a
                 href={`mailto:${footerData.contact.email}`}
-                className="text-gray-300 text-xs sm:text-sm hover:text-white transition-colors break-all touch-friendly"
+                className="text-gray-300 text-xs sm:text-sm hover:text-primary-color transition-colors break-all touch-friendly"
               >
                 {footerData.contact.email}
               </a>
@@ -197,7 +197,7 @@ const Footer = () => {
         </div>
 
         {/* Right */}
-        <div className="text-gray-400 text-xs sm:text-sm">
+        <div className="mr-10 text-gray-400 text-xs sm:text-sm">
           Powered by{" "}
           <span className="font-semibold text-yellow-500">
             Next Infosys Pvt. Ltd

@@ -67,13 +67,13 @@ const WhyChooseUs = () => {
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold mb-2 sm:mb-3 text-gray-800">
                 Why{" "}
                 <span className="inline-flex items-center space-x-1">
-                  <span className="text-blue-600 drop-shadow-lg transform hover:scale-110 transition-transform duration-300">
+                  <span className="text-third-color drop-shadow-lg transform hover:scale-110 transition-transform duration-300">
                     N
                   </span>
-                  <span className="text-yellow-500 drop-shadow-lg transform hover:scale-110 transition-transform duration-300">
+                  <span className="text-primary-color drop-shadow-lg transform hover:scale-110 transition-transform duration-300">
                     V
                   </span>
-                  <span className="text-green-600 drop-shadow-lg transform hover:scale-110 transition-transform duration-300">
+                  <span className="text-secondary-color drop-shadow-lg transform hover:scale-110 transition-transform duration-300">
                     S
                   </span>
                 </span>
@@ -93,12 +93,12 @@ const WhyChooseUs = () => {
                   className="flex items-start space-x-3 sm:space-x-4 group"
                 >
                   <div className="shrink-0">
-                    <div className="w-10 h-10 sm:w-8 sm:h-8 lg:w-10 lg:h-10 xl:w-10 xl:h-16 2xl:w-18 2xl:h-18 bg-linear-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                    <div className="w-10 h-10 sm:w-8 sm:h-8 lg:w-10 lg:h-10 xl:w-10 xl:h-16 2xl:w-18 2xl:h-18 bg-third-color rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:bg-secondary-color transition-all duration-300">
                       <item.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 text-white" />
                     </div>
                   </div>
                   <div className="flex">
-                    <h3 className="text-base sm:text-lg lg:text-sm xl:text-2xl 2xl:text-3xl font-bold mb-1 sm:mb-2 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-base sm:text-lg lg:text-sm xl:text-2xl 2xl:text-3xl font-bold mb-1 sm:mb-2 text-gray-800 group-hover:text-third-color transition-colors duration-300">
                       {item.title}
                     </h3>
                     <p className="text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl text-gray-600 leading-relaxed">

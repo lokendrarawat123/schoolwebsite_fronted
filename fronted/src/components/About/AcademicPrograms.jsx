@@ -62,7 +62,7 @@ const AcademicPrograms = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-third-color mb-4">
             Academic Programs
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -82,7 +82,7 @@ const AcademicPrograms = () => {
               >
                 {/* Icon */}
                 <div className="mb-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-third-color rounded-lg flex items-center justify-center">
                     <IconComponent className="text-white text-xl" />
                   </div>
                 </div>
@@ -93,7 +93,7 @@ const AcademicPrograms = () => {
                     <h3 className="text-lg font-bold text-gray-900 mb-1">
                       {program.title}
                     </h3>
-                    <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded">
+                    <span className="bg-secondary-color/10 text-secondary-color text-sm font-medium px-2 py-1 rounded">
                       {program.grades}
                     </span>
                   </div>

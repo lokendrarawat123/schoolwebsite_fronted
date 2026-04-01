@@ -33,7 +33,7 @@ const Features = () => {
       {" "}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl font-bold text-center mb-12 text-third-color">
             Why Choose Us
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -42,7 +42,7 @@ const Features = () => {
                 key={idx}
                 className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition duration-300 text-center"
               >
-                <div className="text-secondary-color mb-4 flex justify-center">
+                <div className="text-secondary-color mb-4 flex justify-center p-4 bg-secondary-color/10 rounded-full w-fit mx-auto">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3">{feature.title}</h3>

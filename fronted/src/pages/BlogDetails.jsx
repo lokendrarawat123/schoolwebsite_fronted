@@ -44,10 +44,6 @@ const BlogDetails = () => {
           String(b.blog_id) === String(id),
       );
 
-      console.log("Looking for blog with ID:", id);
-      console.log("Available blogs:", blogs);
-      console.log("Found blog:", blog);
-
       setCurrentBlog(blog);
 
       if (blog) {
@@ -133,7 +129,7 @@ const BlogDetails = () => {
       {/* Hero Section */}
       <HeroContainer bgImage={bgImg} title="Blog Details" subtitle="" />
 
-      <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
+      <div className="ml-8 mr-6 min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-6 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
@@ -358,34 +354,43 @@ const BlogDetails = () => {
                     {/* Category Dropdown */}
                     <div className="relative mb-6">
                       <button
-                        onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+                        onClick={() =>
+                          setIsCategoryDropdownOpen(!isCategoryDropdownOpen)
+                        }
                         className="w-full px-4 py-3 bg-white border-2 border-gray-200 rounded-xl text-left flex items-center justify-between hover:border-indigo-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                       >
                         <div className="flex items-center gap-3">
                           <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
                           <span className="font-medium text-gray-900">
-                            {selectedCategory 
-                              ? blogCategories.find(c => c.category_id === selectedCategory)?.category_name
-                              : 'All Categories'
-                            }
+                            {selectedCategory
+                              ? blogCategories.find(
+                                  (c) => c.category_id === selectedCategory,
+                                )?.category_name
+                              : "All Categories"}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-xs font-semibold">
-                            {selectedCategory 
-                              ? blogs.filter(b => b.category_id === selectedCategory).length
-                              : blogs.length
-                            }
+                            {selectedCategory
+                              ? blogs.filter(
+                                  (b) => b.category_id === selectedCategory,
+                                ).length
+                              : blogs.length}
                           </span>
-                          <svg 
+                          <svg
                             className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
-                              isCategoryDropdownOpen ? 'rotate-180' : ''
-                            }`} 
-                            fill="none" 
-                            stroke="currentColor" 
+                              isCategoryDropdownOpen ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </div>
                       </button>
@@ -400,29 +405,42 @@ const BlogDetails = () => {
                               setIsCategoryDropdownOpen(false);
                             }}
                             className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between group ${
-                              selectedCategory === null ? 'bg-indigo-50 text-indigo-700' : 'text-gray-700'
+                              selectedCategory === null
+                                ? "bg-indigo-50 text-indigo-700"
+                                : "text-gray-700"
                             }`}
                           >
                             <div className="flex items-center gap-3">
-                              <div className={`w-2 h-2 rounded-full ${
-                                selectedCategory === null ? 'bg-indigo-500' : 'bg-gray-300 group-hover:bg-indigo-400'
-                              }`}></div>
-                              <span className="font-medium">All Categories</span>
+                              <div
+                                className={`w-2 h-2 rounded-full ${
+                                  selectedCategory === null
+                                    ? "bg-indigo-500"
+                                    : "bg-gray-300 group-hover:bg-indigo-400"
+                                }`}
+                              ></div>
+                              <span className="font-medium">
+                                All Categories
+                              </span>
                             </div>
-                            <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                              selectedCategory === null 
-                                ? 'bg-indigo-200 text-indigo-800' 
-                                : 'bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-700'
-                            }`}>
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                selectedCategory === null
+                                  ? "bg-indigo-200 text-indigo-800"
+                                  : "bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-700"
+                              }`}
+                            >
                               {blogs.length}
                             </span>
                           </button>
 
                           {/* Category Options */}
                           {blogCategories.map((category) => {
-                            const categoryCount = blogs.filter(b => b.category_id === category.category_id).length;
-                            const isSelected = selectedCategory === category.category_id;
-                            
+                            const categoryCount = blogs.filter(
+                              (b) => b.category_id === category.category_id,
+                            ).length;
+                            const isSelected =
+                              selectedCategory === category.category_id;
+
                             return (
                               <button
                                 key={category.category_id}
@@ -431,20 +449,30 @@ const BlogDetails = () => {
                                   setIsCategoryDropdownOpen(false);
                                 }}
                                 className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between group ${
-                                  isSelected ? 'bg-indigo-50 text-indigo-700' : 'text-gray-700'
+                                  isSelected
+                                    ? "bg-indigo-50 text-indigo-700"
+                                    : "text-gray-700"
                                 }`}
                               >
                                 <div className="flex items-center gap-3">
-                                  <div className={`w-2 h-2 rounded-full ${
-                                    isSelected ? 'bg-indigo-500' : 'bg-gray-300 group-hover:bg-indigo-400'
-                                  }`}></div>
-                                  <span className="font-medium">{category.category_name}</span>
+                                  <div
+                                    className={`w-2 h-2 rounded-full ${
+                                      isSelected
+                                        ? "bg-indigo-500"
+                                        : "bg-gray-300 group-hover:bg-indigo-400"
+                                    }`}
+                                  ></div>
+                                  <span className="font-medium">
+                                    {category.category_name}
+                                  </span>
                                 </div>
-                                <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                                  isSelected 
-                                    ? 'bg-indigo-200 text-indigo-800' 
-                                    : 'bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-700'
-                                }`}>
+                                <span
+                                  className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                                    isSelected
+                                      ? "bg-indigo-200 text-indigo-800"
+                                      : "bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-700"
+                                  }`}
+                                >
                                   {categoryCount}
                                 </span>
                               </button>
@@ -505,36 +533,48 @@ const BlogDetails = () => {
                         Browse by Category
                       </label>
                       <button
-                        onClick={() => setIsArticleDropdownOpen(!isArticleDropdownOpen)}
+                        onClick={() =>
+                          setIsArticleDropdownOpen(!isArticleDropdownOpen)
+                        }
                         className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-left flex items-center justify-between hover:bg-gray-100 hover:border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                       >
                         <div className="flex items-center gap-3">
-                          <div className={`w-3 h-3 rounded-full ${
-                            selectedCategory ? 'bg-emerald-500' : 'bg-gray-400'
-                          }`}></div>
+                          <div
+                            className={`w-3 h-3 rounded-full ${
+                              selectedCategory
+                                ? "bg-emerald-500"
+                                : "bg-gray-400"
+                            }`}
+                          ></div>
                           <span className="font-medium text-gray-900">
-                            {selectedCategory 
-                              ? `${blogCategories.find(c => c.category_id === selectedCategory)?.category_name} Articles`
-                              : 'Select Category to Filter'
-                            }
+                            {selectedCategory
+                              ? `${blogCategories.find((c) => c.category_id === selectedCategory)?.category_name} Articles`
+                              : "Select Category to Filter"}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
                           <span className="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full text-xs font-semibold">
-                            {selectedCategory 
-                              ? blogs.filter(b => b.category_id === selectedCategory).length
-                              : blogs.length
-                            } articles
+                            {selectedCategory
+                              ? blogs.filter(
+                                  (b) => b.category_id === selectedCategory,
+                                ).length
+                              : blogs.length}{" "}
+                            articles
                           </span>
-                          <svg 
+                          <svg
                             className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${
-                              isArticleDropdownOpen ? 'rotate-180' : ''
-                            }`} 
-                            fill="none" 
-                            stroke="currentColor" 
+                              isArticleDropdownOpen ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
                           </svg>
                         </div>
                       </button>
@@ -549,14 +589,22 @@ const BlogDetails = () => {
                               setIsArticleDropdownOpen(false);
                             }}
                             className={`w-full px-4 py-3 text-left hover:bg-emerald-50 transition-colors duration-200 flex items-center justify-between border-b border-gray-100 ${
-                              selectedCategory === null ? 'bg-emerald-50 text-emerald-700' : 'text-gray-700'
+                              selectedCategory === null
+                                ? "bg-emerald-50 text-emerald-700"
+                                : "text-gray-700"
                             }`}
                           >
                             <div className="flex items-center gap-3">
-                              <div className={`w-2 h-2 rounded-full ${
-                                selectedCategory === null ? 'bg-emerald-500' : 'bg-gray-300'
-                              }`}></div>
-                              <span className="font-medium">🏠 All Categories</span>
+                              <div
+                                className={`w-2 h-2 rounded-full ${
+                                  selectedCategory === null
+                                    ? "bg-emerald-500"
+                                    : "bg-gray-300"
+                                }`}
+                              ></div>
+                              <span className="font-medium">
+                                🏠 All Categories
+                              </span>
                             </div>
                             <span className="text-xs text-gray-500 font-semibold">
                               {blogs.length} articles
@@ -565,9 +613,12 @@ const BlogDetails = () => {
 
                           {/* Show ALL Individual Categories */}
                           {blogCategories.map((category) => {
-                            const categoryCount = blogs.filter(b => b.category_id === category.category_id).length;
-                            const isSelected = selectedCategory === category.category_id;
-                            
+                            const categoryCount = blogs.filter(
+                              (b) => b.category_id === category.category_id,
+                            ).length;
+                            const isSelected =
+                              selectedCategory === category.category_id;
+
                             return (
                               <button
                                 key={category.category_id}
@@ -576,18 +627,30 @@ const BlogDetails = () => {
                                   setIsArticleDropdownOpen(false);
                                 }}
                                 className={`w-full px-4 py-3 text-left hover:bg-emerald-50 transition-colors duration-200 flex items-center justify-between ${
-                                  isSelected ? 'bg-emerald-50 text-emerald-700 border-l-4 border-emerald-500' : 'text-gray-700 hover:border-l-4 hover:border-emerald-300'
+                                  isSelected
+                                    ? "bg-emerald-50 text-emerald-700 border-l-4 border-emerald-500"
+                                    : "text-gray-700 hover:border-l-4 hover:border-emerald-300"
                                 }`}
                               >
                                 <div className="flex items-center gap-3">
-                                  <div className={`w-2 h-2 rounded-full ${
-                                    isSelected ? 'bg-emerald-500' : 'bg-gray-300'
-                                  }`}></div>
-                                  <span className="font-medium">📂 {category.category_name}</span>
+                                  <div
+                                    className={`w-2 h-2 rounded-full ${
+                                      isSelected
+                                        ? "bg-emerald-500"
+                                        : "bg-gray-300"
+                                    }`}
+                                  ></div>
+                                  <span className="font-medium">
+                                    📂 {category.category_name}
+                                  </span>
                                 </div>
-                                <span className={`text-xs font-semibold ${
-                                  isSelected ? 'text-emerald-700' : 'text-gray-500'
-                                }`}>
+                                <span
+                                  className={`text-xs font-semibold ${
+                                    isSelected
+                                      ? "text-emerald-700"
+                                      : "text-gray-500"
+                                  }`}
+                                >
                                   {categoryCount} articles
                                 </span>
                               </button>
@@ -602,14 +665,23 @@ const BlogDetails = () => {
                       {/* Show current filter status */}
                       <div className="flex items-center justify-between mb-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
                         <div className="flex items-center gap-2">
-                          <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                          <svg
+                            className="w-4 h-4 text-emerald-600"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+                            />
                           </svg>
                           <span className="text-sm font-medium text-emerald-700">
-                            {selectedCategory 
-                              ? `Showing ${blogCategories.find(c => c.category_id === selectedCategory)?.category_name} articles`
-                              : 'Showing all articles'
-                            }
+                            {selectedCategory
+                              ? `Showing ${blogCategories.find((c) => c.category_id === selectedCategory)?.category_name} articles`
+                              : "Showing all articles"}
                           </span>
                         </div>
                         <span className="text-sm font-semibold text-emerald-600">
@@ -645,7 +717,9 @@ const BlogDetails = () => {
                             >
                               <div className="flex gap-3">
                                 {/* Article Image */}
-                                {(blog.image_url || blog.image || blog.img_url) && (
+                                {(blog.image_url ||
+                                  blog.image ||
+                                  blog.img_url) && (
                                   <div className="shrink-0">
                                     <div className="relative overflow-hidden rounded-md">
                                       <img
@@ -653,7 +727,8 @@ const BlogDetails = () => {
                                         alt={blog.title}
                                         className="w-16 h-16 object-cover transition-transform duration-300 group-hover:scale-105"
                                         onError={(e) => {
-                                          e.target.src = "/api/placeholder/64/64";
+                                          e.target.src =
+                                            "/api/placeholder/64/64";
                                         }}
                                       />
                                       {isCurrentBlog && (
@@ -695,17 +770,24 @@ const BlogDetails = () => {
                                           : "bg-gray-100 text-gray-600 group-hover:bg-emerald-100 group-hover:text-emerald-700"
                                       }`}
                                     >
-                                      📂 {blogCategory?.category_name || "General"}
+                                      📂{" "}
+                                      {blogCategory?.category_name || "General"}
                                     </span>
-                                    <span className="text-xs text-gray-400">•</span>
+                                    <span className="text-xs text-gray-400">
+                                      •
+                                    </span>
                                     <span className="text-xs text-gray-500">
                                       {blog.published_date
-                                        ? new Date(blog.published_date).toLocaleDateString("en-US", {
+                                        ? new Date(
+                                            blog.published_date,
+                                          ).toLocaleDateString("en-US", {
                                             month: "short",
                                             day: "numeric",
                                           })
                                         : blog.created_at
-                                          ? new Date(blog.created_at).toLocaleDateString("en-US", {
+                                          ? new Date(
+                                              blog.created_at,
+                                            ).toLocaleDateString("en-US", {
                                               month: "short",
                                               day: "numeric",
                                             })
@@ -715,14 +797,25 @@ const BlogDetails = () => {
 
                                   {/* Article Description */}
                                   <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed mb-2">
-                                    {blog.description || "Click to read more about this interesting topic..."}
+                                    {blog.description ||
+                                      "Click to read more about this interesting topic..."}
                                   </p>
 
                                   {/* Action Indicators */}
                                   <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-1 text-xs text-gray-500">
-                                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      <svg
+                                        className="w-3 h-3"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
                                       </svg>
                                       <span>5 min read</span>
                                     </div>
@@ -730,8 +823,18 @@ const BlogDetails = () => {
                                     {!isCurrentBlog && (
                                       <div className="flex items-center gap-1 text-xs text-emerald-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                                         <span>📖 Read Article</span>
-                                        <svg className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        <svg
+                                          className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform duration-200"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5l7 7-7 7"
+                                          />
                                         </svg>
                                       </div>
                                     )}
@@ -751,16 +854,27 @@ const BlogDetails = () => {
                         /* Empty State */
                         <div className="text-center py-12 text-gray-500">
                           <div className="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            <svg
+                              className="w-8 h-8 text-gray-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                              />
                             </svg>
                           </div>
-                          <h4 className="font-medium text-gray-600 mb-2">📂 No articles found</h4>
+                          <h4 className="font-medium text-gray-600 mb-2">
+                            📂 No articles found
+                          </h4>
                           <p className="text-sm text-gray-500">
-                            {selectedCategory 
-                              ? `No articles in "${blogCategories.find(c => c.category_id === selectedCategory)?.category_name}" category` 
-                              : "No articles available"
-                            }
+                            {selectedCategory
+                              ? `No articles in "${blogCategories.find((c) => c.category_id === selectedCategory)?.category_name}" category`
+                              : "No articles available"}
                           </p>
                           {selectedCategory && (
                             <button
@@ -778,12 +892,22 @@ const BlogDetails = () => {
                     {sidebarBlogs.length > 8 && (
                       <div className="pt-4 border-t border-gray-200">
                         <button
-                          onClick={() => navigate('/blog')}
+                          onClick={() => navigate("/blog")}
                           className="w-full px-4 py-3 bg-linear-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 text-emerald-700 hover:text-emerald-800 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 border border-emerald-200 hover:border-emerald-300"
                         >
                           <span>View All {sidebarBlogs.length} Articles</span>
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M13 7l5 5m0 0l-5 5m5-5H6"
+                            />
                           </svg>
                         </button>
                       </div>

@@ -5,7 +5,7 @@ import Notice from "../pages/Notice";
 import Test from "../pages/Test";
 import Vacancy from "../pages/Vacancy";
 import Contact from "../pages/Contact";
-import Academeic from "../pages/Academeic";
+
 import Blog from "../pages/Blog";
 import Team from "../pages/Team";
 import BlogDetails from "../pages/BlogDetails";

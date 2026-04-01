@@ -51,7 +51,7 @@ const Vacancy = () => {
         subtitle="Join Our Educational Excellence Team"
       />
 
-      <div className="max-w-6xl mx-auto px-4 py-12">
+      <div className=" ml-8 mr-6 max-w-6xl mx-auto px-4 py-12">
         {/* Header Section */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -68,7 +68,9 @@ const Vacancy = () => {
 
         {isLoading && <VacancySkeleton />}
 
-        {error && <ErrorMessage message="Unable to load positions. Please contact HR directly." />}
+        {error && (
+          <ErrorMessage message="Unable to load positions. Please contact HR directly." />
+        )}
 
         {/* Job Listings */}
         {!isLoading && !error && filteredVacancies.length > 0 && (
@@ -109,13 +111,6 @@ const Vacancy = () => {
                         <span>
                           <strong>Deadline:</strong>{" "}
                           {formatDate(job.application_deadline)}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-green-500" />
-                        <span>
-                          <strong>Department:</strong> Category{" "}
-                          {job.category_id}
                         </span>
                       </div>
                     </div>
@@ -194,7 +189,8 @@ const Vacancy = () => {
               </h3>
               <div className="text-amber-800 max-w-3xl mx-auto space-y-3">
                 <p className="text-lg font-medium">
-                  All job applications must be submitted physically at our office.
+                  All job applications must be submitted physically at our
+                  office.
                 </p>
                 <p>
                   We do not accept online applications or email submissions.
@@ -209,51 +205,6 @@ const Vacancy = () => {
             </div>
           </div>
         )}
-
-        {/* Additional Information */}
-        <div className="mt-12 bg-white rounded-xl shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Why Join Our Team?
-          </h3>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="bg-blue-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-blue-600" />
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">
-                Collaborative Environment
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Work with dedicated professionals in a supportive academic
-                community.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Building2 className="w-8 h-8 text-green-600" />
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">
-                Modern Facilities
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Access to state-of-the-art educational resources and
-                infrastructure.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                <Briefcase className="w-8 h-8 text-purple-600" />
-              </div>
-              <h4 className="font-semibold text-gray-900 mb-2">
-                Career Growth
-              </h4>
-              <p className="text-gray-600 text-sm">
-                Opportunities for professional development and career
-                advancement.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

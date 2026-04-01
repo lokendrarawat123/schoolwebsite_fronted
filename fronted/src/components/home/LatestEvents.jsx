@@ -19,10 +19,14 @@ const LatestEvents = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 2xl:px-10">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 xl:mb-16 2xl:mb-20">
-          <h2 className="text-2xl sm:text-4xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-7xl font-bold text-blue-900 mb-2 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-7xl font-bold text-third-color mb-2 sm:mb-4">
             LATEST EVENTS
           </h2>
-          <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 2xl:w-36 h-1 bg-linear-to-r from-blue-500 to-green-500 mx-auto"></div>
+          <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 2xl:w-36 h-1 mx-auto flex">
+            <div className="flex-1 bg-primary-color rounded-l-full" />
+            <div className="flex-1 bg-secondary-color" />
+            <div className="flex-1 bg-third-color rounded-r-full" />
+          </div>
         </div>
 
         {/* Events Grid */}
@@ -53,7 +57,7 @@ const LatestEvents = () => {
 
                 {/* Event Content */}
                 <div className="p-4 sm:p-5 md:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3 group-hover:text-third-color transition-colors duration-300 line-clamp-2">
                     {event.title}
                   </h3>
                   <p className="text-gray-600 text-xs sm:text-sm">
@@ -74,7 +78,7 @@ const LatestEvents = () => {
           <Button
             to="/academics/events"
             size="md"
-            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-linear-to-r from-blue-500 to-blue-600 text-white rounded-full hover:from-blue-600 hover:to-blue-700 font-medium shadow-lg hover:shadow-md text-sm sm:text-base"
+            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-secondary-color hover:bg-secondary-color/80 text-white rounded-full font-medium shadow-lg hover:shadow-md text-sm sm:text-base transition-colors duration-300"
             icon={
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"

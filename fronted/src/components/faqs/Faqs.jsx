@@ -24,7 +24,7 @@ const Faqs = () => {
 
   return (
     <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 py-8 sm:py-10 md:py-12">
-      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 text-blue-900">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 text-third-color">
         Frequently Asked Questions
       </h2>
 
@@ -39,13 +39,13 @@ const Faqs = () => {
               {/* Question Row */}
               <Button
                 onClick={() => toggle(faq.id)}
-                className="w-full flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-blue-50 text-left"
+                className="w-full flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-third-color/5 text-left"
                 aria-expanded={isOpen}
                 aria-controls={`faq-answer-${faq.id}`}
                 icon={isOpen ? <FaChevronUp /> : <FaChevronDown />}
                 iconPosition="right"
               >
-                <span className="text-blue-900 font-semibold text-sm sm:text-base pr-3 sm:pr-4 leading-relaxed">
+                <span className="text-third-color font-semibold text-sm sm:text-base pr-3 sm:pr-4 leading-relaxed">
                   {faq.question}
                 </span>
               </Button>
@@ -57,7 +57,7 @@ const Faqs = () => {
                   isOpen ? "max-h-48 sm:max-h-40 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-4 sm:px-6 py-3 sm:py-4 bg-blue-50 border-t border-blue-100 text-gray-700 text-xs sm:text-sm leading-relaxed">
+                <div className="px-4 sm:px-6 py-3 sm:py-4 bg-primary-color/10 border-t border-primary-color/30 text-gray-700 text-xs sm:text-sm leading-relaxed">
                   {faq.answer}
                 </div>
               </div>

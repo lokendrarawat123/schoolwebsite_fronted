@@ -8,8 +8,8 @@ const PrincipalMessage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
           {/* Image Section */}
           <div className="relative order-2 lg:order-1">
-            <div className="relative bg-linear-to-br from-green-400 to-green-600 rounded-2xl sm:rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-linear-to-br from-green-400 via-green-500 to-green-600"></div>
+            <div className="relative bg-linear-to-br from-secondary-color to-third-color rounded-2xl sm:rounded-3xl overflow-hidden">
+              <div className="absolute inset-0 bg-linear-to-br from-secondary-color via-secondary-color/80 to-third-color"></div>
               <div className="relative p-4 sm:p-6 md:p-8 lg:p-12">
                 <img
                   src={principle_photo}
@@ -23,7 +23,7 @@ const PrincipalMessage = () => {
           {/* Content Section */}
           <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
             <div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-orange-500 mb-2 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-third-color mb-2 sm:mb-4">
                 Message from the Principal
               </h2>
               <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed">
@@ -46,7 +46,7 @@ const PrincipalMessage = () => {
             </div>
 
             {/* Optional: Add a quote or additional message */}
-            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border-l-4 border-orange-500">
+            <div className="bg-white p-4 sm:p-6 rounded-xl shadow-sm border-l-4 border-secondary-color">
               <p className="text-gray-700 italic text-sm sm:text-base">
                 "Education is the most powerful weapon which you can use to
                 change the world. At our school, we are committed to nurturing

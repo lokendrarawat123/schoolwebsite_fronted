@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
-import Button from "../ButtonComponent.jsx";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -33,10 +32,9 @@ const Navbar = () => {
   const isParentActive = (children) =>
     children?.some((sub) => location.pathname === sub.path);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setDesktopDropdown(null);
       }
     };
@@ -44,7 +42,6 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     setOpen(false);
     setMobileDropdown(null);
@@ -52,42 +49,30 @@ const Navbar = () => {
   }, [location.pathname]);
 
   return (
-    <nav className="sticky top-0 z-50 flex justify-center px-2 sm:px-4">
-      <div className="w-full max-w-6xl lg:bg-white lg:shadow-xl lg:rounded-xl h-12 sm:h-14 md:h-16 -mt-4 sm:-mt-6 md:-mt-8 flex items-center px-2 sm:px-4 md:px-6">
-        {/* Desktop Navigation */}
-        <ul className="hidden lg:flex justify-between items-center w-full">
-          {navItems.map((item) => {
-            const isParentActiveState = isParentActive(item.children);
-            return (
-              <li
-                key={item.key}
-                className="relative"
-                ref={item.children ? dropdownRef : null}
-              >
+    <>
+      {/* ── DESKTOP: floating white card ── */}
+      <div className="hidden lg:flex justify-center px-6 -mt-6 relative z-40">
+        <div className="w-full max-w-6xl bg-white shadow-xl rounded-2xl px-6 h-16 flex items-center">
+          <ul className="flex items-center justify-between w-full">
+            {navItems.map((item) => (
+              <li key={item.key} className="relative" ref={item.children ? dropdownRef : null}>
                 {item.children ? (
-                  <Button
-                    onClick={() =>
-                      setDesktopDropdown(
-                        desktopDropdown === item.key ? null : item.key,
-                      )
-                    }
+                  <button
+                    onClick={() => setDesktopDropdown(desktopDropdown === item.key ? null : item.key)}
                     onMouseEnter={() => setDesktopDropdown(item.key)}
-                    className={`flex items-center gap-1 text-sm xl:text-base font-semibold px-3 py-2 rounded-lg ${
-                      isParentActiveState
+                    className={`flex items-center gap-1 text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
+                      isParentActive(item.children)
                         ? "text-blue-600 bg-blue-50"
                         : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                     }`}
-                    icon={<HiChevronDown
-                      className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`}
-                    />}
-                    iconPosition="right"
                   >
                     {item.key}
-                  </Button>
+                    <HiChevronDown className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`} />
+                  </button>
                 ) : (
                   <Link
                     to={item.path}
-                    className={`text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
+                    className={`block text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
                       isActive(item.path)
                         ? "text-blue-600 bg-blue-50"
                         : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
@@ -97,10 +82,9 @@ const Navbar = () => {
                   </Link>
                 )}
 
-                {/* Desktop Dropdown */}
                 {item.children && (
                   <ul
-                    className={`absolute left-0 mt-2 w-56 bg-white shadow-xl rounded-xl border overflow-hidden transition-all duration-200 z-50 ${
+                    className={`absolute left-0 top-full mt-1 w-52 bg-white shadow-xl rounded-xl border overflow-hidden transition-all duration-200 z-50 ${
                       desktopDropdown === item.key
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
@@ -112,9 +96,7 @@ const Navbar = () => {
                         <Link
                           to={sub.path}
                           className={`block px-4 py-3 text-sm transition-colors duration-150 ${
-                            index === item.children.length - 1
-                              ? ""
-                              : "border-b border-gray-50"
+                            index < item.children.length - 1 ? "border-b border-gray-100" : ""
                           } ${
                             location.pathname === sub.path
                               ? "bg-blue-600 text-white"
@@ -128,61 +110,60 @@ const Navbar = () => {
                   </ul>
                 )}
               </li>
-            );
-          })}
-        </ul>
-
-        {/* Mobile Menu Button */}
-        <Button
-          className="lg:hidden text-lg sm:text-xl md:text-2xl ml-auto text-black hover:text-blue-600 p-1 sm:p-1.5 md:p-2 bg-white rounded-lg shadow-lg"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-          icon={open ? <HiX /> : <HiMenu />}
-        />
+            ))}
+          </ul>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── MOBILE: sticky hamburger bar ── */}
+      <div className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
+        <div className="flex items-center justify-between px-4 h-11">
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Menu</span>
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-1.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {open ? <HiX size={22} /> : <HiMenu size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {/* ── MOBILE: side drawer ── */}
       {open && (
         <>
-          <div
-            className="lg:hidden fixed inset-0 bg-black/20 z-40"
-            onClick={() => setOpen(false)}
-          />
-          <div className="lg:hidden absolute top-10 sm:top-12 md:top-16 left-1 right-1 sm:left-2 sm:right-2 md:left-4 md:right-4 bg-white shadow-xl rounded-xl p-2 sm:p-3 md:p-4 border z-50 max-h-[70vh] overflow-y-auto">
-            <ul className="space-y-1">
+          <div className="lg:hidden fixed inset-0 bg-black/40 z-40" onClick={() => setOpen(false)} />
+          <div className="lg:hidden fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-2xl z-50 flex flex-col">
+            <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
+              <span className="font-bold text-gray-800">Navigation</span>
+              <button onClick={() => setOpen(false)} className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-600">
+                <HiX size={20} />
+              </button>
+            </div>
+            <ul className="p-3 space-y-1 overflow-y-auto flex-1">
               {navItems.map((item) => (
                 <li key={item.key}>
                   {item.children ? (
                     <>
-                      <Button
-                        onClick={() =>
-                          setMobileDropdown(
-                            mobileDropdown === item.key ? null : item.key,
-                          )
-                        }
-                        className={`w-full flex justify-between items-center py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 md:px-4 font-medium rounded-lg text-xs sm:text-sm md:text-base ${
+                      <button
+                        onClick={() => setMobileDropdown(mobileDropdown === item.key ? null : item.key)}
+                        className={`w-full flex justify-between items-center py-3 px-4 font-medium rounded-lg text-sm transition-colors ${
                           isParentActive(item.children)
                             ? "bg-blue-600 text-white"
                             : "text-gray-700 hover:bg-gray-100"
                         }`}
-                        icon={<HiChevronDown
-                          className={`transition-transform duration-200 ${mobileDropdown === item.key ? "rotate-180" : ""}`}
-                        />}
-                        iconPosition="right"
                       >
                         {item.key}
-                      </Button>
+                        <HiChevronDown className={`transition-transform duration-200 ${mobileDropdown === item.key ? "rotate-180" : ""}`} />
+                      </button>
                       {mobileDropdown === item.key && (
-                        <ul className="ml-2 sm:ml-3 md:ml-4 mt-1 sm:mt-2 space-y-1 animate-fadeIn">
+                        <ul className="ml-4 mt-1 space-y-1">
                           {item.children.map((sub) => (
                             <li key={sub.key}>
                               <Link
                                 to={sub.path}
-                                onClick={() => {
-                                  setOpen(false);
-                                  setMobileDropdown(null);
-                                }}
-                                className={`block py-1.5 sm:py-2 px-2 sm:px-3 md:px-4 rounded-lg text-xs sm:text-sm transition-colors duration-150 touch-friendly ${
+                                onClick={() => { setOpen(false); setMobileDropdown(null); }}
+                                className={`block py-2.5 px-4 rounded-lg text-sm transition-colors ${
                                   location.pathname === sub.path
                                     ? "bg-blue-600 text-white"
                                     : "text-gray-600 hover:bg-blue-50 hover:text-blue-600"
@@ -199,7 +180,7 @@ const Navbar = () => {
                     <Link
                       to={item.path}
                       onClick={() => setOpen(false)}
-                      className={`block py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 md:px-4 rounded-lg font-medium transition-colors duration-150 touch-friendly text-xs sm:text-sm md:text-base ${
+                      className={`block py-3 px-4 rounded-lg font-medium text-sm transition-colors ${
                         isActive(item.path)
                           ? "bg-blue-600 text-white"
                           : "text-gray-700 hover:bg-gray-100"
@@ -214,7 +195,7 @@ const Navbar = () => {
           </div>
         </>
       )}
-    </nav>
+    </>
   );
 };
 
