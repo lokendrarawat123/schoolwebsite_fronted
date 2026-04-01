@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
                   </span>
                 </span>
               </h2>
-              <p className="text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg xl:text-md 2xl:text-2xl text-gray-600 mb-4 sm:mb-6 leading-relaxed">
                 At Namuna Vidhya Sadan School, we are committed to providing
                 exceptional education that nurtures young minds and prepares
                 students for a successful future. Our comprehensive approach
@@ -88,7 +88,10 @@ const WhyChooseUs = () => {
 
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               {features.map((item, i) => (
-                <div key={i} className="flex items-start space-x-3 sm:space-x-4 group">
+                <div
+                  key={i}
+                  className="flex items-start space-x-3 sm:space-x-4 group"
+                >
                   <div className="shrink-0">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 2xl:w-18 2xl:h-18 bg-linear-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
                       <item.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 text-white" />

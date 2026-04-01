@@ -17,6 +17,13 @@ import Button from "../ButtonComponent.jsx";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [showScroll, setShowScroll] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setShowScroll(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -76,18 +83,18 @@ const Footer = () => {
       {/* Main Footer */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
         {/* About */}
-        <div className="space-y-4 sm:space-y-6 sm:col-span-2 lg:col-span-1">
-          <div className="flex items-center gap-3 w-full ">
-            <div className="p-1 sm:p-2 ">
+        <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-4 xl:space-y-6 sm:col-span-2 lg:col-span-1">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 w-full">
+            <div className="p-1 sm:p-1.5 md:p-2 shrink-0">
               <Link to="/" onClick={scrollToTop}>
                 <img
                   src={logo}
-                  className="h-9 w-12 sm:h-20 sm:w-20 lg:h-24 lg:w-24 xl:h-28 xl:w-28 2xl:h-32 2xl:w-32 rounded-full cursor-pointer"
                   alt="Logo"
+                  className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-14 lg:w-14 xl:h-20 xl:w-20 object-contain rounded-full cursor-pointer"
                 />
               </Link>
             </div>
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white  hover:text-yellow-400">
+            <h3 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-2xl font-bold text-white hover:text-yellow-400 leading-tight">
               NVS E.M. SCHOOL
             </h3>
           </div>
@@ -120,7 +127,7 @@ const Footer = () => {
             {footerData.quickLinks.map((item, index) => (
               <li key={index}>
                 <Link
-                  onClick={ScrollToTop}
+                  onClick={scrollToTop}
                   to={item.path}
                   className="flex items-center gap-2 text-gray-300 hover:text-white text-sm sm:text-base transition-colors touch-friendly"
                 >
@@ -199,12 +206,14 @@ const Footer = () => {
       </div>
 
       {/* Scroll Button */}
-      <Button
-        onClick={scrollToTop}
-        className="fixed bottom-4 sm:bottom-5 right-4 sm:right-5 p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 rounded-full shadow-lg z-50"
-        aria-label="Scroll to top"
-        icon={<FaArrowUp className="text-sm sm:text-base" />}
-      />
+      {showScroll && (
+        <Button
+          onClick={scrollToTop}
+          className="fixed bottom-4 sm:bottom-5 right-4 sm:right-5 p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 rounded-full shadow-lg z-50"
+          aria-label="Scroll to top"
+          icon={<FaArrowUp className="text-sm sm:text-base" />}
+        />
+      )}
     </footer>
   );
 };

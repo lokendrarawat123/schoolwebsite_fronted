@@ -68,7 +68,7 @@ const ExploreSchoolLife = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 2xl:px-10">
         {/* Section Title */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 xl:mb-16 2xl:mb-20">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-gray-800 mb-2 sm:mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-blue-900 mb-2 sm:mb-4">
             Explore Our School Life
           </h2>
         </div>
@@ -108,7 +108,9 @@ const ExploreSchoolLife = () => {
                 clipPath:
                   "polygon(0 0, 70% 0, 100% 50%, 70% 100%, 0 100%, 30% 50%)",
               }}
-              icon={<ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />}
+              icon={
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
+              }
             />
 
             <Button
@@ -118,7 +120,9 @@ const ExploreSchoolLife = () => {
                 clipPath:
                   "polygon(30% 0, 100% 0, 70% 50%, 100% 100%, 30% 100%, 0 50%)",
               }}
-              icon={<ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />}
+              icon={
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-8 lg:h-8" />
+              }
             />
           </div>
 

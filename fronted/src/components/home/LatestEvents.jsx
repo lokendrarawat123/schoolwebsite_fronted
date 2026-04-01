@@ -18,7 +18,7 @@ const LatestEvents = () => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 2xl:px-10">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 xl:mb-16 2xl:mb-20">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-800 mb-2 sm:mb-4">
+          <h2 className="text-2xl sm:text-4xl md:text-4xl lg:text-3xl xl:text-4xl 2xl:text-7xl font-bold text-blue-900 mb-2 sm:mb-4">
             LATEST EVENTS
           </h2>
           <div className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32 2xl:w-36 h-1 bg-linear-to-r from-blue-500 to-green-500 mx-auto"></div>
