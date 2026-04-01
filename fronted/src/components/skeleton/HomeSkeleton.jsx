@@ -498,3 +498,35 @@ export const FAQSkeleton = () => {
     </div>
   );
 };
+
+// Events Skeleton
+export const EventsSkeleton = () => (
+  <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-6 sm:py-8 md:py-10">
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="bg-white rounded-xl shadow-lg overflow-hidden animate-pulse">
+          <div className="h-40 sm:h-44 md:h-48 bg-gray-300" />
+          <div className="p-4 sm:p-5 space-y-2">
+            <div className="h-5 w-3/4 bg-gray-300 rounded" />
+            <div className="h-4 w-1/2 bg-gray-300 rounded" />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+// LatestEvents Skeleton (inline section)
+export const LatestEventsSkeleton = () => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
+    {Array.from({ length: 4 }).map((_, i) => (
+      <div key={i} className="bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden animate-pulse">
+        <div className="h-40 sm:h-44 md:h-48 bg-gray-300" />
+        <div className="p-4 sm:p-5 space-y-2">
+          <div className="h-5 w-3/4 bg-gray-300 rounded" />
+          <div className="h-4 w-1/2 bg-gray-300 rounded" />
+        </div>
+      </div>
+    ))}
+  </div>
+);

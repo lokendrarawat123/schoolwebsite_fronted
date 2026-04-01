@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetReviewsQuery } from "../../redux/features/SiteSlice";
 import { FaStar, FaQuoteLeft, FaUser } from "react-icons/fa";
+import ErrorMessage from "../shared/ErrorMessage";
 
 const StudentReviews = () => {
   const base_url = import.meta.env.VITE_IMG_URL;
@@ -162,12 +163,6 @@ const StudentReviews = () => {
                   "{review.review_text}"
                 </p>
                 {/* Status Badge */}
-                <div className="flex items-center justify-center gap-2 bg-green-50 rounded-full px-3 py-1 group-hover:bg-green-100 transition-colors duration-300">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse group-hover:bg-green-600 transition-colors duration-300"></div>
-                  <span className="text-green-700 text-xs font-medium group-hover:text-green-800 transition-colors duration-300">
-                    Verified Review
-                  </span>
-                </div>
               </div>
             </div>
           ))}

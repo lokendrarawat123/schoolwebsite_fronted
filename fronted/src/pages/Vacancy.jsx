@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HeroContainer from "../components/About/HeroContainer";
 import { VacancySkeleton } from "../components/skeleton/HomeSkeleton";
+import ErrorMessage from "../components/shared/ErrorMessage";
 import bgImg from "../assets/img/student_group.jpg";
 import { useGetVacancyQuery } from "../redux/features/contentSlice";
 import {
@@ -65,23 +66,9 @@ const Vacancy = () => {
 
         {/* Search Section */}
 
-        {/* Loading State */}
         {isLoading && <VacancySkeleton />}
 
-        {/* Error State */}
-        {error && (
-          <div className="text-center py-20">
-            <div className="bg-red-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-              <Building2 className="w-10 h-10 text-red-600" />
-            </div>
-            <h3 className="text-2xl font-semibold text-gray-700 mb-2">
-              Unable to Load Positions
-            </h3>
-            <p className="text-gray-500">
-              Please contact our HR department directly for current openings.
-            </p>
-          </div>
-        )}
+        {error && <ErrorMessage message="Unable to load positions. Please contact HR directly." />}
 
         {/* Job Listings */}
         {!isLoading && !error && filteredVacancies.length > 0 && (

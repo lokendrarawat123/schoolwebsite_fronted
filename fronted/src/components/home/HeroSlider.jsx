@@ -5,6 +5,8 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import { useGetSlidesQuery } from "../../redux/features/SiteSlice.js";
 import Button from "../ButtonComponent.jsx";
 
+import ErrorMessage from "../shared/ErrorMessage";
+
 // Swiper styles
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -20,9 +22,8 @@ const HeroSlider = () => {
   } = useGetSlidesQuery();
   const slides = slidesData?.data || [];
   const img_url = import.meta.env.VITE_IMG_URL;
-  if (slidesLoading) {
-    return <HomeSkeleton />;
-  }
+  if (slidesLoading) return <HomeSkeleton />;
+  if (slidesError) return <ErrorMessage message="Failed to load slides." />;
   return (
     <section
       id="home"

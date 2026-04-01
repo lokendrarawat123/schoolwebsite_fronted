@@ -43,7 +43,8 @@ const ReviewPage = () => {
             What Our Students Say
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Hear from our students about their experiences and achievements at Namuna Bidhya Sadan
+            Hear from our students about their experiences and achievements at
+            Namuna Bidhya Sadan
           </p>
         </div>
 
@@ -57,7 +58,7 @@ const ReviewPage = () => {
               <div className="absolute top-4 right-4 text-blue-100">
                 <FaQuoteLeft className="text-3xl" />
               </div>
-              
+
               {/* Student Photo */}
               <div className="flex flex-col items-center mb-6">
                 <div className="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-blue-200 shadow-lg">
@@ -70,7 +71,9 @@ const ReviewPage = () => {
                 <h3 className="text-xl font-bold text-blue-900">
                   {review.name}
                 </h3>
-                <p className="text-sm text-gray-500 font-medium">{review.position}</p>
+                <p className="text-sm text-gray-500 font-medium">
+                  {review.position}
+                </p>
               </div>
 
               {/* Review Text */}
@@ -78,37 +81,21 @@ const ReviewPage = () => {
                 <p className="text-gray-700 italic leading-relaxed mb-4">
                   "{review.review_text}"
                 </p>
-                
+
                 {/* Star Rating */}
                 <div className="flex justify-center space-x-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <FaStar key={i} className="text-yellow-400 text-sm" />
                   ))}
                 </div>
-                
-                {/* Status Badge */}
-                <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
-                  ✓ Verified Student
-                </span>
+
+               
               </div>
             </div>
           ))}
         </div>
-        
+
         {/* Call to Action */}
-        <div className="text-center mt-12">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
-            <h3 className="text-xl font-bold text-blue-900 mb-2">
-              Share Your Experience
-            </h3>
-            <p className="text-gray-600 text-sm mb-4">
-              Are you a current or former student? We'd love to hear about your journey!
-            </p>
-            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
-              Write a Review
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );

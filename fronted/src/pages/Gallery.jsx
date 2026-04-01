@@ -4,77 +4,60 @@ import { useGetGalleryQuery } from "../redux/features/contentSlice.js";
 import { useGetGalleryCategoryQuery } from "../redux/features/categorySlice.js";
 import HeroContainer from "../components/About/HeroContainer";
 import { GallerySkeleton } from "../components/skeleton/HomeSkeleton";
+import ErrorMessage from "../components/shared/ErrorMessage";
 import bgImg from "../assets/img/student_group.jpg";
 import Button from "../components/ButtonComponent.jsx";
+import Pagination from "../components/shared/Pagination.jsx";
 
 const Gallery = () => {
-  const {
-    data: galleryData,
-    isLoading: galleryLoading,
-    error: galleryError,
-  } = useGetGalleryQuery();
-  const { data: categoryData, isLoading: categoryLoading } =
-    useGetGalleryCategoryQuery();
+  const ITEMS_PER_PAGE = 8;
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState(null);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [currentGalleryPhotos, setCurrentGalleryPhotos] = useState([]);
 
   const IMG_URL = import.meta.env.VITE_IMG_URL;
 
-  // Use API categories
+  const { data: galleryData, isLoading: galleryLoading, error: galleryError } = useGetGalleryQuery();
+  const { data: categoryData, isLoading: categoryLoading } = useGetGalleryCategoryQuery();
+
   const categories = categoryData?.data || [];
+  const allGalleries = galleryData?.data || [];
 
-  // Filter galleries based on selected category
+  // client-side category filter
   const filteredGalleries = useMemo(() => {
-    const galleries = galleryData?.data || [];
+    if (selectedCategory === null) return allGalleries;
+    return allGalleries.filter((g) => (g.category_id || g.categoryId) === selectedCategory);
+  }, [allGalleries, selectedCategory]);
 
-    if (selectedCategory === null) {
-      return galleries;
-    }
+  // client-side pagination
+  const totalPages = Math.ceil(filteredGalleries.length / ITEMS_PER_PAGE);
+  const paginatedGalleries = filteredGalleries.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
-    return galleries.filter((gallery) => {
-      // Match by category ID
-      const galleryCategoryId = gallery.category_id || gallery.categoryId;
-      return galleryCategoryId === selectedCategory;
-    });
-  }, [galleryData, selectedCategory]);
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategory(categoryId);
+    setCurrentPage(1);
+  };
 
   const openPhotoViewer = (gallery, imageIndex = 0) => {
-    const images = gallery.image_url
-      .split(",")
-      .map((img) => `${IMG_URL}/${img.trim()}`);
+    const images = gallery.image_url.split(",").map((img) => `${IMG_URL}/${img.trim()}`);
     setCurrentGalleryPhotos(images);
     setCurrentPhotoIndex(imageIndex);
     setIsModalOpen(true);
   };
 
-  const nextPhoto = () => {
-    setCurrentPhotoIndex((prev) => (prev + 1) % currentGalleryPhotos.length);
-  };
-
-  const prevPhoto = () => {
-    setCurrentPhotoIndex(
-      (prev) =>
-        (prev - 1 + currentGalleryPhotos.length) % currentGalleryPhotos.length,
-    );
-  };
+  const nextPhoto = () => setCurrentPhotoIndex((prev) => (prev + 1) % currentGalleryPhotos.length);
+  const prevPhoto = () => setCurrentPhotoIndex((prev) => (prev - 1 + currentGalleryPhotos.length) % currentGalleryPhotos.length);
 
   if (galleryLoading || categoryLoading) {
     return <GallerySkeleton />;
   }
 
-  if (galleryError) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-red-50 to-pink-100">
-        <div className="text-center">
-          <div className="text-6xl mb-4">😞</div>
-          <p className="text-xl text-red-600">Error loading gallery</p>
-        </div>
-      </div>
-    );
-  }
+  if (galleryError) return <ErrorMessage message="Failed to load gallery." />;
 
   return (
     <>
@@ -92,31 +75,29 @@ const Gallery = () => {
             {/* Category Filter */}
             <div className="flex flex-wrap justify-center gap-2 sm:gap-3 px-1 sm:px-2">
               <Button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => handleCategoryChange(null)}
+                disabled={selectedCategory === null}
                 className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base ${
                   selectedCategory === null
-                    ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
+                    ? "bg-linear-to-r from-indigo-600 to-blue-800 text-white shadow-lg transform scale-105 opacity-100 cursor-default"
                     : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
                 }`}
               >
                 All Categories
               </Button>
               {categories.map((category) => {
-                // Use consistent ID field
                 const categoryId = category.id || category._id || category.category_id;
                 const categoryName = category.category_name || category.name;
+                const isActive = selectedCategory === categoryId;
 
                 return (
                   <Button
                     key={categoryId || `category-${categoryName}`}
-                    onClick={() => {
-                      setSelectedCategory(
-                        selectedCategory === categoryId ? null : categoryId,
-                      );
-                    }}
+                    onClick={() => handleCategoryChange(categoryId)}
+                    disabled={isActive}
                     className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base ${
-                      selectedCategory === categoryId
-                        ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
+                      isActive
+                        ? "bg-linear-to-r from-indigo-600 to-blue-800 text-white shadow-md cursor-default"
                         : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
                     }`}
                   >
@@ -137,17 +118,10 @@ const Gallery = () => {
               {filteredGalleries.length === 1 ? " item" : " items"}
               {selectedCategory !== null && (
                 <span>
-                  {" "}
-                  in{" "}
+                  {" "}in{" "}
                   <span className="font-semibold text-indigo-600">
-                    {categories.find((cat) => {
-                      const categoryId = cat.id || cat._id || cat.category_id;
-                      return categoryId === selectedCategory;
-                    })?.category_name ||
-                      categories.find((cat) => {
-                        const categoryId = cat.id || cat._id || cat.category_id;
-                        return categoryId === selectedCategory;
-                      })?.name}
+                    {categories.find((cat) => (cat.id || cat._id || cat.category_id) === selectedCategory)?.category_name ||
+                      categories.find((cat) => (cat.id || cat._id || cat.category_id) === selectedCategory)?.name}
                   </span>
                 </span>
               )}
@@ -155,38 +129,19 @@ const Gallery = () => {
           </div>
 
           {/* Gallery Grid */}
-          {filteredGalleries.length > 0 ? (
+          {paginatedGalleries.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {filteredGalleries.map((gallery, index) => {
-                // Find category name for this gallery
+              {paginatedGalleries.map((gallery, index) => {
                 const categoryName =
-                  categories.find((cat) => {
-                    const categoryId = cat.id || cat._id || cat.category_id;
-                    return categoryId === gallery.category_id;
-                  })?.category_name ||
-                  categories.find((cat) => {
-                    const categoryId = cat.id || cat._id || cat.category_id;
-                    return categoryId === gallery.category_id;
-                  })?.name ||
+                  categories.find((cat) => (cat.id || cat._id || cat.category_id) === gallery.category_id)?.category_name ||
+                  categories.find((cat) => (cat.id || cat._id || cat.category_id) === gallery.category_id)?.name ||
                   gallery.category;
-
                 return (
-                  <div
-                    key={gallery.id}
-                    className="transform transition-all duration-500"
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                    }}
-                  >
+                  <div key={gallery.id} className="transform transition-all duration-500" style={{ animationDelay: `${index * 100}ms` }}>
                     <GalleryCard
-                      gallery={{
-                        ...gallery,
-                        category: categoryName, // Pass the category name
-                      }}
+                      gallery={{ ...gallery, category: categoryName }}
                       baseUrl={IMG_URL}
-                      onImageClick={(imageIndex) =>
-                        openPhotoViewer(gallery, imageIndex)
-                      }
+                      onImageClick={(imageIndex) => openPhotoViewer(gallery, imageIndex)}
                     />
                   </div>
                 );
@@ -195,18 +150,24 @@ const Gallery = () => {
           ) : (
             <div className="text-center py-12 sm:py-20 px-4">
               <div className="text-4xl sm:text-6xl mb-4">🔍</div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-600 mb-2">
-                No items found
-              </h3>
-              <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6 max-w-md mx-auto">
-                Try adjusting your search or filter criteria
-              </p>
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-600 mb-2">No items found</h3>
+              <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6 max-w-md mx-auto">Try adjusting your filter criteria</p>
               <Button
-                onClick={() => setSelectedCategory(null)}
+                onClick={() => handleCategoryChange(null)}
                 className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg text-sm sm:text-base"
               >
                 Show All
               </Button>
+            </div>
+          )}
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-8 sm:mt-10">
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={(page) => setCurrentPage(page)}
+              />
             </div>
           )}
         </div>

@@ -41,7 +41,6 @@ export const contentApi = indexSlice.injectEndpoints({
 export const {
   useGetNoticeQuery,
   useGetGalleryQuery,
-  useGetGalleryCategoriesQuery,
   useGetBlogQuery,
   useGetVacancyQuery,
 } = contentApi;

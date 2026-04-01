@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HeroContainer from "../components/About/HeroContainer";
 import { QuestionBankSkeleton } from "../components/skeleton/HomeSkeleton";
+import ErrorMessage from "../components/shared/ErrorMessage";
 import bgImg from "../assets/img/student_group.jpg";
 import { useGetQuestionBankQuery } from "../redux/features/academicSlice";
 import { FileText, Search, Book, Calendar, GraduationCap } from "lucide-react";
@@ -44,17 +45,9 @@ const QuestionBank = () => {
           </div>
         </div>
 
-        {/* Loading */}
         {isLoading && <QuestionBankSkeleton />}
 
-        {/* Error */}
-        {error && (
-          <div className="text-center mt-12 sm:mt-16 md:mt-20">
-            <p className="text-red-500 font-semibold text-sm sm:text-base">
-              Failed to load question papers. Please try again.
-            </p>
-          </div>
-        )}
+        {error && <ErrorMessage message="Failed to load question papers. Please try again." />}
 
         {/* Question Papers List */}
         {!isLoading && !error && filteredPapers.length > 0 && (

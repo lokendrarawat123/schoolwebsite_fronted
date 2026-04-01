@@ -4,6 +4,7 @@ import { useGetBlogCategoryQuery } from "../redux/features/categorySlice";
 import { useGetBlogQuery } from "../redux/features/contentSlice";
 import HeroContainer from "../components/About/HeroContainer";
 import { BlogSkeleton } from "../components/skeleton/HomeSkeleton";
+import ErrorMessage from "../components/shared/ErrorMessage";
 import bgImg from "../assets/img/student_group.jpg";
 
 const Blog = () => {
@@ -47,9 +48,11 @@ const Blog = () => {
       : blog.filter((item) => item.category_id === selectedCategory);
 
   // Loading State
-  if (blogLoading || catLoading) {
-    return <BlogSkeleton />;
-  }
+  if (blogLoading || catLoading) return <BlogSkeleton />;
+
+  const blogError = !blogData && !blogLoading;
+  const catError = !blogCategoryData && !catLoading;
+  if (blogError || catError) return <ErrorMessage message="Failed to load blog posts." />;
 
   return (
     <div className="w-full">

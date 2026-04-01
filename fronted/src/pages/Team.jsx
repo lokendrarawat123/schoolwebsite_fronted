@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroContainer from "../components/About/HeroContainer";
 import { TeamSkeleton } from "../components/skeleton/HomeSkeleton";
+import ErrorMessage from "../components/shared/ErrorMessage";
 import bgImg from "../assets/img/group.jpg";
 import { useGetTeamQuery } from "../redux/features/TeamSlice";
 import { useGetTeamCategoryQuery } from "../redux/features/categorySlice";
@@ -19,7 +20,6 @@ const Team = () => {
     useGetTeamCategoryQuery();
 
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedMember, setSelectedMember] = useState(null);
 
   const IMG_URL = import.meta.env.VITE_IMG_URL;
   const team = teamData?.data || [];
@@ -55,33 +55,13 @@ const Team = () => {
     return <TeamSkeleton />;
   }
 
-  if (teamError) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-red-50 to-pink-100">
-        <div className="text-center">
-          <div className="text-6xl mb-4">😞</div>
-          <p className="text-xl text-red-600">Error loading team members</p>
-        </div>
-      </div>
-    );
-  }
+  if (teamError) return <ErrorMessage message="Failed to load team members." />;
 
   return (
     <>
       <div className="w-full">
         {/* Hero Section */}
         <HeroContainer bgImage={bgImg} title="Our team" subtitle="" />
-        {selectedCategory !== null
-          ? categories.find((cat) => {
-              const categoryId = cat.id || cat._id || cat.category_id;
-              return categoryId === selectedCategory;
-            })?.category_name ||
-            categories.find((cat) => {
-              const categoryId = cat.id || cat._id || cat.category_id;
-              return categoryId === selectedCategory;
-            })?.name ||
-            "Our Team"
-          : "Our Team"}
 
         <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-blue-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">

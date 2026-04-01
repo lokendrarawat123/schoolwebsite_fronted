@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useGetNoticeQuery } from "../redux/features/contentSlice.js";
 import HeroContainer from "../components/About/HeroContainer";
 import { NoticeSkeleton } from "../components/skeleton/HomeSkeleton";
+import ErrorMessage from "../components/shared/ErrorMessage";
 import bgImg from "../assets/img/student_group.jpg";
 import { FaCaretRight } from "react-icons/fa";
 const NoticeIndex = () => {
@@ -25,15 +26,7 @@ const NoticeIndex = () => {
 
   if (isLoading) return <NoticeSkeleton />;
 
-  if (error)
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-red-50">
-        <div className="text-center">
-          <div className="text-6xl mb-4">😞</div>
-          <p className="text-xl text-red-600">Error loading notices</p>
-        </div>
-      </div>
-    );
+  if (error) return <ErrorMessage message="Failed to load notices." />;
 
   return (
     <div className="w-full">
