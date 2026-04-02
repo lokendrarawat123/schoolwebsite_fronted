@@ -86,24 +86,21 @@ const WhyChooseUs = () => {
               </p> */}
             </div>
 
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+            <div className="space-y-2 sm:space-y-6 lg:space-y-2 mt-10">
               {features.map((item, i) => (
                 <div
                   key={i}
                   className="flex items-start space-x-3 sm:space-x-4 group"
                 >
                   <div className="shrink-0">
-                    <div className="w-10 h-10 sm:w-8 sm:h-8 lg:w-10 lg:h-10 xl:w-10 xl:h-16 2xl:w-18 2xl:h-18 bg-third-color rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:bg-secondary-color transition-all duration-300">
-                      <item.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-5 lg:h-5 xl:w-8 xl:h-8 2xl:w-9 2xl:h-9 text-white" />
+                    <div className="size-auto  sm:w-8 sm:h-8 lg:w-10 lg:h-10 xl:w-10 xl:h-16 2xl:w-18 2xl:h-18 bg-third-color rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:bg-secondary-color transition-all duration-300">
+                      <item.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-5 lg:h-5 xl:w-6 xl:h-6  rounded-full 2xl:w-9 2xl:h-9 text-white" />
                     </div>
                   </div>
                   <div className="flex">
-                    <h3 className="text-base sm:text-lg lg:text-sm xl:text-2xl 2xl:text-3xl font-bold mb-1 sm:mb-2 text-gray-800 group-hover:text-third-color transition-colors duration-300">
+                    <h3 className="  p-2 text-base sm:text-lg lg:text-sm xl:text-md 2xl:text-3xl  mb-1 sm:mb-2 text-gray-800 group-hover:text-third-color transition-colors duration-300">
                       {item.title}
                     </h3>
-                    <p className="text-xs sm:text-sm lg:text-base xl:text-lg 2xl:text-xl text-gray-600 leading-relaxed">
-                      {/* {item.description} */}
-                    </p>
                   </div>
                 </div>
               ))}

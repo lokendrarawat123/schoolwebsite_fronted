@@ -41,6 +41,7 @@ const AboutComponents = () => {
               <Button
                 to="/about"
                 size="md"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 className="inline-block px-4 sm:px-6 py-2 sm:py-3 bg-secondary-color hover:bg-secondary-color/80 text-white rounded-lg font-medium text-sm sm:text-base transition-colors duration-300"
               >
                 Read More

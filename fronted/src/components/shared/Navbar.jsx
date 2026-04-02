@@ -52,7 +52,7 @@ const Navbar = () => {
     <>
       {/* ── DESKTOP: floating white card ── */}
       <div className="hidden lg:flex justify-center px-6 -mt-6 relative z-40">
-        <div className="w-full max-w-6xl bg-white shadow-xl rounded-2xl px-6 h-16 flex items-center">
+        <div className="w-full max-w-6xl  bg-white  shadow-xl rounded-2xl px-6 h-16 flex items-center">
           <ul className="flex items-center justify-between w-full">
             {navItems.map((item) => (
               <li
@@ -94,7 +94,7 @@ const Navbar = () => {
 
                 {item.children && (
                   <ul
-                    className={`absolute left-0 top-full mt-1 w-52 bg-white shadow-xl rounded-xl border overflow-hidden transition-all duration-200 z-50 ${
+                    className={`absolute left-0 top-full mt-1 w-52 bg-white shadow-xl  border overflow-hidden transition-all duration-200 z-50 ${
                       desktopDropdown === item.key
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible -translate-y-2"
@@ -128,17 +128,15 @@ const Navbar = () => {
       </div>
 
       {/* ── MOBILE: sticky hamburger bar ── */}
-      <div className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
-        <div className="flex items-center justify-between px-4 h-11">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-            Menu
-          </span>
+
+      <div className="lg:hidden absolute -right-4 top-23  z-50 bg-transparent shadow-none border-none">
+        <div className="flex items-center justify-end px-6 h-11">
           <button
             onClick={() => setOpen(!open)}
-            className="p-1.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-lg  text-white  hover:bg-blue-400 transition-colors"
             aria-label="Toggle menu"
           >
-            {open ? <HiX size={22} /> : <HiMenu size={22} />}
+            {open ? <HiX size={26} /> : <HiMenu size={26} />}
           </button>
         </div>
       </div>

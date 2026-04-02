@@ -37,7 +37,7 @@ const Header = () => {
       <div className="flex h-1.5">
         <div className="flex-1 bg-primary-color" />
         <div className="flex-1 bg-secondary-color" />
-        <div className="flex-1 bg-third-color" />
+        <div className="flex-1 bg-[#9f13a9b3]" />
       </div>
 
       {/* Main header */}
@@ -70,7 +70,7 @@ const Header = () => {
                 </div>
               </div>
               <h1 className="text-xl font-extrabold text-white tracking-wide drop-shadow-lg">
-                NVS E.M. SCHOOL
+                NAMUNA BIDHYA SADAN SCHOOL
               </h1>
             </Link>
 
@@ -87,22 +87,13 @@ const Header = () => {
                 </a>
               ))}
             </div>
-
-            {/* Hamburger - top right of header on mobile */}
-            <button
-              onClick={() => setOpen((o) => !o)}
-              className="absolute top-0 right-0 p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/10 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {open ? <HiX size={22} /> : <HiMenu size={22} />}
-            </button>
           </div>
 
           {/* ── DESKTOP layout ── */}
           <div className="hidden lg:flex items-center justify-between">
             <Link to="/" className="flex items-center gap-4 group">
               <div className="relative shrink-0">
-                <div className="absolute inset-0 rounded-full bg-primary-color blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300" />
+                <div className="absolute inset-0 rounded-full bg-primary-color  opacity-40 group-hover:opacity-70 transition-opacity duration-300" />
                 <div className="relative p-1.5 bg-white/15 rounded-full border-2 border-primary-color/60 backdrop-blur-sm">
                   <img
                     src={logo}
@@ -113,14 +104,14 @@ const Header = () => {
               </div>
               <div>
                 <h1 className="text-3xl font-extrabold text-white tracking-wide drop-shadow-lg leading-tight">
-                  NVS E.M. SCHOOL
+                  NAMUNA VIDHYA SADAN
                 </h1>
                 <div className="flex gap-0.5 mt-1 mb-1">
                   <div className="h-0.5 w-8 bg-primary-color rounded-full" />
                   <div className="h-0.5 w-8 bg-secondary-color rounded-full" />
-                  <div className="h-0.5 w-8 bg-white/40 rounded-full" />
+                  <div className="h-0.5 w-8 bg-white rounded-full" />
                 </div>
-                <p className="text-primary-color text-xs font-semibold tracking-widest uppercase">
+                <p className="mb-1 text-primary-color text-xs font-semibold tracking-widest uppercase">
                   Excellence in Education
                 </p>
               </div>

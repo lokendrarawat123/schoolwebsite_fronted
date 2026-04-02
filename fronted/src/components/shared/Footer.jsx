@@ -146,7 +146,7 @@ const Footer = () => {
           <ul className="space-y-2 sm:space-y-4">
             {footerData.programs.map((program, index) => (
               <li key={index}>
-                <span className="flex items-center gap-2 text-gray-300 hover:text-primary-color text-sm sm:text-base transition-colors">
+                <span className="flex items-center gap-2 cursor-pointer text-gray-300 hover:text-primary-color text-sm sm:text-base transition-colors">
                   {program}
                 </span>
               </li>
@@ -156,7 +156,9 @@ const Footer = () => {
 
         {/* Contact */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">Contact</h4>
+          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">
+            Contact
+          </h4>
 
           <div className="space-y-3 sm:space-y-4">
             <div className="flex gap-3 items-start">
@@ -199,9 +201,11 @@ const Footer = () => {
         {/* Right */}
         <div className="mr-10 text-gray-400 text-xs sm:text-sm">
           Powered by{" "}
-          <span className="font-semibold text-yellow-500">
-            Next Infosys Pvt. Ltd
-          </span>
+          <a href="https://nextinfosys.com.np/">
+            <span className="font-semibold text-yellow-500 cursor-pointer">
+              Next Infosys Pvt. Ltd
+            </span>
+          </a>
         </div>
       </div>
 
@@ -209,9 +213,9 @@ const Footer = () => {
       {showScroll && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-4 sm:bottom-5 right-4 sm:right-5 p-2 sm:p-3 bg-blue-500 hover:bg-blue-600 rounded-full shadow-lg z-50"
+          className="hover:bg-yellow-300 sm:w-10 sm:h-10 w-12 h-12 fixed bottom-4 sm:bottom-5 lg:right-10 sm:right-5 p-4 sm:p-3 bg-blue-500  rounded-full! shadow-lg z-50"
           aria-label="Scroll to top"
-          icon={<FaArrowUp className="text-sm sm:text-base" />}
+          icon={<FaArrowUp className="text-sm sm:text-base " />}
         />
       )}
     </footer>
