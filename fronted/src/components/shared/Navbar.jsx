@@ -55,10 +55,18 @@ const Navbar = () => {
         <div className="w-full max-w-6xl bg-white shadow-xl rounded-2xl px-6 h-16 flex items-center">
           <ul className="flex items-center justify-between w-full">
             {navItems.map((item) => (
-              <li key={item.key} className="relative" ref={item.children ? dropdownRef : null}>
+              <li
+                key={item.key}
+                className="relative"
+                ref={item.children ? dropdownRef : null}
+              >
                 {item.children ? (
                   <button
-                    onClick={() => setDesktopDropdown(desktopDropdown === item.key ? null : item.key)}
+                    onClick={() =>
+                      setDesktopDropdown(
+                        desktopDropdown === item.key ? null : item.key,
+                      )
+                    }
                     onMouseEnter={() => setDesktopDropdown(item.key)}
                     className={`flex items-center gap-1 text-sm xl:text-base font-semibold px-3 py-2 rounded-lg transition-colors duration-200 ${
                       isParentActive(item.children)
@@ -67,7 +75,9 @@ const Navbar = () => {
                     }`}
                   >
                     {item.key}
-                    <HiChevronDown className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`} />
+                    <HiChevronDown
+                      className={`text-sm transition-transform duration-200 ${desktopDropdown === item.key ? "rotate-180" : ""}`}
+                    />
                   </button>
                 ) : (
                   <Link
@@ -96,7 +106,9 @@ const Navbar = () => {
                         <Link
                           to={sub.path}
                           className={`block px-4 py-3 text-sm transition-colors duration-150 ${
-                            index < item.children.length - 1 ? "border-b border-gray-100" : ""
+                            index < item.children.length - 1
+                              ? "border-b border-gray-100"
+                              : ""
                           } ${
                             location.pathname === sub.path
                               ? "bg-blue-600 text-white"
@@ -118,7 +130,9 @@ const Navbar = () => {
       {/* ── MOBILE: sticky hamburger bar ── */}
       <div className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-100">
         <div className="flex items-center justify-between px-4 h-11">
-          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Menu</span>
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+            Menu
+          </span>
           <button
             onClick={() => setOpen(!open)}
             className="p-1.5 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
@@ -132,11 +146,17 @@ const Navbar = () => {
       {/* ── MOBILE: side drawer ── */}
       {open && (
         <>
-          <div className="lg:hidden fixed inset-0 bg-black/40 z-40" onClick={() => setOpen(false)} />
+          <div
+            className="lg:hidden fixed inset-0 bg-black/40 z-40"
+            onClick={() => setOpen(false)}
+          />
           <div className="lg:hidden fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-2xl z-50 flex flex-col">
             <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">
               <span className="font-bold text-gray-800">Navigation</span>
-              <button onClick={() => setOpen(false)} className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-600">
+              <button
+                onClick={() => setOpen(false)}
+                className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-600"
+              >
                 <HiX size={20} />
               </button>
             </div>
@@ -146,7 +166,11 @@ const Navbar = () => {
                   {item.children ? (
                     <>
                       <button
-                        onClick={() => setMobileDropdown(mobileDropdown === item.key ? null : item.key)}
+                        onClick={() =>
+                          setMobileDropdown(
+                            mobileDropdown === item.key ? null : item.key,
+                          )
+                        }
                         className={`w-full flex justify-between items-center py-3 px-4 font-medium rounded-lg text-sm transition-colors ${
                           isParentActive(item.children)
                             ? "bg-blue-600 text-white"
@@ -154,7 +178,9 @@ const Navbar = () => {
                         }`}
                       >
                         {item.key}
-                        <HiChevronDown className={`transition-transform duration-200 ${mobileDropdown === item.key ? "rotate-180" : ""}`} />
+                        <HiChevronDown
+                          className={`transition-transform duration-200 ${mobileDropdown === item.key ? "rotate-180" : ""}`}
+                        />
                       </button>
                       {mobileDropdown === item.key && (
                         <ul className="ml-4 mt-1 space-y-1">
@@ -162,7 +188,10 @@ const Navbar = () => {
                             <li key={sub.key}>
                               <Link
                                 to={sub.path}
-                                onClick={() => { setOpen(false); setMobileDropdown(null); }}
+                                onClick={() => {
+                                  setOpen(false);
+                                  setMobileDropdown(null);
+                                }}
                                 className={`block py-2.5 px-4 rounded-lg text-sm transition-colors ${
                                   location.pathname === sub.path
                                     ? "bg-blue-600 text-white"

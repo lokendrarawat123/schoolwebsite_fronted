@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, Facebook, Instagram, LinkedinIcon } from "lucide-react";
 import logo from "../../assets/img/namunalogo.png";
 import { HiMenu, HiX } from "react-icons/hi";
+import Navbar from "./Navbar";
 
 const contactLinks = [
   {
@@ -167,7 +168,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-
+      <Navbar />
     </header>
   );
 };
