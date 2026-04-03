@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { BsTelephoneOutboundFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import ScrollToTop from "../shared/ScrollTop";
+
 import logo from "../../assets/img/namunalogo.png";
 import Button from "../ButtonComponent.jsx";
 
@@ -95,7 +95,7 @@ const Footer = () => {
               </Link>
             </div>
             <h3 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-2xl font-bold text-white hover:text-primary-color leading-tight transition-colors">
-              NVS E.M. SCHOOL
+              NAMUNA VIDHYA SADAN
             </h3>
           </div>
 
