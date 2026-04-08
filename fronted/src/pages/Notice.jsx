@@ -12,7 +12,10 @@ import { FaCaretRight } from "react-icons/fa";
 const ITEMS_PER_PAGE = 10;
 
 const NoticeIndex = () => {
-  const { data, isLoading, error } = useGetNoticeQuery();
+  const { data, isLoading, error, refetch } = useGetNoticeQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+  });
   const IMG_URL = import.meta.env.VITE_IMG_URL;
 
   const [selectedNotice, setSelectedNotice] = useState(null);
@@ -69,10 +72,13 @@ const NoticeIndex = () => {
             paginatedNotices.map((notice) => (
               <motion.div
                 key={notice.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
                 className="flex flex-col sm:flex-row justify-start sm:justify-between items-start sm:items-center py-3 sm:py-4 px-2 sm:px-3 rounded transition-all gap-2 sm:gap-4"
               >
                 {/* Notice Title */}
-                <p className="flex items-center text-black hover:text-blue-600 text-sm sm:text-base flex-1">
+                <p className="flex items-center text-black hover:text-third-color text-sm sm:text-base flex-1">
                   <FaCaretRight className="text-black w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 shrink-0" />
                   <span className="line-clamp-2 sm:line-clamp-1">
                     {notice.title}
@@ -89,7 +95,7 @@ const NoticeIndex = () => {
                       href={`${IMG_URL}/${notice.attachment_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-2 sm:px-3 py-1 sm:py-2 rounded text-xs sm:text-sm font-medium transition-colors flex items-center gap-1 sm:gap-2"
+                      className="bg-third-color hover:bg-third-color/90 text-white px-2 sm:px-3 py-1 sm:py-2 rounded text-xs sm:text-sm font-medium transition-colors flex items-center gap-1 sm:gap-2"
                     >
                       <FaCaretRight className="w-2 h-2 sm:w-3 sm:h-3" />
                       View

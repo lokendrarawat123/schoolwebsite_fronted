@@ -6,8 +6,8 @@ import HeroContainer from "../components/About/HeroContainer";
 import { BlogSkeleton } from "../components/skeleton/HomeSkeleton";
 import ErrorMessage from "../components/shared/ErrorMessage";
 import Pagination from "../components/shared/Pagination";
-import STATIC_BLOGS from "../components/blog/staticBlogs";
 import bgImg from "../assets/img/student_group.jpg";
+import Button from "../components/ButtonComponent.jsx";
 
 // Number of blog posts per page
 const ITEMS_PER_PAGE = 8;
@@ -34,20 +34,11 @@ const Blog = () => {
   const blog = blogData?.data || [];
   const blogCategory = blogCategoryData?.data || [];
 
-  // Fill up to 8 total with static blogs if API returns less than 8
-  const staticNeeded = blog.length >= 8 ? 0 : 8 - blog.length;
-  const staticBlogs = STATIC_BLOGS.slice(0, staticNeeded);
-
-  // Filter blogs by selected category (static shown only on All Posts)
   const filteredBlogs = useMemo(() => {
-    const apiFiltered =
-      selectedCategory === null
-        ? blog
-        : blog.filter((item) => item.category_id === selectedCategory);
     return selectedCategory === null
-      ? [...apiFiltered, ...staticBlogs]
-      : apiFiltered;
-  }, [blog, staticBlogs, selectedCategory]);
+      ? blog
+      : blog.filter((item) => item.category_id === selectedCategory);
+  }, [blog, selectedCategory]);
 
   // Paginate filtered blogs client-side
   const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
@@ -98,37 +89,37 @@ const Blog = () => {
 
           {/* Category Filter */}
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 md:mb-12 px-2">
-            <button
+            <Button
               onClick={() => handleCategoryChange(null)}
               disabled={selectedCategory === null}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full font-medium ${
                 selectedCategory === null
-                  ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105 cursor-default"
-                  : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
+                  ? "bg-third-color text-white shadow-lg scale-105 cursor-default"
+                  : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-third-color"
               }`}
             >
               All Posts
-            </button>
+            </Button>
             {blogCategory.map((cat) => (
-              <button
+              <Button
                 key={cat.category_id}
                 onClick={() => handleCategoryChange(cat.category_id)}
                 disabled={selectedCategory === cat.category_id}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-medium ${
                   selectedCategory === cat.category_id
-                    ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-105 cursor-default"
-                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
+                    ? "bg-third-color text-white shadow-lg scale-105 cursor-default"
+                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-third-color"
                 }`}
               >
                 {cat.category_name}
-              </button>
+              </Button>
             ))}
           </div>
 
           {/* Results Count */}
           <div className="text-center mb-8">
             <p className="text-gray-600">
-              <span className="font-semibold text-indigo-600">
+              <span className="font-semibold text-third-color">
                 {filteredBlogs.length}
               </span>
               {filteredBlogs.length === 1 ? " article" : " articles"}
@@ -164,7 +155,7 @@ const Blog = () => {
                       <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       {/* Category Badge */}
                       <div className="absolute top-4 left-4">
-                        <span className="bg-white/95 backdrop-blur-sm shadow-sm px-3 py-1 rounded-full text-indigo-600 text-xs font-semibold">
+                        <span className="bg-white/95 backdrop-blur-sm shadow-sm px-3 py-1 rounded-full text-third-color text-xs font-semibold">
                           {post.isStatic
                             ? post.category_name
                             : blogCategory.find(
@@ -202,7 +193,7 @@ const Blog = () => {
                         <span>5 min read</span>
                       </div>
 
-                      <h2 className="text-xl font-bold text-gray-900 leading-tight group-hover:text-indigo-600 transition-colors line-clamp-2 mb-3">
+                      <h2 className="text-xl font-bold text-gray-900 leading-tight group-hover:text-third-color transition-colors line-clamp-2 mb-3">
                         {post.title}
                       </h2>
 
@@ -212,7 +203,7 @@ const Blog = () => {
                       </p>
 
                       <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-                        <span className="bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full text-sm font-semibold">
+                        <span className="bg-third-color/10 text-third-color px-3 py-1 rounded-full text-sm font-semibold">
                           {post.isStatic
                             ? post.category_name
                             : blogCategory.find(
@@ -220,25 +211,28 @@ const Blog = () => {
                               )?.category_name || "General"}
                         </span>
                         {!post.isStatic && (
-                          <button
+                          <Button
                             onClick={() => handleReadMore(post.id || post._id)}
-                            className="text-indigo-600 text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all duration-200"
+                            className="text-third-color text-sm font-semibold flex items-center gap-1 hover:gap-2"
+                            icon={
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            }
+                            iconPosition="right"
                           >
                             Read More
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </button>
+                          </Button>
                         )}
                       </div>
                     </div>
@@ -268,12 +262,12 @@ const Blog = () => {
                   : "Articles will be available soon"}
               </p>
               {selectedCategory && (
-                <button
+                <Button
                   onClick={() => handleCategoryChange(null)}
-                  className="px-6 py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg transition-all duration-300"
+                  className="px-6 py-3 bg-third-color text-white rounded-full font-medium hover:shadow-lg"
                 >
                   Show All Posts
-                </button>
+                </Button>
               )}
             </div>
           )}

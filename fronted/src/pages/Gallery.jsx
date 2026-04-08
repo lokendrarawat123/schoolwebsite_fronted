@@ -94,8 +94,8 @@ const Gallery = () => {
                 disabled={selectedCategory === null}
                 className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base ${
                   selectedCategory === null
-                    ? "bg-linear-to-r from-indigo-600 to-blue-800 text-white shadow-lg transform scale-105 opacity-100 cursor-default"
-                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
+                    ? "bg-third-color text-white shadow-lg transform scale-105 opacity-100 cursor-default"
+                    : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-third-color"
                 }`}
               >
                 All Categories
@@ -113,8 +113,8 @@ const Gallery = () => {
                     disabled={isActive}
                     className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium text-sm sm:text-base ${
                       isActive
-                        ? "bg-linear-to-r from-indigo-600 to-blue-800 text-white shadow-md cursor-default"
-                        : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
+                        ? "bg-third-color text-white shadow-md cursor-default"
+                        : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-third-color"
                     }`}
                   >
                     {categoryName}
@@ -128,7 +128,7 @@ const Gallery = () => {
           <div className="text-center mb-6 sm:mb-8">
             <p className="text-sm sm:text-base text-gray-600">
               Showing{" "}
-              <span className="font-semibold text-indigo-600">
+              <span className="font-semibold text-third-color">
                 {filteredGalleries.length}
               </span>
               {filteredGalleries.length === 1 ? " item" : " items"}
@@ -136,7 +136,7 @@ const Gallery = () => {
                 <span>
                   {" "}
                   in{" "}
-                  <span className="font-semibold text-indigo-600">
+                  <span className="font-semibold text-third-color">
                     {categories.find(
                       (cat) =>
                         (cat.id || cat._id || cat.category_id) ===
@@ -197,7 +197,7 @@ const Gallery = () => {
               </p>
               <Button
                 onClick={() => handleCategoryChange(null)}
-                className="px-4 sm:px-6 py-2 sm:py-3 bg-linear-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium hover:shadow-lg text-sm sm:text-base"
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-third-color text-white rounded-full font-medium hover:shadow-lg text-sm sm:text-base"
               >
                 Show All
               </Button>

@@ -2,8 +2,6 @@ import React, { useState, useMemo } from "react";
 import { useGetEventQuery } from "../redux/features/academicSlice";
 import HeroContainer from "../components/About/HeroContainer";
 import { EventCard } from "../components/Event/EventCard";
-import StaticEventCard from "../components/Event/StaticEventCard";
-import STATIC_EVENTS from "../components/Event/staticEvents";
 import { EventsSkeleton } from "../components/skeleton/HomeSkeleton";
 import ErrorMessage from "../components/shared/ErrorMessage";
 import Pagination from "../components/shared/Pagination";
@@ -16,18 +14,8 @@ const Events = () => {
   const { data: events, isLoading, error } = useGetEventQuery();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const apiEvents = events?.data || [];
+  const allEvents = events?.data || [];
 
-  // If API has 10 or more, show only API events
-  // If API has less than 10, fill remaining with static to make total 10
-  const staticNeeded = apiEvents.length >= 10 ? 0 : 10 - apiEvents.length;
-  const staticEvents = STATIC_EVENTS.slice(0, staticNeeded);
-
-  // Combine into one array then paginate together — each page gets exactly 8
-  const allEvents = useMemo(
-    () => [...apiEvents, ...staticEvents],
-    [apiEvents, staticEvents]
-  );
   const totalPages = Math.ceil(allEvents.length / ITEMS_PER_PAGE);
   const paginatedEvents = useMemo(
     () => allEvents.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE),
@@ -64,13 +52,9 @@ const Events = () => {
           <>
             {/* Events Grid - API + Static combined, 8 per page */}
             <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {paginatedEvents.map((event) =>
-                event.isStatic ? (
-                  <StaticEventCard key={event.id} event={event} />
-                ) : (
-                  <EventCard key={event.id} event={event} />
-                )
-              )}
+              {paginatedEvents.map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))}
             </div>
 
             {/* Pagination */}

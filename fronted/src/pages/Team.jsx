@@ -68,7 +68,7 @@ const Team = () => {
             {/* Header */}
             <div className="text-center mb-8 sm:mb-12">
               <motion.h2
-                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-third-color mb-3 sm:mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -105,8 +105,8 @@ const Team = () => {
                         }}
                         className={`px-3 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
                           selectedCategory === categoryId
-                            ? "bg-linear-to-r from-indigo-600 to-purple-600 text-white shadow-lg transform scale-105"
-                            : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-indigo-300"
+                            ? "bg-third-color text-white shadow-lg transform scale-105"
+                            : "bg-white text-gray-600 hover:bg-gray-50 border border-gray-200 hover:border-third-color"
                         }`}
                       >
                         {categoryName}
@@ -122,7 +122,7 @@ const Team = () => {
               <p className="text-sm sm:text-base text-gray-600">
                 {selectedCategory !== null && (
                   <span>
-                    <span className="font-semibold text-indigo-600">
+                    <span className="font-semibold text-third-color">
                       {categories.find((cat) => {
                         const categoryId = cat.id || cat._id || cat.category_id;
                         return categoryId === selectedCategory;
@@ -182,11 +182,11 @@ const Team = () => {
                           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                             {member.name || member.full_name}
                           </h3>
-                          <p className="text-indigo-600 font-medium mb-2 text-sm sm:text-base">
+                          <p className="text-third-color font-medium mb-2 text-sm sm:text-base">
                             {member.position || member.designation}
                           </p>
                           {categoryName && (
-                            <span className="inline-block bg-indigo-100 text-indigo-600 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium mb-3">
+                            <span className="inline-block bg-third-color/10 text-third-color px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium mb-3">
                               {categoryName}
                             </span>
                           )}

@@ -27,7 +27,7 @@ const HeroContainer = ({ title, subtitle, bgImage, className = "" }) => {
         <div className="flex items-center space-x-2 mb-4">
           <Button
             to="/"
-            className="px-5 py-2 rounded-full bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="px-5 py-2 rounded-full bg-third-color text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             HOME
           </Button>
@@ -36,7 +36,7 @@ const HeroContainer = ({ title, subtitle, bgImage, className = "" }) => {
             /
           </span>
 
-          <Button className="px-5 py-2 rounded-full uppercase bg-linear-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
+          <Button className="px-5 py-2 rounded-full uppercase bg-third-color text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
             {title}
           </Button>
         </div>

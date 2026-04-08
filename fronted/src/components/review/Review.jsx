@@ -4,7 +4,10 @@ import { FaStar, FaQuoteLeft } from "react-icons/fa";
 
 const ReviewPage = () => {
   const base_url = import.meta.env.VITE_IMG_URL;
-  const { data: reviewData, isLoading, error } = useGetReviewsQuery();
+  const { data: reviewData, isLoading, error } = useGetReviewsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+  });
 
   if (isLoading) {
     return (

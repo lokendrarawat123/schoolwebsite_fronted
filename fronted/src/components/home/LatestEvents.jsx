@@ -34,7 +34,7 @@ const LatestEvents = () => {
           <LatestEventsSkeleton />
         ) : eventError ? (
           <ErrorMessage message="Failed to load events." />
-        ) : (
+        ) : events.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
             {events.map((event) => (
               <div
@@ -71,34 +71,46 @@ const LatestEvents = () => {
               </div>
             ))}
           </div>
+        ) : (
+          <div className="text-center py-12 sm:py-16 md:py-20">
+            <div className="text-4xl sm:text-6xl mb-4">📅</div>
+            <h3 className="text-xl sm:text-2xl font-semibold text-gray-600 mb-2">
+              No events available
+            </h3>
+            <p className="text-sm sm:text-base text-gray-500">
+              Check back later for upcoming events
+            </p>
+          </div>
         )}
 
-        {/* View All Events Button */}
-        <div className="text-center mt-8 sm:mt-10 md:mt-12 xl:mt-16 2xl:mt-20">
-          <Button
-            to="/academics/events"
-            size="md"
-            className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-secondary-color hover:bg-secondary-color/80 text-white rounded-full font-medium shadow-lg hover:shadow-md text-sm sm:text-base transition-colors duration-300"
-            icon={
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            }
-            iconPosition="right"
-          >
-            View All Events
-          </Button>
-        </div>
+        {/* View All Events Button - Only show when events exist */}
+        {events.length > 0 && (
+          <div className="text-center mt-8 sm:mt-10 md:mt-12 xl:mt-16 2xl:mt-20">
+            <Button
+              to="/academics/events"
+              size="md"
+              className="inline-flex items-center px-6 sm:px-8 py-2.5 sm:py-3 bg-third-color hover:bg-third-color/80 text-white rounded-full font-medium shadow-lg hover:shadow-md text-sm sm:text-base transition-colors duration-300"
+              icon={
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              }
+              iconPosition="right"
+            >
+              View All Events
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

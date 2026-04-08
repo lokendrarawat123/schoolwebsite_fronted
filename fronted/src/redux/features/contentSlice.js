@@ -21,6 +21,7 @@ export const contentApi = indexSlice.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["content"],
+      keepUnusedDataFor: 0, // Don't cache data
     }),
     getVacancy: builder.query({
       query: () => ({

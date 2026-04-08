@@ -144,7 +144,7 @@ const ExploreSchoolLife = () => {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${
-                index === currentIndex ? "bg-secondary-color scale-125" : "bg-gray-300"
+                index === currentIndex ? "bg-third-color scale-125" : "bg-gray-300"
               }`}
             />
           ))}

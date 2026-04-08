@@ -89,11 +89,13 @@ const GalleryCard = ({ gallery, baseUrl, onImageClick }) => {
 
       {/* Content */}
       <div className="p-3 sm:p-4 md:p-5">
-        <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2 text-sm sm:text-base">
+        <h3 className="font-semibold text-third-color mb-2 line-clamp-2 text-sm sm:text-base">
           {gallery.caption}
         </h3>
         <div className="flex items-center justify-between text-xs sm:text-sm text-gray-500">
-          <span>{new Date(gallery.created_at).toLocaleDateString()}</span>
+          <span className="text-third-color">
+            {new Date(gallery.created_at).toLocaleDateString()}
+          </span>
           {gallery.category && (
             <span className="bg-indigo-100 text-indigo-600 px-2 py-1 rounded-full text-xs font-medium">
               {gallery.category}

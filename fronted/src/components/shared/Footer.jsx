@@ -3,12 +3,11 @@ import {
   FaMapMarkerAlt,
   FaEnvelope,
   FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaGraduationCap,
   FaArrowUp,
+  FaInstagram,
+  FaTwitter,
 } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa6";
 import { BsTelephoneOutboundFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
@@ -49,22 +48,18 @@ const Footer = () => {
       {
         icon: <FaFacebook />,
         link: "https://www.facebook.com/p/Namuna-Vidhya-Sadan-EM-Secondary-School-100057264595833",
-        style: "from-blue-600 to-primary-color",
       },
       {
-        icon: <FaTwitter />,
-        link: "#",
-        style: "from-blue-400 to-blue-600",
+        icon: <FaTiktok />,
+        link: "https://www.tiktok.com/@namunavidhyasadan2063?lang=en-GB",
       },
       {
         icon: <FaInstagram />,
         link: "#",
-        style: "from-pink-500 to-purple-600",
       },
       {
-        icon: <FaLinkedin />,
+        icon: <FaTwitter />,
         link: "#",
-        style: "from-blue-700 to-blue-900",
       },
     ],
     contact: {
@@ -75,61 +70,63 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-linear-to-br from-slate-900 via-blue-900 to-slate-800 text-white overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute top-0 left-0 w-20 sm:w-32 h-20 sm:h-32 bg-linear-to-br from-primary-color/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-24 sm:w-40 h-24 sm:h-40 bg-linear-to-tl from-blue-500/20 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+    <footer className="relative bg-slate-900 text-white overflow-hidden">
+      {/* Simple Background Effects */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-primary-color/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-40 h-40 bg-secondary-color/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
       {/* Main Footer */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 md:py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10">
         {/* About */}
-        <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-4 xl:space-y-6 sm:col-span-2 lg:col-span-1">
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 w-full">
-            <div className="p-1 sm:p-1.5 md:p-2 shrink-0">
+        <div className="space-y-3 sm:space-y-4 sm:col-span-2 lg:col-span-1">
+          <div className="flex items-center gap-3 w-full">
+            <div className="p-1">
               <Link to="/" onClick={scrollToTop}>
                 <img
                   src={logo}
                   alt="Logo"
-                  className="h-10 w-10 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-14 lg:w-14 xl:h-20 xl:w-20 object-contain rounded-full cursor-pointer"
+                  className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 object-contain rounded-full cursor-pointer hover:scale-105 transition-transform duration-300"
                 />
               </Link>
             </div>
-            <h3 className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-2xl font-bold text-white hover:text-primary-color leading-tight transition-colors">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-primary-color leading-tight">
               NAMUNA VIDHYA SADAN
             </h3>
           </div>
 
-          <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             Established in 2062 B.S., we provide quality education with modern
             teaching methods and holistic student development.
           </p>
 
           {/* Social Links */}
-          <div className="flex gap-2 sm:gap-3">
+          <div className="flex gap-2">
             {footerData.socialLinks.map((item, index) => (
               <a
                 key={index}
                 href={item.link}
-                className={`group p-2 sm:p-3 bg-white/10 rounded-full hover:bg-linear-to-r hover:${item.style} transition-all duration-300 transform hover:scale-110 touch-friendly`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-white rounded-full transition-all duration-300 hover:scale-110"
               >
-                <span className="text-sm sm:text-lg">{item.icon}</span>
+                <span className="text-base text-black">{item.icon}</span>
               </a>
             ))}
           </div>
         </div>
 
         {/* Quick Links */}
-        <div className="">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">
+        <div>
+          <h4 className="text-lg font-bold mb-4 text-primary-color">
             Quick Links
           </h4>
-          <ul className="space-y-2 sm:space-y-4">
+          <ul className="space-y-2">
             {footerData.quickLinks.map((item, index) => (
               <li key={index}>
                 <Link
                   onClick={scrollToTop}
                   to={item.path}
-                  className="flex items-center gap-2 text-gray-300 hover:text-primary-color text-sm sm:text-base transition-colors touch-friendly"
+                  className="text-gray-300 hover:text-primary-color text-sm transition-colors duration-300"
                 >
                   {item.name}
                 </Link>
@@ -139,14 +136,14 @@ const Footer = () => {
         </div>
 
         {/* Programs */}
-        <div className="">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">
+        <div>
+          <h4 className="text-lg font-bold mb-4 text-primary-color">
             Programs
           </h4>
-          <ul className="space-y-2 sm:space-y-4">
+          <ul className="space-y-2">
             {footerData.programs.map((program, index) => (
               <li key={index}>
-                <span className="flex items-center gap-2 cursor-pointer text-gray-300 hover:text-primary-color text-sm sm:text-base transition-colors">
+                <span className="text-gray-300 hover:text-primary-color text-sm transition-colors duration-300 cursor-pointer">
                   {program}
                 </span>
               </li>
@@ -156,33 +153,37 @@ const Footer = () => {
 
         {/* Contact */}
         <div className="sm:col-span-2 lg:col-span-1">
-          <h4 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 hover:text-primary-color transition-colors cursor-default">
-            Contact
-          </h4>
+          <h4 className="text-lg font-bold mb-4 text-primary-color">Contact</h4>
 
-          <div className="space-y-3 sm:space-y-4">
-            <div className="flex gap-3 items-start">
-              <FaMapMarkerAlt className="mt-1 shrink-0" />
-              <p className="text-gray-300 text-xs sm:text-sm">
+          <div className="space-y-3">
+            <div className="flex gap-2 items-start">
+              <div className="p-1  rounded-full transition-all duration-300 hover:scale-110">
+                <FaMapMarkerAlt className="text-white text-sm" />
+              </div>
+              <p className="text-gray-300 text-sm">
                 {footerData.contact.address}
               </p>
             </div>
 
-            <div className="flex gap-3 items-center">
-              <BsTelephoneOutboundFill className="shrink-0" />
+            <div className="flex gap-2 items-center">
+              <div className="p-1 rounded-full transition-all duration-300 hover:scale-110">
+                <BsTelephoneOutboundFill className="text-white text-sm" />
+              </div>
               <a
                 href="tel:081414036"
-                className="text-gray-300 text-xs sm:text-sm hover:text-primary-color transition-colors touch-friendly"
+                className="text-gray-300 hover:text-primary-color text-sm transition-colors duration-300"
               >
                 {footerData.contact.phone}
               </a>
             </div>
 
-            <div className="flex gap-3 items-center">
-              <FaEnvelope className="shrink-0" />
+            <div className="flex gap-2 items-center">
+              <div className="p-1   rounded-full transition-all duration-300 hover:scale-110">
+                <FaEnvelope className="text-white text-sm" />
+              </div>
               <a
                 href={`mailto:${footerData.contact.email}`}
-                className="text-gray-300 text-xs sm:text-sm hover:text-primary-color transition-colors break-all touch-friendly"
+                className="text-gray-300 hover:text-primary-color text-sm transition-colors duration-300 break-all"
               >
                 {footerData.contact.email}
               </a>
@@ -192,17 +193,21 @@ const Footer = () => {
       </div>
 
       {/* Bottom */}
-      <div className="border-t border-white/10 py-4 sm:py-6 px-4 sm:px-6 lg:px-8 mx-4 sm:mx-6 lg:mx-10 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-2 sm:gap-0">
+      <div className="border-t border-white/20 py-4 px-4 sm:px-6 lg:px-8 mx-4 sm:mx-6 lg:mx-10 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left gap-3 sm:gap-0">
         {/* Left */}
-        <div className="text-gray-400 text-xs sm:text-sm">
+        <div className="text-gray-400 text-sm">
           © {currentYear} Namuna Bidhya Sadan. All rights reserved.
         </div>
 
         {/* Right */}
-        <div className="mr-10 text-gray-400 text-xs sm:text-sm">
+        <div className="text-gray-400 text-sm mr-2">
           Powered by{" "}
-          <a href="https://nextinfosys.com.np/">
-            <span className="font-semibold text-yellow-500 cursor-pointer">
+          <a
+            href="https://nextinfosys.com.np/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="font-semibold text-primary-color hover:text-secondary-color cursor-pointer transition-colors duration-300">
               Next Infosys Pvt. Ltd
             </span>
           </a>
@@ -211,12 +216,13 @@ const Footer = () => {
 
       {/* Scroll Button */}
       {showScroll && (
-        <Button
+        <button
           onClick={scrollToTop}
-          className="hover:bg-yellow-300 sm:w-10 sm:h-10 w-12 h-12 fixed bottom-4 sm:bottom-5 lg:right-10 sm:right-5 p-4 sm:p-3 bg-blue-500  rounded-full! shadow-lg z-50"
+          className="fixed bottom-5 right-5 w-12 h-12 bg-third-color text-white rounded-full   transition-all duration-300 flex items-center justify-center   focus:ring-third-color "
           aria-label="Scroll to top"
-          icon={<FaArrowUp className="text-sm sm:text-base " />}
-        />
+        >
+          <FaArrowUp className="text-base" />
+        </button>
       )}
     </footer>
   );

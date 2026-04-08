@@ -14,6 +14,7 @@ export const siteSlice = indexSlice.injectEndpoints({
         method: "GET",
       }),
       providesTags: ["site"],
+      keepUnusedDataFor: 0, // Don't cache data
     }),
     getFaqs: builder.query({
       query: () => ({
