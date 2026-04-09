@@ -4,46 +4,49 @@ import Button from "../ButtonComponent";
 const HeroContainer = ({ title, subtitle, bgImage, className = "" }) => {
   return (
     <div
-      className={`relative flex flex-col min-h-[70vh] overflow-hidden ${className}`}
+      className={`relative flex flex-col justify-center items-center min-h-[90vh] overflow-hidden ${className}`}
     >
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: bgImage ? `url(${bgImage})` : "none",
-          animation: "kenBurns 10s ease-in-out infinite",
+          animation: "kenBurns 12s ease-in-out infinite",
         }}
       ></div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-linear-to-b from-black/50 to-black/20"></div>
+      {/* Overlay (Reduced Blur & Softer Gradient) */}
+      <div className="absolute inset-0 bg-linear-to-b from-blue-900/60 via-green-800/30 to-black/50"></div>
 
       {/* Content */}
-      <div className="relative z-10 my-10 px-4 flex flex-col items-center text-center">
-        <h1 className="text-3xl md:text-3xl uppercase font-extrabold text-gray-100 mb-5">
+      <div className="relative z-10 px-4 flex flex-col items-center text-center">
+        {/* Title (Primary Color - Blue) */}
+        <h1 className="text-4xl md:text-5xl uppercase font-extrabold text-white mb-6 tracking-wide">
           {title}
         </h1>
 
-        <div className="flex items-center space-x-2 mb-4">
+        {/* Breadcrumb */}
+        <div className="flex items-center space-x-3 mb-6">
           <Button
             to="/"
-            className="px-5 py-2 rounded-full bg-third-color text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="px-6 py-2 rounded-full bg-blue-600 text-white font-semibold shadow-md hover:bg-green-600 hover:scale-105 transition-all duration-300"
           >
             HOME
           </Button>
 
-          <span className="text-gray-200 text-3xl md:text-4xl font-bold mx-2">
-            /
-          </span>
+          <span className="text-yellow-400 text-3xl font-bold">/</span>
 
-          <Button className="px-5 py-2 rounded-full uppercase bg-third-color text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300">
+          <Button className="px-6 py-2 rounded-full uppercase bg-green-600 text-white font-semibold shadow-md hover:bg-blue-600 hover:scale-105 transition-all duration-300">
             {title}
           </Button>
         </div>
 
-        <h2 className="text-xl md:text-2xl uppercase text-gray-200 mt-4">
+        {/* Subtitle (Styled + Better Font Look) */}
+        <h2 className="text-lg md:text-2xl text-yellow-600 font-medium tracking-wide leading-relaxed max-w-xl">
           {subtitle}
         </h2>
+
+        {/* CTA Button */}
       </div>
     </div>
   );

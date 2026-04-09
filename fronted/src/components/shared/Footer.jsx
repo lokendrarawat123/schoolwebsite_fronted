@@ -4,8 +4,6 @@ import {
   FaEnvelope,
   FaFacebook,
   FaArrowUp,
-  FaInstagram,
-  FaTwitter,
 } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa6";
 import { BsTelephoneOutboundFill } from "react-icons/bs";
@@ -52,14 +50,6 @@ const Footer = () => {
       {
         icon: <FaTiktok />,
         link: "https://www.tiktok.com/@namunavidhyasadan2063?lang=en-GB",
-      },
-      {
-        icon: <FaInstagram />,
-        link: "#",
-      },
-      {
-        icon: <FaTwitter />,
-        link: "#",
       },
     ],
     contact: {

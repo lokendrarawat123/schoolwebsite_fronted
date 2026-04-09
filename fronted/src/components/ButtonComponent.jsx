@@ -44,9 +44,9 @@ const Button = ({
     info: "bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl focus:ring-cyan-500",
     outline:
       "border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white focus:ring-blue-500 bg-transparent",
-    hero: "relative bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 hover:from-blue-400 hover:via-indigo-400 hover:to-purple-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:shadow-[0_0_22px_rgba(99,102,241,0.6)] focus:ring-indigo-400 tracking-widest uppercase",
+    hero: "relative bg-third-color hover:bg-third-color/90 text-white shadow-[0_0_15px_rgba(34,63,162,0.4)] hover:shadow-[0_0_22px_rgba(34,63,162,0.6)] focus:ring-third-color tracking-widest uppercase",
     heroOutline:
-      "relative border border-white/60 text-white hover:bg-white/10 shadow-[0_0_10px_rgba(255,255,255,0.08)] hover:shadow-[0_0_16px_rgba(255,255,255,0.18)] focus:ring-white tracking-widest uppercase bg-white/5 backdrop-blur-sm",
+      "relative border border-third-color text-white hover:bg-third-color hover:text-white shadow-[0_0_10px_rgba(34,63,162,0.08)] hover:shadow-[0_0_16px_rgba(34,63,162,0.18)] focus:ring-third-color tracking-widest uppercase bg-transparent",
     ghost: "text-blue-600 hover:bg-blue-50 focus:ring-blue-500 bg-transparent",
     light:
       "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 shadow-sm hover:shadow focus:ring-gray-500",
