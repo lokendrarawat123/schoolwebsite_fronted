@@ -5,63 +5,40 @@ import { useGetSlidesQuery } from "../../redux/features/SiteSlice.js";
 import Button from "../ButtonComponent.jsx";
 import ErrorMessage from "../shared/ErrorMessage";
 import { HomeSkeleton } from "../skeleton/HomeSkeleton.jsx";
-
-import slide6 from "../../assets/img/slide/slide6.jpg";
-import slide2 from "../../assets/img/slide/slide2.jpg";
-import slide4 from "../../assets/img/slide/slide4.jpg";
-import slide11 from "../../assets/img/slide/slide11.jpg";
+import { SCHOOL_NAME, heroSlides } from "../../data/siteData.js";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// Random slides data - Using local images
-const randomSlides = [
-  {
-    id: 1,
-    title: "Excellence in Education",
-    image: slide6,
-  },
-  {
-    id: 2,
-    title: "Building Future Leaders",
-    image: slide2,
-  },
-  {
-    id: 3,
-    title: "Knowledge & Innovation",
-    image: slide4,
-  },
-  {
-    id: 4,
-    title: "Shaping Tomorrow",
-    image: slide11,
-  },
-];
-
 const HeroSlider = () => {
-  // API call (ready for future use)
-  const { data: slidesData, isLoading, error } = useGetSlidesQuery();
+  const { data: _slidesData, isLoading, error } = useGetSlidesQuery();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   if (isLoading) return <HomeSkeleton />;
-  if (error) return <ErrorMessage message="Failed to load slides." />;
+  if (error)
+    return (
+      <ErrorMessage
+        message={error?.data?.message || "Failed to load slides."}
+      />
+    );
 
   const handleSlideChange = (swiper) => {
     setIsTransitioning(true);
     setTimeout(() => {
       setActiveIndex(swiper.realIndex);
       setIsTransitioning(false);
-    }, 300);
+      // amazonq-ignore-next-line
+    }, 500);
   };
 
   return (
     <section
       id="home"
-      className="relative h-[50vh] min-h-125 overflow-hidden bg-slate-900"
+      className="relative h-[75vh] min-h-100 overflow-hidden bg-slate-900"
     >
-      {/* Background Image Slider - Only images slide */}
+      {/* 1. BACKGROUND SWIPER */}
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         speed={1500}
@@ -72,188 +49,86 @@ const HeroSlider = () => {
         loop={true}
         className="h-full w-full"
       >
-        {randomSlides.map((slide, index) => (
+        {heroSlides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="relative h-full w-full overflow-hidden">
-              {/* Enhanced Background Image */}
+            <div className="relative  h-screen bg-cover  overflow-hidden">
               <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-6000 ease-out transform scale-110 blur-[2px]"
+                className="absolute inset-0 bg-no-repeat bg-center transition-transform duration-8000 ease-out scale-100"
                 style={{
                   backgroundImage: `url(${slide.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center center",
-                  imageRendering: "high-quality",
-                  backfaceVisibility: "hidden",
-                  transform: "translateZ(0)",
-                  width: "110%",
-                  height: "110%",
-                  left: "-5%",
-                  top: "-5%",
+                  backgroundSize: "100% 110%", // Yesle image lai height ra width ma thikka stretch garchha
                 }}
               />
-
-              {/* Image Enhancement Layer */}
-              <div className="absolute inset-0 bg-linear-to-br from-primary-color/1 via-transparent to-secondary-color/1" />
-
-              {/* Animated Overlay Pattern */}
-              <div
-                className="absolute inset-0 opacity-2"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 25% 25%, rgba(34, 63, 162, 0.05) 0%, transparent 50%), 
-                                 radial-gradient(circle at 75% 75%, rgba(255, 193, 7, 0.04) 0%, transparent 50%)`,
-                }}
-              />
-
-              {/* Optimized Multi-layer Overlays */}
-              <div className="absolute inset-0 bg-linear-to-r from-black/10 via-transparent to-black/10" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/20" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Static Content Overlay - Stays in place with animations */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
-        {/* Enhanced Left accent bar */}
-        <div
-          className={`absolute left-0 top-0 w-1 bg-linear-to-b from-primary-color via-third-color to-secondary-color transition-all duration-1000 shadow-lg shadow-primary-color/50 ${
-            !isTransitioning
-              ? "h-full opacity-100 shadow-primary-color/80"
-              : "h-0 opacity-0"
-          }`}
-        />
-
-        {/* Animated corner brackets */}
-        <div
-          className={`absolute top-6 left-6 sm:top-10 sm:left-8 transition-all duration-700 delay-300 ${
-            !isTransitioning
-              ? "opacity-100 translate-x-0 translate-y-0"
-              : "opacity-0 -translate-x-8 -translate-y-8"
-          }`}
-        >
-          <div className="w-8 h-8 sm:w-14 sm:h-14 border-t-2 border-l-2 border-primary-color shadow-lg shadow-primary-color/30" />
-          <div className="absolute -top-1 -left-1 w-3 h-3 bg-primary-color rounded-full animate-pulse" />
-        </div>
-
-        <div
-          className={`absolute bottom-14 right-6 sm:bottom-20 sm:right-10 transition-all duration-700 delay-300 ${
-            !isTransitioning
-              ? "opacity-100 translate-x-0 translate-y-0"
-              : "opacity-0 translate-x-8 translate-y-8"
-          }`}
-        >
-          <div className="w-8 h-8 sm:w-14 sm:h-14 border-b-2 border-r-2 border-secondary-color shadow-lg shadow-secondary-color/30" />
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-secondary-color rounded-full animate-pulse" />
-        </div>
-
-        {/* Slide counter */}
-
-        {/* Content - Centered with proper spacing */}
-        <div className="relative w-full flex flex-col items-center justify-center text-center px-8 sm:px-14 md:px-20 lg:px-28 max-w-6xl">
-          {/* Label with simple slide from left */}
+      {/* 2. STATIC CONTENT OVERLAY - Fixed 10rem from Top */}
+      {/* 'items-start' ensures it doesn't stay in vertical center */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center  ">
+        <div className="relative pt-10 w-full flex flex-col items-center text-center px-6 max-w-6xl">
+          {/* Label */}
           <div
-            className={`flex items-center gap-3 mb-4 sm:mb-5 transition-all duration-800 delay-300 ${
+            className={`flex items-center gap-4 mb-6 transition-all duration-1000 ${
               !isTransitioning
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-20"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-10"
             }`}
           >
-            <div
-              className={`h-px bg-yellow-600 shrink-0 transition-all duration-600 delay-500 ${
-                !isTransitioning ? "w-12 sm:w-16" : "w-0"
-              }`}
-            />
-            <span className="text-yellow-600 text-xs sm:text-sm font-bold uppercase tracking-[0.3em] whitespace-nowrap drop-shadow-lg">
-              Namuna Vidhya Sadan
+            <div className="h-0.5 w-12 bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+            <span className="text-yellow-400 text-xs sm:text-sm font-bold uppercase tracking-[0.5em]">
+              {SCHOOL_NAME}
             </span>
-            <div
-              className={`h-px bg-yellow-600 shrink-0 transition-all duration-600 delay-500 ${
-                !isTransitioning ? "w-12 sm:w-16" : "w-0"
-              }`}
-            />
+            <div className="h-0.5-12 bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
           </div>
 
-          {/* Title with simple slide from right */}
-          <h1
-            className={`text-3xl sm:text-5xl md:text-5xl lg:text-5xl xl:text-8xl font-black text-blue-950 leading-[0.9] mb-6 sm:mb-8 max-w-5xl  transition-all duration-1000 delay-600 ${
+          {/* MASKED TITLE ANIMATION */}
+          <div className="overflow-hidden my-12">
+            <h1
+              className={`text-4xl sm:text-6xl md:text-5xl lg:text-5xl font-black text-white leading-[1.1] transition-all duration-1200 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                !isTransitioning
+                  ? "opacity-100 translate-y-0 tracking-tight"
+                  : "opacity-0 translate-y-[115%] tracking-widest"
+              }`}
+            >
+              {heroSlides[activeIndex]?.title}
+            </h1>
+          </div>
+
+          {/* Buttons */}
+          <div
+            className={`flex flex-col sm:flex-row gap-6 transition-all duration-1000 delay-500 ${
               !isTransitioning
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-20"
-            }`}
-            style={{
-              textShadow:
-                "3px 3px 6px rgba(0,0,0,0.9), 0 0 20px rgba(30,58,138,0.4)",
-            }}
-          >
-            {randomSlides[activeIndex]?.title || "Excellence in Education"}
-          </h1>
-
-          {/* Divider with fade in */}
-          <div
-            className={`flex items-center justify-center gap-3 mb-8 sm:mb-12 transition-all duration-800 delay-900 ${
-              !isTransitioning ? "opacity-100 scale-100" : "opacity-0 scale-75"
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
             }`}
           >
-            <div
-              className={`h-0.5 bg-secondary-color rounded-full transition-all duration-600 delay-1000 ${
-                !isTransitioning ? "w-16 sm:w-24" : "w-0"
-              }`}
-            />
-            <div
-              className={`w-3 h-3 rounded-full bg-primary-color transition-all duration-400 delay-1100 shadow-lg animate-pulse ${
-                !isTransitioning ? "scale-100 opacity-100" : "scale-0 opacity-0"
-              }`}
-            />
-            <div
-              className={`h-0.5 bg-secondary-color rounded-full transition-all duration-600 delay-1000 ${
-                !isTransitioning ? "w-16 sm:w-24" : "w-0"
-              }`}
-            />
-          </div>
-
-          {/* Buttons with simple slide from sides */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-            <div
-              className={`transition-all duration-800 delay-1200 ${
-                !isTransitioning
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-16"
-              }`}
+            <Button
+              to="/about"
+              size="lg"
+              className="px-12 py-4 bg-blue-800 text-white font-bold hover:bg-blue-900 hover:text-black! transition-all  shadow-xl"
             >
-              <Button to="/about" size="lg" variant="hero">
-                About Us
-              </Button>
-            </div>
-
-            <div
-              className={`transition-all duration-800 delay-1300 ${
-                !isTransitioning
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-16"
-              }`}
+              About Us
+            </Button>
+            <Button
+              to="/gallery"
+              variant="outline"
+              size="lg"
+              className="px-12 py-4 border-2 border-white text-white font-bold hover:bg-green-600 hover:border-green-600 transition-all backdrop-blur-sm"
             >
-              <Button to="/gallery" size="lg" variant="heroOutline">
-                View Gallery
-              </Button>
-            </div>
+              View Gallery
+            </Button>
           </div>
-        </div>
-
-        {/* Enhanced bottom color bar with animation */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 z-20 overflow-hidden">
-          <div className="h-full bg-linear-to-r from-primary-color via-third-color to-secondary-color" />
-          <div
-            className={`absolute top-0 left-0 h-full w-full bg-linear-to-r from-transparent via-white/30 to-transparent transform transition-transform duration-2000 ${
-              !isTransitioning ? "translate-x-full" : "-translate-x-full"
-            }`}
-          />
         </div>
       </div>
 
-      {/* Enhanced Navigation Buttons */}
-      <button className="hero-prev absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white flex items-center justify-center transition-all duration-300 group">
+      {/* Navigation Controls */}
+      <button className="hero-prev absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/5 text-white border border-white/10 backdrop-blur-md hover:bg-white/20 transition-all flex items-center justify-center group">
         <svg
-          className="w-4 h-4 transition-transform"
+          className="w-7 h-7 group-hover:-translate-x-1 transition-transform"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -261,14 +136,14 @@ const HeroSlider = () => {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2.5}
+            strokeWidth={2}
             d="M15 19l-7-7 7-7"
           />
         </svg>
       </button>
-      <button className="hero-next absolute right-3 sm:right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white flex items-center justify-center transition-all duration-300 group">
+      <button className="hero-next absolute right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-14 rounded-full bg-white/5 text-white border border-white/10 backdrop-blur-md hover:bg-white/20 transition-all flex items-center justify-center group">
         <svg
-          className="w-4 h-4 transition-transform"
+          className="w-7 h-7 group-hover:translate-x-1 transition-transform"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -276,11 +151,13 @@ const HeroSlider = () => {
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={2.5}
+            strokeWidth={2}
             d="M9 5l7 7-7 7"
           />
         </svg>
       </button>
+
+      <div className="absolute bottom-0 left-0 w-full h-2 z-40 bg-linear-to-r from-blue-600 via-yellow-500 to-green-600" />
     </section>
   );
 };

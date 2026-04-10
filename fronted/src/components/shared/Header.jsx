@@ -42,8 +42,8 @@ const Header = () => {
         {/* Top accent stripe */}
         <div className="flex h-1.5">
           <div className="flex-1 bg-primary-color" />
-          <div className="flex-1 bg-[#fdfdfdcb]" />
-          <div className="flex-1 bg-[#1de047b3]" />
+          <div className="flex-1 bg-[#09a413cb]" />
+          <div className="flex-1 bg-[#fbfffcb3]" />
         </div>
 
         {/* Main header */}
@@ -78,7 +78,7 @@ const Header = () => {
                 <h1 className="text-xl font-extrabold text-white tracking-wide drop-shadow-lg">
                   <span className="text-yellow-500">NAMUNA</span>{" "}
                   <span className="text-green-600">BIDHYA </span>
-                  <span className="text-white">SADAN</span>
+                  <span className="text-gray-300">SADAN</span>
                 </h1>
               </Link>
 
@@ -111,8 +111,10 @@ const Header = () => {
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-3xl font-extrabold text-white tracking-wide drop-shadow-lg leading-tight">
-                    NAMUNA VIDHYA SADAN
+                  <h1 className="text-3xl font-extrabold tracking-wide drop-shadow-lg leading-tight">
+                    <span className="text-primary-color">NAMUNA</span>{" "}
+                    <span className="text-secondary-color">VIDHYA</span>{" "}
+                    <span className="text-gray-300">SADAN</span>
                   </h1>
                   <div className="flex gap-0.5 mt-1 mb-1">
                     <div className="h-0.5 w-8 bg-primary-color rounded-full" />
