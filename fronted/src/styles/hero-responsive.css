@@ -1,0 +1,152 @@
+/* Hero Slider Mobile Responsive Fixes */
+
+/* Ensure proper background image handling on all devices */
+.hero-slide-bg {
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important; /* Better performance on mobile */
+}
+
+/* Mobile-specific hero adjustments */
+@media (max-width: 640px) {
+  .hero-mobile-fix {
+    height: 60vh !important;
+    min-height: 400px !important;
+  }
+  
+  .hero-mobile-fix .swiper-slide {
+    height: 100% !important;
+  }
+  
+  .hero-mobile-fix .swiper-slide > div {
+    height: 100% !important;
+  }
+  
+  /* Ensure background images don't stretch */
+  .hero-mobile-fix .swiper-slide [style*="background-image"] {
+    background-size: cover !important;
+    background-position: center !important;
+  }
+  
+  /* Mobile navigation buttons */
+  .hero-mobile-nav {
+    width: 40px !important;
+    height: 40px !important;
+    left: 8px !important;
+    right: 8px !important;
+  }
+  
+  /* Mobile text adjustments */
+  .hero-mobile-text {
+    padding: 0 1rem !important;
+  }
+  
+  .hero-mobile-title {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-mobile-buttons {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+  }
+  
+  .hero-mobile-buttons button,
+  .hero-mobile-buttons a {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hero-tablet-fix {
+    height: 70vh !important;
+    min-height: 500px !important;
+  }
+  
+  .hero-tablet-title {
+    font-size: 3rem !important;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1025px) {
+  .hero-desktop-fix {
+    height: 75vh !important;
+    min-height: 600px !important;
+  }
+}
+
+/* Fix for Swiper pagination on mobile */
+@media (max-width: 640px) {
+  .swiper-pagination {
+    bottom: 20px !important;
+  }
+  
+  .swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 4px !important;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+.hero-container {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .hero-performance-mobile {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  .hero-performance-mobile * {
+    will-change: auto;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  .hero-performance-mobile .transition-transform {
+    transition-duration: 0.3s !important;
+  }
+}
+
+/* Fix for iOS Safari viewport issues */
+@supports (-webkit-touch-callout: none) {
+  .hero-ios-fix {
+    height: 60vh !important;
+    min-height: 400px !important;
+  }
+  
+  @media (max-width: 640px) {
+    .hero-ios-fix {
+      height: calc(60vh - env(safe-area-inset-bottom)) !important;
+    }
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .hero-landscape-mobile {
+    height: 100vh !important;
+    min-height: 100vh !important;
+  }
+  
+  .hero-landscape-mobile .hero-content {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .hero-landscape-mobile h1 {
+    font-size: 2rem !important;
+    margin: 1rem 0 !important;
+  }
+}
