@@ -35,7 +35,7 @@ const HeroSlider = () => {
   return (
     <section
       id="home"
-      className="relative h-[60vh] sm:h-[70vh] lg:h-[75vh] min-h-[400px] sm:min-h-[500px] lg:min-h-[600px] overflow-hidden bg-slate-900"
+      className="relative h-[60vh] sm:h-[70vh] lg:h-[75vh] min-h-100 sm:min-h-125 lg:min-h-150 overflow-hidden bg-slate-900"
     >
       {/* 1. BACKGROUND SWIPER */}
       <Swiper
@@ -58,14 +58,14 @@ const HeroSlider = () => {
                 }}
               />
               <div className="absolute inset-0 bg-black/45" />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/20" />
+              <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/20" />
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
       {/* Content Container - Modified padding top only */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-start pt-[7rem] px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-start pt-28 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-4xl text-center">
           {/* Label */}
           <div
@@ -152,7 +152,7 @@ const HeroSlider = () => {
         </svg>
       </button>
 
-      <div className="absolute bottom-0 left-0 w-full h-2 z-40 bg-gradient-to-r from-blue-600 via-yellow-500 to-green-600" />
+      <div className="absolute bottom-0 left-0 w-full h-2 z-40 bg-linear-to-r from-blue-600 via-yellow-500 to-green-600" />
     </section>
   );
 };
