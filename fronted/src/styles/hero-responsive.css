@@ -1,81 +1,45 @@
 /* Hero Slider Mobile Responsive Fixes */
 
-/* Ensure proper background image handling on all devices */
-.hero-slide-bg {
-  background-size: cover !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
-  background-attachment: scroll !important; /* Better performance on mobile */
-}
-
 /* Mobile-specific hero adjustments */
 @media (max-width: 640px) {
-  .hero-mobile-fix {
+  .hero-slider {
     height: 60vh !important;
     min-height: 400px !important;
   }
   
-  .hero-mobile-fix .swiper-slide {
-    height: 100% !important;
+  .hero-content {
+    padding: 1rem !important;
   }
   
-  .hero-mobile-fix .swiper-slide > div {
-    height: 100% !important;
+  .hero-title {
+    font-size: 1.25rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
   }
   
-  /* Ensure background images don't stretch */
-  .hero-mobile-fix .swiper-slide [style*="background-image"] {
-    background-size: cover !important;
-    background-position: center !important;
+  .hero-buttons {
+    gap: 0.75rem !important;
   }
   
-  /* Mobile navigation buttons */
-  .hero-mobile-nav {
-    width: 40px !important;
-    height: 40px !important;
-    left: 8px !important;
-    right: 8px !important;
-  }
-  
-  /* Mobile text adjustments */
-  .hero-mobile-text {
-    padding: 0 1rem !important;
-  }
-  
-  .hero-mobile-title {
-    font-size: 1.75rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  .hero-mobile-buttons {
-    flex-direction: column !important;
-    gap: 1rem !important;
-    width: 100% !important;
-  }
-  
-  .hero-mobile-buttons button,
-  .hero-mobile-buttons a {
-    width: 100% !important;
-    max-width: 280px !important;
-    margin: 0 auto !important;
+  .hero-button {
+    max-width: 120px !important;
+    padding: 0.25rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    min-height: 28px !important;
   }
 }
 
 /* Tablet adjustments */
 @media (min-width: 641px) and (max-width: 1024px) {
-  .hero-tablet-fix {
+  .hero-slider {
     height: 70vh !important;
     min-height: 500px !important;
-  }
-  
-  .hero-tablet-title {
-    font-size: 3rem !important;
   }
 }
 
 /* Desktop adjustments */
 @media (min-width: 1025px) {
-  .hero-desktop-fix {
+  .hero-slider {
     height: 75vh !important;
     min-height: 600px !important;
   }
@@ -94,59 +58,25 @@
   }
 }
 
-/* Prevent horizontal scroll on mobile */
+/* Prevent horizontal scroll */
 .hero-container {
   overflow-x: hidden !important;
   width: 100% !important;
   max-width: 100vw !important;
 }
 
-/* Performance optimizations for mobile */
-@media (max-width: 768px) {
-  .hero-performance-mobile {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-  
-  .hero-performance-mobile * {
-    will-change: auto;
-  }
-  
-  /* Reduce animation complexity on mobile */
-  .hero-performance-mobile .transition-transform {
-    transition-duration: 0.3s !important;
-  }
+/* Background image fixes */
+.hero-slide {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
-/* Fix for iOS Safari viewport issues */
+/* iOS Safari fixes */
 @supports (-webkit-touch-callout: none) {
-  .hero-ios-fix {
-    height: 60vh !important;
-    min-height: 400px !important;
-  }
-  
   @media (max-width: 640px) {
-    .hero-ios-fix {
+    .hero-slider {
       height: calc(60vh - env(safe-area-inset-bottom)) !important;
     }
-  }
-}
-
-/* Landscape mobile adjustments */
-@media (max-width: 896px) and (orientation: landscape) {
-  .hero-landscape-mobile {
-    height: 100vh !important;
-    min-height: 100vh !important;
-  }
-  
-  .hero-landscape-mobile .hero-content {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-  
-  .hero-landscape-mobile h1 {
-    font-size: 2rem !important;
-    margin: 1rem 0 !important;
   }
 }
